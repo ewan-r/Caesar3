@@ -1,6 +1,5 @@
 #! /usr/bin/env python3
 
-import os
 import pygame
 
 class Button():
@@ -27,7 +26,7 @@ class Button():
         """Draw a rectangle representing a button."""
         pygame.draw.rect(window, (149, 148, 116), (self.x, self.y, self.width, self.height))
 
-        font = pygame.font.Font("data/font/Forum-Regular.ttf", 25)
+        font = pygame.font.Font("view/data/font/Forum-Regular.ttf", 25)
         text = font.render(self.text, 1, (0,0,0))
         # put the text at the center of the button
         window.blit(text, (self.x + (self.width/2 - text.get_width()/2), self.y + (self.height/2 - text.get_height()/2)))

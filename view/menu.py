@@ -1,9 +1,8 @@
 #! /usr/bin/env python3
 
-import button
-import os
 import pygame
 from pygame.locals import *
+from view.button import Button
 
 class Menu():
     """A Menu.
@@ -12,10 +11,6 @@ class Menu():
         window: surface to display infomations
         background_image: relative path of the background image
     """
-
-    # dimensions of the basic window
-    window_width = 1600
-    window_height = 900
 
     def __init__(self, window, background_image):
         """Init Menu with a window and a background image."""
@@ -46,25 +41,11 @@ class Menu():
             # menu buttons
             buttons = []
 
-            buttons.append(button.Button(self.window.get_size()[0]/2-150, 150, 300, 50, "Start a new career"))
-            buttons.append(button.Button(self.window.get_size()[0]/2-150, 225, 300, 50, "Load saved game"))
-            buttons.append(button.Button(self.window.get_size()[0]/2-150, 300, 300, 50, "Exit"))
+            buttons.append(Button(self.window.get_size()[0]/2-150, 150, 300, 50, "Start a new career"))
+            buttons.append(Button(self.window.get_size()[0]/2-150, 225, 300, 50, "Load saved game"))
+            buttons.append(Button(self.window.get_size()[0]/2-150, 300, 300, 50, "Exit"))
 
             for btn in buttons:
                 btn.draw(self.window)
 
             pygame.display.update()    
-
-def main():
-    """Main program."""
-    # the window is resizable and it is possible to put it in fullscreen
-    window = pygame.display.set_mode((Menu.window_width, Menu.window_height), RESIZABLE, FULLSCREEN)
-    # move to data directory
-    os.chdir("../")
-    # relative path of the background image
-    background_image = pygame.image.load("data/img/caesar3-bg.png")
-
-    game_menu = Menu(window, background_image)
-    game_menu.display_menu()
-
-main()
