@@ -26,7 +26,7 @@ class Button():
         if is_hovered == False:
             pygame.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
 
-            font = pygame.font.Font("view/data/font/Forum-Regular.ttf", 25)
+            font = pygame.font.Font("assets/font/Forum-Regular.ttf", 25)
             text = font.render(self.text, 1, (0,0,0))
             # put the text at the center of the button
             window.blit(text, (self.rect.x + (self.rect.width/2 - text.get_width()/2), self.rect.y + (self.rect.height/2 - text.get_height()/2)))
