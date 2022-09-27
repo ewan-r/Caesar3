@@ -1,5 +1,7 @@
-import pygame
+import pygame as pg
 import sys
+
+from model.game import Game
 
 class ButtonController():
     """A ButtonController."""  
@@ -20,7 +22,7 @@ class ButtonController():
         """
         is_hovered = False
 
-        if btn.rect.collidepoint(pygame.mouse.get_pos()):
+        if btn.rect.collidepoint(pg.mouse.get_pos()):
             is_hovered = True
             btn.draw(self.menu.window, is_hovered)
         else:
@@ -28,7 +30,9 @@ class ButtonController():
 
     def start_game(self):
         """Start a game."""
-        pass
+        game = Game(self.menu.window, pg.time.Clock())
+
+        game.run()
         
     def load_save(self):
         """Load a save."""

@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 from pygame.locals import *
 
 from controller.menu_controller import MenuController
@@ -22,11 +22,11 @@ class Menu():
     def display_menu(self):
         """Display the game menu."""
 
-        pygame.init()
+        pg.init()
 
-        pygame.display.set_caption("INSA_lubrityIII")
+        pg.display.set_caption("INSA_lubrityIII")
 
-        pygame.transform.scale(self.background, (self.window.get_size()))
+        pg.transform.scale(self.background, (self.window.get_size()))
 
         # controllers
         btn_controller = ButtonController(self)
@@ -35,37 +35,37 @@ class Menu():
         btn_clicked = False
         loop = 1
         while loop:          
-            for event in pygame.event.get():
+            for event in pg.event.get():
                 if event.type == QUIT:
                     loop = 0
                 # handle any other surfaces we might want to resize
                 elif event.type == VIDEORESIZE: 
-                    self.window.blit(pygame.transform.scale(self.background, event.dict['size']), (0, 0))
+                    self.window.blit(pg.transform.scale(self.background, event.dict['size']), (0, 0))
                 # handle parts of the window which need to be redrawn
                 elif event.type == VIDEOEXPOSE:
-                    self.window.blit(pygame.transform.scale(self.background, self.window.get_size()), (0, 0))
+                    self.window.blit(pg.transform.scale(self.background, self.window.get_size()), (0, 0))
                 # buttons clicked
-                elif event.type == pygame.MOUSEBUTTONDOWN:
+                elif event.type == pg.MOUSEBUTTONDOWN:
                     if event.button == 1:
                         for btn in self.buttons:
                             if btn.rect.collidepoint(event.pos):
                                btn.ftn_click()
                                btn_clicked = True
                 # buttons hovered
-                elif event.type == pygame.MOUSEMOTION:
+                elif event.type == pg.MOUSEMOTION:
                     for btn in self.buttons:
                         if btn.rect.collidepoint(event.pos):
-                            pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_HAND)  
+                            pg.mouse.set_cursor(pg.SYSTEM_CURSOR_HAND)  
                             break
                         else:
-                            pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)  
+                            pg.mouse.set_cursor(pg.SYSTEM_CURSOR_ARROW)  
 
             # menu buttons
             self.buttons = []
 
-            self.buttons.append(Button(pygame.Rect(self.window.get_size()[0]/2-150, 150, 300, 50), "Start a new career", btn_controller.start_game))
-            self.buttons.append(Button(pygame.Rect(self.window.get_size()[0]/2-150, 225, 300, 50), "Load saved game", btn_controller.load_save))
-            self.buttons.append(Button(pygame.Rect(self.window.get_size()[0]/2-150, 300, 300, 50), "Exit", btn_controller.quit_game))
+            self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 150, 300, 50), "Start a new career", btn_controller.start_game))
+            self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 225, 300, 50), "Load saved game", btn_controller.load_save))
+            self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 300, 300, 50), "Exit", btn_controller.quit_game))
 
             # activate hover effect
             for btn in self.buttons:
@@ -75,4 +75,4 @@ class Menu():
             if btn_clicked == True:
                 menu_controller.clear()
             
-            pygame.display.update()    
+            pg.display.update()    

@@ -1,4 +1,4 @@
-import pygame
+import pygame as pg
 
 class MenuController():
     """A MenuController."""  
@@ -14,6 +14,6 @@ class MenuController():
     def clear(self):
         """Clear the game menu."""
         # cursor by default
-        pygame.mouse.set_cursor(pygame.SYSTEM_CURSOR_ARROW)  
+        pg.mouse.set_cursor(pg.SYSTEM_CURSOR_ARROW)  
         self.menu.window.fill((0, 0, 0))
         self.menu.buttons.clear()
