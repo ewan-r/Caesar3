@@ -27,7 +27,7 @@ class Level:
         for x in range(self.grid_length_x):
             for y in range(self.grid_length_y):
                 render_pos =  self.level[x][y]["render_pos"]
-                #draw world tiles
+                # draw world tiles
                 tile = self.level[x][y]["tile"]
                 if tile != "":
                     screen.blit(self.tiles[tile],

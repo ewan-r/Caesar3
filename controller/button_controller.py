@@ -31,6 +31,9 @@ class ButtonController():
 
     def start_game(self):
         """Start a game."""
+        # put the window in fullscreen mode
+        self.menu.window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+
         game = Game(self.menu.window, pg.time.Clock())
         game_controller = GameController(game)
         game_controller.run()
