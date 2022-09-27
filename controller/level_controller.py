@@ -14,24 +14,8 @@ class LevelController:
                 level[grid_x].append(level_tile)
 
                 render_pos = level_tile["render_pos"]
-                if grid_x == 21:
-                    self.level.grass_tiles.blit(self.level.tiles["landsRoad"]["landRoad1"],
-                                          (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-                elif (10<=grid_y <17 and grid_x == 0) or (11<=grid_y <21 and grid_x == 1)or (16<=grid_y <21 and grid_x == 2)or (20<=grid_y <40 and 3<=grid_x<7):
-                    self.level.grass_tiles.blit(self.level.tiles["landsWater"]["landWater1"],
-                                          (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-                elif (10<=grid_y<=30 and 7<=grid_x<=17):
-                    self.level.grass_tiles.blit(self.level.tiles["lands"]["land2"],
-                                          (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-                    self.level.grass_tiles.blit(self.level.tiles["landsForests"]["landForest1"],
-                                          (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-                elif (10 <= grid_y <= 30 and 27 <= grid_x <= 37):
-                    self.level.grass_tiles.blit(self.level.tiles["lands"]["land2"],
-                                          (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-                    self.level.grass_tiles.blit(self.level.tiles["landsMountain"]["landMountain1"],
-                                          (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-                else:
-                    self.level.grass_tiles.blit(self.level.tiles["lands"]["land1"], (render_pos[0] + self.level.grass_tiles.get_width()/2, render_pos[1]))
+                
+                self.level.grass_tiles.blit(self.level.tiles["lands"]["land81"], (render_pos[0] + self.level.grass_tiles.get_width()/2, render_pos[1]))
 
         return level
 
@@ -49,12 +33,28 @@ class LevelController:
         miny = min([y for x, y in iso_poly])
 
         tile=""
+        type_tile = ""
+
+        if grid_x == 21:
+            type_tile = "landsRoad"
+            tile = "landRoad1"
+        elif (10 <= grid_y < 17 and grid_x == 0) or (11 <= grid_y < 21 and grid_x == 1) or (
+                16 <= grid_y < 21 and grid_x == 2) or (20 <= grid_y < 40 and 3 <= grid_x < 7):
+            type_tile = "landsWater"
+            tile = "landWater1"
+        elif (10 <= grid_y <= 30 and 7 <= grid_x <= 17):
+            type_tile = "landsForests"
+            tile="landForest45"
+        elif (10 <= grid_y <= 30 and 27 <= grid_x <= 37):
+            type_tile = "landsMountain"
+            tile="landMountain1"
 
         out = {
             "grid": [grid_x, grid_y],
             "cart_rect": rect,
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
+            "type_tile": type_tile,
             "tile": tile
             #"collision": False if tile == "" else True
         }
@@ -79,45 +79,45 @@ class LevelController:
         return grid_x, grid_y
 
     def load_images(self):
-        land1 = pg.image.load("assets/sprites/lands/Land1a_00081.png").convert_alpha()
-        land2 = pg.image.load("assets/sprites/lands/Land1a_00094.png").convert_alpha()
+        land81 = pg.image.load("assets/sprites/lands/Land1a_00081.png").convert_alpha()
+        land94 = pg.image.load("assets/sprites/lands/Land1a_00094.png").convert_alpha()
         lands = {
-            "land1":land1,
-            "land2": land2
+            "land81": land81,
+            "land94": land94
         }
 
-        landForest1 = pg.image.load("assets/sprites/lands/Land1a_00045.png").convert_alpha()
+        landForest45 = pg.image.load("assets/sprites/lands/Land1a_00045.png").convert_alpha()
         landsForests = {
-            "landForest1":landForest1
+            "landForest45": landForest45
         }
 
         landWater1 = pg.image.load("assets/sprites/lands/Land1a_00122.png").convert_alpha()
         landsWater = {
-            "landWater1":landWater1
+            "landWater1": landWater1
         }
 
         landCoast1 = pg.image.load("assets/sprites/lands/Land1a_00132.png").convert_alpha()
         landsCoast = {
-            "landCoast1":landCoast1
+            "landCoast1": landCoast1
         }
 
         landMountain1 = pg.image.load("assets/sprites/lands/Land1a_00295.png").convert_alpha()
         landsMountain = {
-            "landMountain1":landMountain1
+            "landMountain1": landMountain1
         }
 
         landRoad1 = pg.image.load("assets/sprites/lands/Land2a_00095.png").convert_alpha()
         landsRoad = {
-            "landRoad1":landRoad1
+            "landRoad1": landRoad1
         }
 
         images = {
             "lands": lands,
-            "landsForests":landsForests,
-            "landsWater":landsWater,
-            "landsCoast":landsCoast,
-            "landsMountain":landsMountain,
-            "landsRoad":landsRoad
+            "landsForests": landsForests,
+            "landsWater": landsWater,
+            "landsCoast": landsCoast,
+            "landsMountain": landsMountain,
+            "landsRoad": landsRoad
         }
 
         return images

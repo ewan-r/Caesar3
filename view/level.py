@@ -29,10 +29,11 @@ class Level:
                 render_pos =  self.level[x][y]["render_pos"]
                 # draw world tiles
                 tile = self.level[x][y]["tile"]
+                type_tile = self.level[x][y]["type_tile"]
                 if tile != "":
-                    screen.blit(self.tiles[tile],
+                    screen.blit(self.tiles[type_tile][tile],
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
-                                     render_pos[1] - (self.tiles[tile].get_height() - 30) + camera.scroll.y))
+                                     render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
 
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
