@@ -3,7 +3,7 @@ import pygame as pg
 from controller.level_controller import LevelController
 
 class Level:
-    def __init__(self, entities,grid_length_x, grid_length_y, width, height):
+    def __init__(self, entities, grid_length_x, grid_length_y, width, height):
         self.entities = entities
         self.grid_length_x = grid_length_x
         self.grid_length_y = grid_length_y

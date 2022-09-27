@@ -76,6 +76,7 @@ class LevelController:
         # transform to grid coordinates
         grid_x = int(cart_x // 30)
         grid_y = int(cart_y // 30)
+        
         return grid_x, grid_y
 
     def load_images(self):

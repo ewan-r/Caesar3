@@ -2,7 +2,6 @@ import pygame as pg
 
 class Camera:
     def __init__(self, width, height):
-
         self.width = width
         self.height = height
 
