@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 
 from model.game import Game
+from controller.game_controller import GameController
 
 class ButtonController():
     """A ButtonController."""  
@@ -31,8 +32,8 @@ class ButtonController():
     def start_game(self):
         """Start a game."""
         game = Game(self.menu.window, pg.time.Clock())
-
-        game.run()
+        game_controller = GameController(game)
+        game_controller.run()
         
     def load_save(self):
         """Load a save."""

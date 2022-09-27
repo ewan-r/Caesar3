@@ -10,7 +10,7 @@ def main():
     # the window is resizable and it is possible to put it in fullscreen
     window = pg.display.set_mode((1600, 900), RESIZABLE, FULLSCREEN)
     # relative path of the background image
-    background_image = pg.image.load("assets/img/insa-lubrityiii-bg.png").convert_alpha()
+    background_image = pg.image.load("assets/background/insa-lubrityiii-bg.png").convert_alpha()
 
     game_menu = Menu(window, background_image)
     game_menu.display_menu()

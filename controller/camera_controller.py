@@ -8,21 +8,21 @@ class CameraController:
         mouse_pos = pg.mouse.get_pos()
 
         # x movement
-        if mouse_pos[0] > self.width * 0.97:
-            self.dx = -self.speed
-        elif mouse_pos[0] < self.width * 0.03:
-            self.dx = self.speed
+        if mouse_pos[0] > self.camera.width * 0.97:
+            self.dx = -self.camera.speed
+        elif mouse_pos[0] < self.camera.width * 0.03:
+            self.dx = self.camera.speed
         else:
             self.dx = 0
 
         # y movement
-        if mouse_pos[1] > self.height * 0.97:
-            self.dy = -self.speed
-        elif mouse_pos[1] < self.height * 0.03:
-            self.dy = self.speed
+        if mouse_pos[1] > self.camera.height * 0.97:
+            self.dy = -self.camera.speed
+        elif mouse_pos[1] < self.camera.height * 0.03:
+            self.dy = self.camera.speed
         else:
             self.dy = 0
 
         # update camera scroll
-        self.scroll.x += self.dx
-        self.scroll.y += self.dy
+        self.camera.scroll.x += self.dx
+        self.camera.scroll.y += self.dy

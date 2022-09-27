@@ -5,12 +5,12 @@ from controller.camera_controller import CameraController
 
 class GameController:
     def __init__(self, game):
-        self.camera = game
+        self.game = game
 
     def run(self):
         self.playing = True
         while self.playing:
-            self.clock.tick(60)
+            self.game.clock.tick(60)
             self.events()
             self.update()
             self.draw()
@@ -26,12 +26,12 @@ class GameController:
                     sys.exit()
 
     def update(self):
-        camera_controller = CameraController(self.camera)
+        camera_controller = CameraController(self.game.camera)
         
         camera_controller.update()
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
-        self.level.draw(self.screen, self.camera)
+        self.game.screen.fill((0, 0, 0))
+        self.game.level.draw(self.game.screen, self.game.camera)
 
         pg.display.flip()
