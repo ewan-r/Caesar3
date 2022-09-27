@@ -27,10 +27,11 @@ class Level:
                 render_pos =  self.level[x][y]["render_pos"]
                 #draw world tiles
                 tile = self.level[x][y]["tile"]
+                type_tile = self.level[x][y]["type_tile"]
                 if tile != "":
-                    screen.blit(self.tiles[tile],
+                    screen.blit(self.tiles[type_tile][tile],
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
-                                     render_pos[1] - (self.tiles[tile].get_height() - 30) + camera.scroll.y))
+                                     render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
 
 
         if self.temp_tile is not None:
@@ -61,24 +62,7 @@ class Level:
                 level[grid_x].append(level_tile)
 
                 render_pos = level_tile["render_pos"]
-                if grid_x == 21:
-                    self.grass_tiles.blit(self.tiles["landsRoad"]["landRoad1"],
-                                          (render_pos[0] + self.grass_tiles.get_width() / 2, render_pos[1]))
-                elif (10<=grid_y <17 and grid_x == 0) or (11<=grid_y <21 and grid_x == 1)or (16<=grid_y <21 and grid_x == 2)or (20<=grid_y <40 and 3<=grid_x<7):
-                    self.grass_tiles.blit(self.tiles["landsWater"]["landWater1"],
-                                          (render_pos[0] + self.grass_tiles.get_width() / 2, render_pos[1]))
-                elif (10<=grid_y<=30 and 7<=grid_x<=17):
-                    self.grass_tiles.blit(self.tiles["lands"]["land2"],
-                                          (render_pos[0] + self.grass_tiles.get_width() / 2, render_pos[1]))
-                    self.grass_tiles.blit(self.tiles["landsForests"]["landForest1"],
-                                          (render_pos[0] + self.grass_tiles.get_width() / 2, render_pos[1]))
-                elif (10 <= grid_y <= 30 and 27 <= grid_x <= 37):
-                    self.grass_tiles.blit(self.tiles["lands"]["land2"],
-                                          (render_pos[0] + self.grass_tiles.get_width() / 2, render_pos[1]))
-                    self.grass_tiles.blit(self.tiles["landsMountain"]["landMountain1"],
-                                          (render_pos[0] + self.grass_tiles.get_width() / 2, render_pos[1]))
-                else:
-                    self.grass_tiles.blit(self.tiles["lands"]["land1"], (render_pos[0] + self.grass_tiles.get_width()/2, render_pos[1]))
+                self.grass_tiles.blit(self.tiles["lands"]["land81"], (render_pos[0] + self.grass_tiles.get_width()/2, render_pos[1]))
 
 
         return level
@@ -99,12 +83,27 @@ class Level:
         miny = min([y for x, y in iso_poly])
 
         tile=""
+        type_tile = ""
+        if grid_x == 21:
+            type_tile = "landsRoad"
+            tile = "landRoad1"
+        elif (10 <= grid_y < 17 and grid_x == 0) or (11 <= grid_y < 21 and grid_x == 1) or (
+                16 <= grid_y < 21 and grid_x == 2) or (20 <= grid_y < 40 and 3 <= grid_x < 7):
+            type_tile = "landsWater"
+            tile = "landWater1"
+        elif (10 <= grid_y <= 30 and 7 <= grid_x <= 17):
+            type_tile = "landsForests"
+            tile="landForest45"
+        elif (10 <= grid_y <= 30 and 27 <= grid_x <= 37):
+            type_tile = "landsMountain"
+            tile="landMountain1"
 
         out = {
             "grid": [grid_x, grid_y],
             "cart_rect": rect,
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
+            "type_tile": type_tile,
             "tile": tile
             #"collision": False if tile == "" else True
         }
@@ -131,16 +130,18 @@ class Level:
 
     def load_images(self):
 
-        land1 = pg.image.load("C3/Land1a_00081.png").convert_alpha()
-        land2 = pg.image.load("C3/Land1a_00094.png").convert_alpha()
+        land81 = pg.image.load("C3/Land1a_00081.png").convert_alpha()
+        land94 = pg.image.load("C3/Land1a_00094.png").convert_alpha()
         lands = {
-            "land1":land1,
-            "land2": land2
+            "land81": land81,
+            "land81": land94
         }
 
-        landForest1 = pg.image.load("C3/Land1a_00045.png").convert_alpha()
+        landForest45 = pg.image.load("C3/Land1a_00045.png").convert_alpha()
+
         landsForests = {
-            "landForest1":landForest1
+
+            "landForest45": landForest45
         }
 
         landWater1 = pg.image.load("C3/Land1a_00122.png").convert_alpha()
