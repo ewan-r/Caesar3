@@ -122,3 +122,16 @@ class LevelController:
         }
 
         return images
+
+    def get_pos_sprites(self, type_tile):
+        """"""
+        pos_sprites = []
+
+        for grid_x in range(self.level.grid_length_x):
+            for grid_y in range(self.level.grid_length_y):
+                level_tile = self.grid_to_level(grid_x, grid_y)
+
+                if level_tile['type_tile'] == type_tile:
+                    pos_sprites.append(level_tile['grid'])
+        
+        return pos_sprites

@@ -4,11 +4,11 @@ import sys
 from model.game import Game
 from controller.game_controller import GameController
 
-class ButtonController():
-    """A ButtonController."""  
+class MenuButtonController():
+    """A MenuButtonController."""  
 
     def __init__(self, menu):
-        """ButtonController constructor.
+        """MenuButtonController constructor.
         
         Argument:
             menu -- menu to be updated

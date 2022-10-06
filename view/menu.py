@@ -3,7 +3,7 @@ from pygame.locals import *
 
 from controller.menu_controller import MenuController
 from view.button import Button
-from controller.button_controller import ButtonController
+from controller.menu_button_controller import MenuButtonController
 
 class Menu():
     """A Menu."""
@@ -29,7 +29,7 @@ class Menu():
         pg.transform.scale(self.background, (self.window.get_size()))
 
         # controllers
-        btn_controller = ButtonController(self)
+        btn_controller = MenuButtonController(self)
         menu_controller = MenuController(self)
 
         btn_clicked = False
