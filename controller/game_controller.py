@@ -14,6 +14,7 @@ class GameController:
             self.events()
             self.update()
             self.draw()
+            self.position_mouse_grid()
         
     def events(self):
         for event in pg.event.get():
@@ -35,3 +36,10 @@ class GameController:
         self.game.level.draw(self.game.screen, self.game.camera)
 
         pg.display.flip()
+
+    def position_mouse_grid(self):
+        x, y = pg.mouse.get_pos()
+        level_controller = self.game.level.level_controller
+
+        # detect roads
+        level_controller.mouse_on_sprite(level_controller.mouse_to_grid(x, y), level_controller.get_list_pos_sprites('landsRoad'))

@@ -66,10 +66,11 @@ class LevelController:
         iso_y = (x + y)/2
         return iso_x, iso_y
 
-    def mouse_to_grid(self, x, y, scroll):
+    # how to use scroll when the function is called ???
+    def mouse_to_grid(self, x, y):
         # transform to world position (removing camera scroll and offset)
-        world_x = x - scroll.x - self.grass_tiles.get_width()/2
-        world_y = y - scroll.y
+        world_x = x - self.level.grass_tiles.get_width()/2
+        world_y = y
         # transform to cart (inverse of cart_to_iso)
         cart_y = (2*world_y - world_x)/2
         cart_x = cart_y + world_x
@@ -123,7 +124,7 @@ class LevelController:
 
         return images
 
-    def get_pos_sprites(self, type_tile):
+    def get_list_pos_sprites(self, type_tile):
         """"""
         pos_sprites = []
 
@@ -135,3 +136,12 @@ class LevelController:
                     pos_sprites.append(level_tile['grid'])
         
         return pos_sprites
+
+    def mouse_on_sprite(self, current_mouse_pos_grid, list_pos_sprites):
+        """"""
+
+        for coords in list_pos_sprites:
+            coord_x, coord_y = coords[0], coords[1]
+
+            if current_mouse_pos_grid == (coord_x, coord_y):
+                print("route")
