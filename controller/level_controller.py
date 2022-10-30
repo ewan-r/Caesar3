@@ -1,4 +1,5 @@
 import pygame as pg
+import controller.utils
 
 class LevelController:
     def __init__(self, level):
@@ -137,11 +138,17 @@ class LevelController:
         
         return pos_sprites
 
-    def mouse_on_sprite(self, current_mouse_pos_grid, list_pos_sprites):
+    def mouse_next_to_sprite(self, current_mouse_pos_grid, list_pos_sprites):
         """"""
 
-        for coords in list_pos_sprites:
-            coord_x, coord_y = coords[0], coords[1]
+        is_next_to_sprite = False
 
-            if current_mouse_pos_grid == (coord_x, coord_y):
-                print("route")
+        list_pos_sprites_without_brackets = controller.utils.convert_list_coords_brackets_parenthesis(list_pos_sprites)
+
+        if current_mouse_pos_grid not in list_pos_sprites_without_brackets:
+            coord_x, coord_y = current_mouse_pos_grid
+
+            if (coord_x, coord_y-1) in list_pos_sprites_without_brackets or (coord_x, coord_y+1) in list_pos_sprites_without_brackets or (coord_x-1, coord_y) in list_pos_sprites_without_brackets or (coord_x+1, coord_y) in list_pos_sprites_without_brackets:
+                is_next_to_sprite = True
+
+        return is_next_to_sprite

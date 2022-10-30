@@ -34,7 +34,7 @@ class Menu():
 
         btn_clicked = False
         loop = 1
-        while loop:          
+        while loop:
             for event in pg.event.get():
                 if event.type == QUIT:
                     loop = 0

@@ -17,8 +17,8 @@ class Level:
         self.level_controller = LevelController(self)
 
         # HUD
-        hud = HUD(self)
-        hud.display_hud()
+        self.hud = HUD(self)
+        self.hud.display_hud()
 
         # load functions
         self.tiles = self.level_controller.load_images()

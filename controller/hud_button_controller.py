@@ -1,16 +1,15 @@
 class HUDButtonController():
     """A HUDButtonController."""  
 
-    def __init__(self, hud, level):
+    def __init__(self, hud):
         """HUDButtonController constructor.
         
         Argument:
-            menu -- menu to be updated
+            hud -- 
         """
         self.hud = hud
-        self.level = level
 
-    def create_route(self):
-        """Create a route"""
+    def create_road(self, pos_sprite_to_modify):
+        """Create a road"""
 
-        print(self.level.level_controller.get_list_pos_sprites('landsRoad'))
+        # modify sprite

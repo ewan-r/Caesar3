@@ -5,7 +5,4 @@ class HUD():
         self.level = level
 
     def display_hud(self):
-        # controller
-        hud_btn_controller = HUDButtonController(self, self.level)
-
-        hud_btn_controller.create_route()
+        pass
