@@ -5,11 +5,18 @@ class HUDButtonController():
         """HUDButtonController constructor.
         
         Argument:
-            hud -- 
+            hud -- HUD to be updated
         """
         self.hud = hud
 
     def create_road(self, pos_sprite_to_modify):
-        """Create a road"""
+        """Create a road.
+        
+        Argument:
+            pos_sprite_to_modify -- position of the sprite where a route will be created
+        """
 
-        # modify sprite
+        level_tile_to_modify = self.hud.level.level[pos_sprite_to_modify[0]][pos_sprite_to_modify[1]]
+        
+        level_tile_to_modify['type_tile'] = "landsRoad"
+        level_tile_to_modify['tile'] = "landRoad1"

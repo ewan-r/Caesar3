@@ -3,7 +3,6 @@ import sys
 
 from controller.camera_controller import CameraController
 from controller.hud_button_controller import HUDButtonController
-from view.button import Button
 
 class GameController:
     def __init__(self, game):
@@ -11,6 +10,7 @@ class GameController:
 
     def run(self):
         self.playing = True
+
         while self.playing:
             self.game.clock.tick(60)
             self.events()
@@ -25,8 +25,7 @@ class GameController:
         for event in pg.event.get():
             if event.type == pg.MOUSEBUTTONDOWN:
                 x, y = pg.mouse.get_pos()
-                list_pos_sprites_road = level_controller.get_list_pos_sprites("landsRoad")
-
+                list_pos_sprites_road = self.game.level.level_controller.get_list_pos_sprites("landsRoad")        
                 if event.button == 1 and level_controller.mouse_next_to_sprite(level_controller.mouse_to_grid(x, y), list_pos_sprites_road):
                     hud_btn_controller.create_road(level_controller.mouse_to_grid(x, y))
             if event.type == pg.QUIT:

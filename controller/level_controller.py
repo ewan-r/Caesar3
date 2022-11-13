@@ -126,21 +126,35 @@ class LevelController:
         return images
 
     def get_list_pos_sprites(self, type_tile):
-        """"""
-        pos_sprites = []
+        """Get the positions of sprites of a certain type.
+        
+        Argument:
+            type_tile -- type of the tile where is the sprite
+
+        Returns:
+            a list containing the positions of sprites of a certain type
+        """
+        list_pos_sprites = []
 
         for grid_x in range(self.level.grid_length_x):
             for grid_y in range(self.level.grid_length_y):
-                level_tile = self.grid_to_level(grid_x, grid_y)
+                level_tile = self.level.level[grid_x][grid_y]
 
                 if level_tile['type_tile'] == type_tile:
-                    pos_sprites.append(level_tile['grid'])
+                    list_pos_sprites.append(level_tile['grid'])
         
-        return pos_sprites
+        return list_pos_sprites
 
     def mouse_next_to_sprite(self, current_mouse_pos_grid, list_pos_sprites):
-        """"""
+        """Determine if the mouse is close to a certain type of sprite
+        
+        Arguments:
+            current_mouse_pos_grid -- current position of the mouse in the grid
+            list_pos_sprites -- list of positions of sprites of a certain type
 
+        Returns:
+            true if the mouse is close to a sprite in the list, false if it isn't
+        """
         is_next_to_sprite = False
 
         list_pos_sprites_without_brackets = controller.utils.convert_list_coords_brackets_parenthesis(list_pos_sprites)
