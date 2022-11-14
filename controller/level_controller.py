@@ -67,11 +67,10 @@ class LevelController:
         iso_y = (x + y)/2
         return iso_x, iso_y
 
-    # how to use scroll when the function is called ???
-    def mouse_to_grid(self, x, y):
+    def mouse_to_grid(self, x, y, scroll):
         # transform to world position (removing camera scroll and offset)
-        world_x = x - self.level.grass_tiles.get_width()/2
-        world_y = y
+        world_x = x - scroll.x - self.level.grass_tiles.get_width()/2
+        world_y = y - scroll.y
         # transform to cart (inverse of cart_to_iso)
         cart_y = (2*world_y - world_x)/2
         cart_x = cart_y + world_x

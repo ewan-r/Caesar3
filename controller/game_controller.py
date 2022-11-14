@@ -21,13 +21,13 @@ class GameController:
         # controllers
         level_controller = self.game.level.level_controller
         hud_btn_controller = HUDButtonController(self.game.level.hud)
-
+        camera_controller = CameraController(self.game.camera)
+        
         for event in pg.event.get():
             if event.type == pg.MOUSEBUTTONDOWN:
-                x, y = pg.mouse.get_pos()
-                list_pos_sprites_road = self.game.level.level_controller.get_list_pos_sprites("landsRoad")        
-                if event.button == 1 and level_controller.mouse_next_to_sprite(level_controller.mouse_to_grid(x, y), list_pos_sprites_road):
-                    hud_btn_controller.create_road(level_controller.mouse_to_grid(x, y))
+                x, y = pg.mouse.get_pos()  
+                if event.button == 1:
+                    hud_btn_controller.create_road(level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll))
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
