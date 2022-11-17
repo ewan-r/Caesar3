@@ -1,5 +1,6 @@
 import pygame as pg
 import controller.utils
+from math import dist
 
 class LevelController:
     def __init__(self, level):
@@ -143,6 +144,32 @@ class LevelController:
                     list_pos_sprites.append(level_tile['grid'])
         
         return list_pos_sprites
+
+    def get_sprite_nearest(self, type_tile, compare_tile):
+        """"""
+        sprite_nearest = None
+        list_level_tile = []
+        list_euclidean_distances = []
+
+        for grid_x in range(self.level.grid_length_x):
+            for grid_y in range(self.level.grid_length_y):
+                level_tile = self.level.level[grid_x][grid_y]
+                
+                if level_tile['type_tile'] == type_tile:
+                    euclidean_distance = int(dist(level_tile['grid'], compare_tile))
+
+                    list_level_tile.append(level_tile['grid'])
+                    list_euclidean_distances.append(euclidean_distance)
+
+        index = None
+
+        for euclidean_distance in list_euclidean_distances:
+            if euclidean_distance == min(list_euclidean_distances):
+                index = list_euclidean_distances.index(euclidean_distance)
+
+        sprite_nearest = list_level_tile[index]
+
+        return sprite_nearest
 
     def mouse_next_to_sprite(self, current_mouse_pos_grid, list_pos_sprites):
         """Determine if the mouse is close to a certain type of sprite
