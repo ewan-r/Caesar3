@@ -171,6 +171,24 @@ class LevelController:
 
         return sprite_nearest
 
+    def get_list_tiles_to_modify(self, direction, start_tile, end_tile):
+        list_tiles_to_modify = []
+
+        if direction == "up":
+            for i in range(end_tile[0], start_tile[0], 1):
+                list_tiles_to_modify.append([i, end_tile[1]])
+        elif direction == "down":
+            for i in range(end_tile[0], start_tile[0], -1):
+                list_tiles_to_modify.append([i, end_tile[1]])
+        elif direction == "right":
+            for j in range(end_tile[1], start_tile[1], 1):
+                list_tiles_to_modify.append([end_tile[0], j])
+        elif direction == "left":
+            for j in range(end_tile[1], start_tile[1], -1):
+                list_tiles_to_modify.append([end_tile[0], j])
+
+        return list_tiles_to_modify
+
     def mouse_next_to_sprite(self, current_mouse_pos_grid, list_pos_sprites):
         """Determine if the mouse is close to a certain type of sprite
         
