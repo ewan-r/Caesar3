@@ -1,6 +1,4 @@
 import pygame as pg
-import controller.utils
-from math import dist
 
 class LevelController:
     def __init__(self, level):
@@ -110,8 +108,15 @@ class LevelController:
         }
 
         landRoad1 = pg.image.load("assets/sprites/lands/Land2a_00095.png").convert_alpha()
+        landRoad2 = pg.image.load("assets/sprites/lands/Land2a_00094.png").convert_alpha()
+        landRoad3 = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
+        landRoad4 = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
+
         landsRoad = {
-            "landRoad1": landRoad1
+            "landRoad1": landRoad1,
+            "landRoad2": landRoad2,
+            "landRoad3": landRoad3,
+            "landRoad4": landRoad4
         }
 
         images = {
@@ -144,25 +149,3 @@ class LevelController:
                     list_pos_sprites.append(level_tile['grid'])
         
         return list_pos_sprites
-
-    def mouse_next_to_sprite(self, current_mouse_pos_grid, list_pos_sprites):
-        """Determine if the mouse is close to a certain type of sprite
-        
-        Arguments:
-            current_mouse_pos_grid -- current position of the mouse in the grid
-            list_pos_sprites -- list of positions of sprites of a certain type
-
-        Returns:
-            true if the mouse is close to a sprite in the list, false if it isn't
-        """
-        is_next_to_sprite = False
-
-        list_pos_sprites_without_brackets = controller.utils.convert_list_coords_brackets_parenthesis(list_pos_sprites)
-
-        if current_mouse_pos_grid not in list_pos_sprites_without_brackets:
-            coord_x, coord_y = current_mouse_pos_grid
-
-            if (coord_x, coord_y-1) in list_pos_sprites_without_brackets or (coord_x, coord_y+1) in list_pos_sprites_without_brackets or (coord_x-1, coord_y) in list_pos_sprites_without_brackets or (coord_x+1, coord_y) in list_pos_sprites_without_brackets:
-                is_next_to_sprite = True
-
-        return is_next_to_sprite

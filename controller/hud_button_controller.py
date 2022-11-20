@@ -9,21 +9,23 @@ class HUDButtonController():
         """
         self.hud = hud
 
-    def create_road(self, final_pos_sprite_to_modify):
+    def create_road(self, grid_coords):
         """Create a road.
         
         Argument:
-            final_pos_sprite_to_modify -- final position of the sprite where a route will be created
+
         """
-        if final_pos_sprite_to_modify[0] < self.hud.level.grid_length_x and final_pos_sprite_to_modify[0] >= 0:
-            if final_pos_sprite_to_modify[1] < self.hud.level.grid_length_y and final_pos_sprite_to_modify[1] >= 0:
-                tile_to_modify = self.hud.level.level[final_pos_sprite_to_modify[0]][final_pos_sprite_to_modify[1]]
+        if grid_coords[0] < self.hud.level.grid_length_x and grid_coords[1] < self.hud.level.grid_length_y:
+            if grid_coords[0] >= 0 and grid_coords[1] >= 0:
+                tile_to_modify = self.hud.level.level[grid_coords[0]][grid_coords[1]]
                 
                 # water
-                if tile_to_modify['type_tile'] != "landsWater" and tile_to_modify['tile'] != "landWater1":
+                if tile_to_modify['type_tile'] != "landsWater":
                     # mountain
-                    if tile_to_modify['type_tile'] != "landsMountain" and tile_to_modify['tile'] != "landMountain1":
-                        # tree
-                        if tile_to_modify['type_tile'] != "landsForests" and tile_to_modify['tile'] != "landForest45":
-                            tile_to_modify['type_tile'] = "landsRoad"
-                            tile_to_modify['tile'] = "landRoad1"
+                    if tile_to_modify['type_tile'] != "landsMountain":
+                        # forest
+                        if tile_to_modify['type_tile'] != "landsForests":
+                            # road
+                            if tile_to_modify['type_tile'] != "landsRoad":
+                                tile_to_modify['type_tile'] = "landsRoad"
+                                tile_to_modify['tile'] = "landRoad1"
