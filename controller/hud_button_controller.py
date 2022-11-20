@@ -27,5 +27,7 @@ class HUDButtonController():
                         if tile_to_modify['type_tile'] != "landsForests":
                             # road
                             if tile_to_modify['type_tile'] != "landsRoad":
+
+                                
                                 tile_to_modify['type_tile'] = "landsRoad"
-                                tile_to_modify['tile'] = "landRoad1"
+                                tile_to_modify['tile'] = "landRoad5"

@@ -111,12 +111,14 @@ class LevelController:
         landRoad2 = pg.image.load("assets/sprites/lands/Land2a_00094.png").convert_alpha()
         landRoad3 = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
         landRoad4 = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
+        landRoad5 = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
 
         landsRoad = {
             "landRoad1": landRoad1,
             "landRoad2": landRoad2,
             "landRoad3": landRoad3,
-            "landRoad4": landRoad4
+            "landRoad4": landRoad4,
+            "landRoad5": landRoad5
         }
 
         images = {
