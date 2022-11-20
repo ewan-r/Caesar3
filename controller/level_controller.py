@@ -145,50 +145,6 @@ class LevelController:
         
         return list_pos_sprites
 
-    def get_sprite_nearest(self, type_tile, compare_tile):
-        """"""
-        sprite_nearest = None
-        list_level_tile = []
-        list_euclidean_distances = []
-
-        for grid_x in range(self.level.grid_length_x):
-            for grid_y in range(self.level.grid_length_y):
-                level_tile = self.level.level[grid_x][grid_y]
-                
-                if level_tile['type_tile'] == type_tile:
-                    euclidean_distance = int(dist(level_tile['grid'], compare_tile))
-
-                    list_level_tile.append(level_tile['grid'])
-                    list_euclidean_distances.append(euclidean_distance)
-
-        index = None
-
-        for euclidean_distance in list_euclidean_distances:
-            if euclidean_distance == min(list_euclidean_distances):
-                index = list_euclidean_distances.index(euclidean_distance)
-
-        sprite_nearest = list_level_tile[index]
-
-        return sprite_nearest
-
-    def get_list_tiles_to_modify(self, direction, start_tile, end_tile):
-        list_tiles_to_modify = []
-
-        if direction == "up":
-            for i in range(end_tile[0], start_tile[0], 1):
-                list_tiles_to_modify.append([i, end_tile[1]])
-        elif direction == "down":
-            for i in range(end_tile[0], start_tile[0], -1):
-                list_tiles_to_modify.append([i, end_tile[1]])
-        elif direction == "right":
-            for j in range(end_tile[1], start_tile[1], 1):
-                list_tiles_to_modify.append([end_tile[0], j])
-        elif direction == "left":
-            for j in range(end_tile[1], start_tile[1], -1):
-                list_tiles_to_modify.append([end_tile[0], j])
-
-        return list_tiles_to_modify
-
     def mouse_next_to_sprite(self, current_mouse_pos_grid, list_pos_sprites):
         """Determine if the mouse is close to a certain type of sprite
         

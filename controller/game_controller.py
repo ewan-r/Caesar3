@@ -24,10 +24,6 @@ class GameController:
         camera_controller = CameraController(self.game.camera)
         
         for event in pg.event.get():
-            if event.type == pg.MOUSEBUTTONDOWN:
-                x, y = pg.mouse.get_pos()  
-                if event.button == 1:
-                    hud_btn_controller.create_road(level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll))
             if event.type == pg.QUIT:
                 pg.quit()
                 sys.exit()
@@ -35,6 +31,14 @@ class GameController:
                 if event.key == pg.K_ESCAPE:
                     pg.quit()
                     sys.exit()
+
+        x, y = pg.mouse.get_pos()
+        click = pg.mouse.get_pressed()
+
+        grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
+
+        if click[0]:
+            hud_btn_controller.create_road(grid_coords)
 
     def update(self):
         camera_controller = CameraController(self.game.camera)
