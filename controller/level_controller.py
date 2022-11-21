@@ -107,18 +107,14 @@ class LevelController:
             "landMountain1": landMountain1
         }
 
-        landRoad1 = pg.image.load("assets/sprites/lands/Land2a_00095.png").convert_alpha()
-        landRoad2 = pg.image.load("assets/sprites/lands/Land2a_00094.png").convert_alpha()
-        landRoad3 = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
-        landRoad4 = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
-        landRoad5 = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
+        landRoad1 = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
+        landRoad2 = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
+        landRoad3 = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
 
         landsRoad = {
             "landRoad1": landRoad1,
             "landRoad2": landRoad2,
             "landRoad3": landRoad3,
-            "landRoad4": landRoad4,
-            "landRoad5": landRoad5
         }
 
         images = {
@@ -151,3 +147,21 @@ class LevelController:
                     list_pos_sprites.append(level_tile['grid'])
         
         return list_pos_sprites
+
+    def get_neighbors(self, coords):
+        """"""
+        neighbors = []
+        valid_neighbor = True
+
+        if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
+            if coords[0] >= 0 and coords[1] >= 0:
+                if coords[0] == self.level.grid_length_x-1:
+                    valid_neighbor = False
+                
+                if valid_neighbor:
+                    up = self.level.level[coords[0]+1][coords[1]]
+
+                    if up['type_tile'] == "landsRoad":
+                        neighbors.append(up)
+        
+        return neighbors
