@@ -1,4 +1,5 @@
 import pygame as pg
+import random as rd
 
 class TextField:
 
@@ -23,7 +24,7 @@ class TextField:
     def render_window(self, buttons_save):
         
         active = True
-
+        col_gen= 120
         done = False
         while not done:
             for event in pg.event.get():
@@ -55,11 +56,11 @@ class TextField:
                 
                         elif event.key == pg.K_BACKSPACE:
                             self.text = self.text[:-1]
-                            
                         else:
                             self.text += event.unicode
                     
 
+            pg.draw.rect(self.window, (255, 0, 0), (self.window.get_size()[0]/2-155, 120, 310, 325))
             # Render the current text.
             txt_surface = self.font.render(self.text, True, self.color)
             # Resize the box if the text is too long.
@@ -67,6 +68,7 @@ class TextField:
             self.input_field.w = width
             # Blit the text.
             self.window.blit(txt_surface, (self.input_field.x+5, self.input_field.y+5))
+            
             # Blit the input_box rect.
             pg.draw.rect(self.window, self.color, self.input_field, 2)
 

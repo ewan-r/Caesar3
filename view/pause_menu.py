@@ -80,35 +80,15 @@ class PauseMenu():
             
             pg.display.update()    
 
+
     def save(self):
-        print("test 1 2 3")
-        pg.draw.rect(self.window, (255, 0, 0), (self.window.get_size()[0]/2-155, 120, 310, 325))
-       
-        # show textfield for filename
+        # create object input_field
         filename_input = TextField(self.window, self.window.get_size()[0]/2-120, 200, 140, 32)
        
-            
         self.buttons_save = []
         self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2-120, 300, 80, 50), "Save", self.window))
         self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2+40, 300, 80, 50), "Cancel", self.window))
        
-        saving = 1
-
-        """while saving:
-            for event in pg.event.get():
-                if event.type == QUIT:
-                    loop = 0
-                elif event.type == pg.KEYDOWN:
-                    if event.key == pg.K_ESCAPE:
-                        return
-                # buttons clicked
-                elif event.type == pg.MOUSEBUTTONDOWN:
-                    if event.button == 1:
-                        for btn in self.buttons_save:
-                            if btn.rect.collidepoint(event.pos):
-                            # return a string corresponding to the command 
-                               return btn.getCommand() """
-
-           
+        # passing Save & Cancel buttons as params to the input field
         filename_input.render_window(self.buttons_save)
-        pg.display.flip()
+        
