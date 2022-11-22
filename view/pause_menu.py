@@ -94,7 +94,7 @@ class PauseMenu():
        
         saving = 1
 
-        while saving:
+        """while saving:
             for event in pg.event.get():
                 if event.type == QUIT:
                     loop = 0
@@ -107,11 +107,8 @@ class PauseMenu():
                         for btn in self.buttons_save:
                             if btn.rect.collidepoint(event.pos):
                             # return a string corresponding to the command 
-                               return btn.getCommand() 
+                               return btn.getCommand() """
 
-            # activate hover effect
-            for btn in self.buttons_save:
-                btn.hover(btn)
-                
-            filename_input.render_window()
-            pg.display.flip()
+           
+        filename_input.render_window(self.buttons_save)
+        pg.display.flip()

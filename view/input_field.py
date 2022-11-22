@@ -4,7 +4,6 @@ class TextField:
 
     def __init__(self, window, left, top, width, height):
         self.window = window
-        self.clock = pg.time.Clock()
         self.color_inactive = pg.Color('lightskyblue3')
         self.color_active = pg.Color('dodgerblue2')
         self.font = pg.font.Font(None, 32) # default font-size 32
@@ -21,7 +20,7 @@ class TextField:
     def setInactiveColor(self, color):
          self.color_inactive = pg.Color(color)
 
-    def render_window(self):
+    def render_window(self, buttons_save):
         
         active = True
 
@@ -31,6 +30,12 @@ class TextField:
                 if event.type == pg.QUIT:
                     done = True
                 if event.type == pg.MOUSEBUTTONDOWN:
+                    if event.button == 1:
+                        for btn in buttons_save:
+                            if btn.rect.collidepoint(event.pos):
+                            # return a string corresponding to the command 
+                               return btn.getCommand() 
+
                     # If the user clicked on the input_box rect.
                     if self.input_field.collidepoint(event.pos):
                         # Toggle the active variable.
@@ -40,6 +45,9 @@ class TextField:
                     # Change the current color of the input box.
                     self.color = self.color_active if active else self.color_inactive
                 if event.type == pg.KEYDOWN:
+                    if event.key == pg.K_ESCAPE:
+                        return
+                    
                     if active:
                         if event.key == pg.K_RETURN:
                             print(self.text)
@@ -50,6 +58,7 @@ class TextField:
                             
                         else:
                             self.text += event.unicode
+                    
 
             # Render the current text.
             txt_surface = self.font.render(self.text, True, self.color)
@@ -61,6 +70,9 @@ class TextField:
             # Blit the input_box rect.
             pg.draw.rect(self.window, self.color, self.input_field, 2)
 
+             # activate hover effect
+            for btn in buttons_save:
+                btn.hover(btn)
+                
             pg.display.flip()
-            self.clock.tick(30)
 
