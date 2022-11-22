@@ -111,7 +111,13 @@ class LevelController:
         roadDown = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
         roadLeft = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
         roadRight = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
-        roadIntersection = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
+
+        roadIntersectionCenter = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
+        roadIntersectionUp = pg.image.load("assets/sprites/lands/Land2a_00108.png").convert_alpha()
+        roadIntersectionDown = pg.image.load("assets/sprites/lands/Land2a_00106.png").convert_alpha()
+        roadIntersectionLeft = pg.image.load("assets/sprites/lands/Land2a_00107.png").convert_alpha()
+        roadIntersectionRight = pg.image.load("assets/sprites/lands/Land2a_00109.png").convert_alpha()
+
         roadRightNextToUp  = pg.image.load("assets/sprites/lands/Land2a_00097.png").convert_alpha()
         roadRightNextToDown  = pg.image.load("assets/sprites/lands/Land2a_00100.png").convert_alpha()
         roadDownNextToLeft = pg.image.load("assets/sprites/lands/Land2a_00097.png").convert_alpha()
@@ -126,7 +132,13 @@ class LevelController:
             "roadDown": roadDown,
             "roadLeft": roadLeft,
             "roadRight": roadRight,
-            "roadIntersection": roadIntersection,
+
+            "roadIntersectionCenter": roadIntersectionCenter,
+            "roadIntersectionUp": roadIntersectionUp,
+            "roadIntersectionDown": roadIntersectionDown,
+            "roadIntersectionRight": roadIntersectionRight,
+            "roadIntersectionLeft": roadIntersectionLeft,
+
             "roadRightNextToUp": roadRightNextToUp,
             "roadRightNextToDown": roadRightNextToDown,
             "roadDownNextToLeft": roadDownNextToLeft,
@@ -188,13 +200,13 @@ class LevelController:
                     if up['type_tile'] == "landsRoad": 
                         neighbors.append(up)
                     # down
-                    elif down['type_tile'] == "landsRoad":
+                    if down['type_tile'] == "landsRoad":
                         neighbors.append(down)
                     # right
-                    elif right['type_tile'] == "landsRoad":
+                    if right['type_tile'] == "landsRoad":
                         neighbors.append(right)
                     # left
-                    elif left['type_tile'] == "landsRoad":
+                    if left['type_tile'] == "landsRoad":
                         neighbors.append(left)
         
         return neighbors
