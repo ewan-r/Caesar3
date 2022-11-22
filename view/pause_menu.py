@@ -90,5 +90,5 @@ class PauseMenu():
         self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2+40, 300, 80, 50), "Cancel", self.window))
        
         # passing Save & Cancel buttons as params to the input field
-        filename_input.render_window(self.buttons_save)
+        return filename_input.render_window(self.buttons_save)
         

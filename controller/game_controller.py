@@ -47,16 +47,23 @@ class GameController:
                     Show the menu
                     '''
 
-                    command = self.menuNew.display_menu()
+                    commandResp = self.menuNew.display_menu()
+                    command = commandResp[0]
                     if (command == "Exit to Main Menu"):
                         pg.quit
                         sys.exit()
                     elif(command == "Continue"):
                         pass
                     elif(command == "Save game"):
-                        command = self.menuNew.save()
-                        print("command received", command)
-                        
+                        commandResp2 = self.menuNew.save()
+                        command = commandResp2[0]
+                        destination_file = commandResp2[1]
+                        # if save Game option is selected from Pause Menu
+                        if(command == "Cancel"):
+                            pass
+                        elif(command == "Save"):
+                            self.save_game(destination_file)
+
                     self.playing = True
 
                 if event.key == pg.K_2:
@@ -87,9 +94,9 @@ class GameController:
         return screen.blit(text_render, (x - (x - 3 * w)/6, y))
 
     """ Save the game state """
-    def save_game(self):
+    def save_game(self, filename):
         gameData = Storage(self.game.level.level)
-        gameData.save_game("7novVersion.txt")
+        gameData.save_game(filename + ".txt")
     
     def show_save_menu(self, window):
         print("test 1 2 3")

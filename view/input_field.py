@@ -24,7 +24,7 @@ class TextField:
     def render_window(self, buttons_save):
         
         active = True
-        col_gen= 120
+        
         done = False
         while not done:
             for event in pg.event.get():
@@ -35,6 +35,7 @@ class TextField:
                         for btn in buttons_save:
                             if btn.rect.collidepoint(event.pos):
                             # return a string corresponding to the command 
+                               btn.appendMessage(self.text)
                                return btn.getCommand() 
 
                     # If the user clicked on the input_box rect.
@@ -59,8 +60,7 @@ class TextField:
                         else:
                             self.text += event.unicode
                     
-
-            pg.draw.rect(self.window, (255, 0, 0), (self.window.get_size()[0]/2-155, 120, 310, 325))
+            pg.draw.rect(self.window, (100, 100, 100), (self.window.get_size()[0]/2-155, 120, 310, 325))
             # Render the current text.
             txt_surface = self.font.render(self.text, True, self.color)
             # Resize the box if the text is too long.
