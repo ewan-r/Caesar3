@@ -8,7 +8,7 @@ class TextField:
         self.color_inactive = pg.Color('lightskyblue3')
         self.color_active = pg.Color('dodgerblue2')
         self.font = pg.font.Font(None, 32) # default font-size 32
-        self.input_field = pg.Rect(left, top, width, height) #100, 100, 140, 32
+        self.input_field = pg.Rect(left, top, width, height) #100, 100, 140,32
         self.color = self.color_inactive
         self.text = ''
 
