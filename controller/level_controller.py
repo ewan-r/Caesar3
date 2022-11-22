@@ -155,13 +155,22 @@ class LevelController:
 
         if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
             if coords[0] >= 0 and coords[1] >= 0:
-                if coords[0] == self.level.grid_length_x-1:
+                if coords[0] == self.level.grid_length_x-1 or coords[1] == self.level.grid_length_y-1:
                     valid_neighbor = False
                 
                 if valid_neighbor:
                     up = self.level.level[coords[0]+1][coords[1]]
+                    down = self.level.level[coords[0]-1][coords[1]]
+                    right = self.level.level[coords[0]][coords[1]+1]
+                    left = self.level.level[coords[0]][coords[1]-1]
 
-                    if up['type_tile'] == "landsRoad":
+                    if up['type_tile'] == "landsRoad": 
                         neighbors.append(up)
+                    elif down['type_tile'] == "landsRoad":
+                        neighbors.append(down)
+                    elif right['type_tile'] == "landsRoad":
+                        neighbors.append(right)
+                    elif left['type_tile'] == "landsRoad":
+                        neighbors.append(left)
         
         return neighbors

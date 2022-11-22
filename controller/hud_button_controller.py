@@ -31,14 +31,20 @@ class HUDButtonController():
                                 
                                 neighbors = self.hud.level.level_controller.get_neighbors(grid_coords)
 
-                                if tile_to_modify['grid'][0] == self.hud.level.grid_length_x-1:
+                                if tile_to_modify['grid'][0] == self.hud.level.grid_length_x-1 or tile_to_modify['grid'][1] == self.hud.level.grid_length_y-1:
                                     tile_to_modify['tile'] = "landRoad3"
                                 else:
                                     up = self.hud.level.level[grid_coords[0]+1][grid_coords[1]]
+                                    down = self.hud.level.level[grid_coords[0]-1][grid_coords[1]]
+                                    right = self.hud.level.level[grid_coords[0]][grid_coords[1]+1]
+                                    left = self.hud.level.level[grid_coords[0]][grid_coords[1]-1]
     
-                                    # up
-                                    if up in neighbors:
+                                    # up and down
+                                    if up in neighbors or down in neighbors:
                                         tile_to_modify['tile'] = "landRoad2"
+                                    # right and left
+                                    elif right in neighbors or left in neighbors:
+                                        tile_to_modify['tile'] = "landRoad1"
                                     # default
                                     else:
                                         tile_to_modify['tile'] = "landRoad3"
