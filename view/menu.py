@@ -26,12 +26,18 @@ class Menu():
 
         pg.display.set_caption("INSA_lubrityIII")
 
-        pg.transform.scale(self.background, (self.window.get_size()))
+        #pg.transform.scale(self.background, (self.window.get_size()))
 
         # controllers
         btn_controller = ButtonController(self)
         menu_controller = MenuController(self)
 
+        # menu buttons
+        self.buttons = []
+        self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 150, 300, 50), "Start a new career", btn_controller.start_game))
+        self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 225, 300, 50), "Load saved game", btn_controller.load_save))
+        self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 300, 300, 50), "Exit", btn_controller.quit_game))
+        
         btn_clicked = False
         loop = 1
         while loop:          
@@ -60,17 +66,10 @@ class Menu():
                         else:
                             pg.mouse.set_cursor(pg.SYSTEM_CURSOR_ARROW)  
 
-            # menu buttons
-            self.buttons = []
-
-            self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 150, 300, 50), "Start a new career", btn_controller.start_game))
-            self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 225, 300, 50), "Load saved game", btn_controller.load_save))
-            self.buttons.append(Button(pg.Rect(self.window.get_size()[0]/2-150, 300, 300, 50), "Exit", btn_controller.quit_game))
-
             # activate hover effect
             for btn in self.buttons:
                 btn_controller.hover(btn)
-
+                
             # clear the menu if a button is clicked
             if btn_clicked == True:
                 menu_controller.clear()

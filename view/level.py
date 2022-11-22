@@ -14,7 +14,7 @@ class Level:
             (grid_length_x * 30 * 2, grid_length_y * 30 + 2 * 30)).convert_alpha()
 
         level_controller = LevelController(self)
-
+        
         self.tiles = level_controller.load_images()
         self.level = level_controller.create_level()
 

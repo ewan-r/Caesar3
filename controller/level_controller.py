@@ -68,7 +68,7 @@ class LevelController:
 
     def mouse_to_grid(self, x, y, scroll):
         # transform to world position (removing camera scroll and offset)
-        world_x = x - scroll.x - self.level.grass_tiles.get_width()/2
+        world_x = x - scroll.x - self.grass_tiles.get_width()/2
         world_y = y - scroll.y
         # transform to cart (inverse of cart_to_iso)
         cart_y = (2*world_y - world_x)/2
@@ -122,31 +122,3 @@ class LevelController:
         }
 
         return images
-
-#def destruction(self,grid_pos):
- #       level_tile = self.grid_to_level(tile.x, tile.y)
-#
- #       render_pos = level_tile["render_pos"]
-#
- #       self.level.grass_tiles.blit(self.level.tiles["lands"]["land81"],
-  #                                  (render_pos[0] + self.level.grass_tiles.get_width() / 2, render_pos[1]))
-
-
-    def update(self,camera,screen):
-        mouse_pos = pg.mouse.get_pos()
-        mouse_action = pg.mouse.get_pressed()
-        img = self.load_images()
-        if mouse_action[2]:
-            grid_pos = self.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera.scroll)
-            level_tile = self.grid_to_level(grid_pos[0],grid_pos[1])
-            render_pos = level_tile["render_pos"]
-            iso_poly = self.level.level[grid_pos[0]][grid_pos[1]]["iso_poly"]
-            self.level.temp_tile = {
-                "image" : img["lands"]["land81"],
-                "render_pos": render_pos,
-                "iso_poly" : iso_poly,
-                "collision":False
-            }
-
-
-
