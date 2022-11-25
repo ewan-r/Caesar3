@@ -1,6 +1,7 @@
 import pygame as pg
 
 from controller.level_controller import LevelController
+from view.hud import HUD
 
 class Level:
     def __init__(self, entities, grid_length_x, grid_length_y, width, height):
@@ -13,10 +14,15 @@ class Level:
         self.grass_tiles = pg.Surface(
             (grid_length_x * 30 * 2, grid_length_y * 30 + 2 * 30)).convert_alpha()
 
-        level_controller = LevelController(self)
+        self.level_controller = LevelController(self)
 
-        self.tiles = level_controller.load_images()
-        self.level = level_controller.create_level()
+        # HUD
+        self.hud = HUD(self)
+        self.hud.display_hud()
+
+        # load functions
+        self.tiles = self.level_controller.load_images()
+        self.level = self.level_controller.create_level()
 
         self.temp_tile = None
         self.examine_title = None
