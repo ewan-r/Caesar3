@@ -1,3 +1,7 @@
+from controller.house_controller import HouseController
+from model.house import House
+
+
 class HUDButtonController():
     """A HUDButtonController."""  
 
@@ -8,6 +12,12 @@ class HUDButtonController():
             hud -- HUD to be updated
         """
         self.hud = hud
+    
+    def create_house(self,grid_coords):
+        house = House(grid_coords[0],grid_coords[1],"normal",1)
+        if self.hud.level.level[house.x][house.y]['tile'] == "":
+            houseController = HouseController(house,self.hud)
+            houseController.place_house()        
 
     def create_road(self, grid_coords):
         """Create a road.

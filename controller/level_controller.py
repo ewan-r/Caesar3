@@ -1,8 +1,9 @@
 import pygame as pg
-
+import random
 class LevelController:
     def __init__(self, level):
         self.level = level
+        self.biomes = self.generate_biomes()
 
     def create_level(self):
         level = []
@@ -16,7 +17,15 @@ class LevelController:
                 render_pos = level_tile["render_pos"]
                 
                 self.level.grass_tiles.blit(self.level.tiles["lands"]["land81"], (render_pos[0] + self.level.grass_tiles.get_width()/2, render_pos[1]))
-
+        
+        
+        for forest in self.biomes['forests']:
+            self.generate_forest(level, forest)
+        for farm in self.biomes['farms']:
+            self.generate_cultivable_lands(level,farm)
+        for ocean in self.biomes['oceans']:
+            self.generate_seas(level, ocean)
+        
         return level
 
     def grid_to_level(self, grid_x, grid_y):
@@ -38,6 +47,7 @@ class LevelController:
         if grid_x == 21:
             type_tile = "landsRoad"
             tile = "roadRight"
+        """
         elif (10 <= grid_y < 17 and grid_x == 0) or (11 <= grid_y < 21 and grid_x == 1) or (
                 16 <= grid_y < 21 and grid_x == 2) or (20 <= grid_y < 40 and 3 <= grid_x < 7):
             type_tile = "landsWater"
@@ -48,7 +58,8 @@ class LevelController:
         elif (10 <= grid_y <= 30 and 27 <= grid_x <= 37):
             type_tile = "landsMountain"
             tile="landMountain1"
-
+        """
+        
         out = {
             "grid": [grid_x, grid_y],
             "cart_rect": rect,
@@ -60,6 +71,72 @@ class LevelController:
         }
 
         return out
+    def generate_biomes(self):
+            
+            forests = []
+            oceans = []
+            farms = []
+
+            numberForest = random.randint(4,6)
+            numberOcean = random.randint(2,3)
+            numberFarms = random.randint(3,5)
+
+
+            for i in range (1,numberForest,1):
+                
+                sizeForest = random.randint(10,20)
+                coordinatesForest = (random.randint(1,self.level.grid_length_x - sizeForest - 1),random.randint(1,self.level.grid_length_y - sizeForest - 1))
+                forest = [coordinatesForest[0],coordinatesForest[1],sizeForest]
+                forests.append(forest)
+            
+            for i in range (1,numberOcean):
+                
+                sizeOcean = random.randint(4,10)
+                coordinatesOcean =  (random.randint(1,self.level.grid_length_x - sizeOcean - 1),random.randint(1,self.level.grid_length_y - sizeOcean - 1))
+                ocean = [coordinatesOcean[0], coordinatesOcean[1], sizeOcean]
+                oceans.append(ocean)
+            for i in range (1,numberFarms):
+                
+                sizeFarms = random.randint(4,6)
+                coordinatesFarms = (random.randint(1,self.level.grid_length_x - sizeFarms - 1),random.randint(1,self.level.grid_length_y - sizeFarms - 1))
+                farm = [coordinatesFarms[0], coordinatesFarms[1], sizeFarms]
+                farms.append(farm)
+            
+            out = {
+                'forests' : forests,
+                'oceans' : oceans,
+                'farms' : farms
+            }
+            return out
+
+    def generate_forest(self, world ,forestParams):
+
+        for x in range (forestParams[0], forestParams[0]+forestParams[2],1):
+
+            for y in range (forestParams[1], forestParams[1]+forestParams[2],1):
+
+                probaTree = random.randint(1,100)
+
+                if probaTree < 45:
+                    world[x][y]["tile"] = "landForest45"
+                    world[x][y]["type_tile"] = "landsForests"
+                else:
+                    world[x][y]["tile"] = ""
+    
+    def generate_seas(self, world, seaParams):        
+        yOffset = random.randint(1,4)
+        for x in range (seaParams[0], seaParams[0] + seaParams[2]):
+            
+            for y in range (seaParams[1], seaParams[1] + seaParams[2]):
+            
+                world[x][y]["tile"] = "landWater1"
+                world[x][y]["type_tile"] = "landsWater"
+
+    def generate_cultivable_lands (self, world, cultivableParams):
+        for x in range (cultivableParams[0],cultivableParams[0]+cultivableParams[2]):
+            for y in range (cultivableParams[1],cultivableParams[1]+cultivableParams[2]):
+                world[x][y]["tile"] = "landFarm1"
+                world[x][y]["type_tile"] = "lands"
 
     def cart_to_iso(self, x, y):
         iso_x = x - y
@@ -80,11 +157,17 @@ class LevelController:
         return grid_x, grid_y
 
     def load_images(self):
+        house1 = pg.image.load("assets/sprites/lands/Housng1a_00002.png").convert_alpha()
+        houses = {
+            "house1": house1
+        }
         land81 = pg.image.load("assets/sprites/lands/Land1a_00081.png").convert_alpha()
         land94 = pg.image.load("assets/sprites/lands/Land1a_00094.png").convert_alpha()
+        landFarm1 = pg.image.load("assets/sprites/lands/Land2a_00037.png").convert_alpha()
         lands = {
             "land81": land81,
-            "land94": land94
+            "land94": land94,
+            "landFarm1": landFarm1
         }
 
         landForest45 = pg.image.load("assets/sprites/lands/Land1a_00045.png").convert_alpha()
@@ -155,7 +238,8 @@ class LevelController:
             "landsWater": landsWater,
             "landsCoast": landsCoast,
             "landsMountain": landsMountain,
-            "landsRoad": landsRoad
+            "landsRoad": landsRoad,
+            "houses": houses
         }
 
         return images
@@ -210,3 +294,4 @@ class LevelController:
                         neighbors.append(left)
         
         return neighbors
+        

@@ -38,7 +38,7 @@ class GameController:
         grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
 
         if click[0]:
-            hud_btn_controller.create_road(grid_coords)
+            hud_btn_controller.create_house(grid_coords)
 
     def update(self):
         camera_controller = CameraController(self.game.camera)
