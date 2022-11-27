@@ -23,10 +23,8 @@ class Level:
         # load functions
         self.tiles = self.level_controller.load_images()
         self.level = self.level_controller.create_level()
-
         self.temp_tile = None
         self.examine_title = None
-
     def draw(self, screen, camera):
         screen.blit(self.grass_tiles, (camera.scroll.x, camera.scroll.y))
 
@@ -36,11 +34,19 @@ class Level:
                 # draw world tiles
                 tile = self.level[x][y]["tile"]
                 type_tile = self.level[x][y]["type_tile"]
-                if tile != "":
+                if tile != "" and type_tile != "buildings":
                     screen.blit(self.tiles[type_tile][tile],
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                      render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
-
+                elif type_tile == "buildings":
+                    if tile == "farm12":
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - (self.tiles[type_tile][tile].get_width()/4),
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+                    else:
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
             iso_poly = [(x + self.grass_tiles.get_width()/2 + camera.scroll.x, y + camera.scroll.y) for x, y in iso_poly]

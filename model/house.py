@@ -5,3 +5,4 @@ class House:
         self.y = y
         self.state = state
         self.level = level
+        self.collapseCounter = 0

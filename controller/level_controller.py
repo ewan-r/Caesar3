@@ -4,7 +4,8 @@ class LevelController:
     def __init__(self, level):
         self.level = level
         self.biomes = self.generate_biomes()
-
+        self.buildings = []
+        self.economy_buildings = []
     def create_level(self):
         level = []
 
@@ -118,8 +119,25 @@ class LevelController:
                 probaTree = random.randint(1,100)
 
                 if probaTree < 45:
-                    world[x][y]["tile"] = "landForest45"
                     world[x][y]["type_tile"] = "landsForests"
+                    if probaTree < 5 : 
+                        world[x][y]["tile"] = "landForest45"
+                    elif probaTree > 5 and probaTree < 10:
+                        world[x][y]["tile"] = "landForest13"
+                    elif probaTree <15 and probaTree > 10:
+                        world[x][y]["tile"] = "landForest14"
+                    elif probaTree < 20 and probaTree > 15:
+                        world[x][y]["tile"] = "landForest15"
+                    elif probaTree < 25 and probaTree > 20:
+                        world[x][y]["tile"] = "landForest16"
+                    elif probaTree < 30 and probaTree > 25:
+                        world[x][y]["tile"] = "landForest58"
+                    elif probaTree < 35 and probaTree > 30:
+                        world[x][y]["tile"] = "landForest59"
+                    elif probaTree < 40 and probaTree > 35:
+                        world[x][y]["tile"] = "landForest60"
+                    else:
+                        world[x][y]["tile"] = "landForest17"
                 else:
                     world[x][y]["tile"] = ""
     
@@ -157,22 +175,53 @@ class LevelController:
         return grid_x, grid_y
 
     def load_images(self):
-        house1 = pg.image.load("assets/sprites/lands/Housng1a_00002.png").convert_alpha()
-        houses = {
-            "house1": house1
+        house1 = pg.image.load("assets/sprites/buildings/Housng1a_00002.png").convert_alpha()
+        engineerPost = pg.image.load("assets/sprites/buildings/transport_00056.png").convert_alpha()
+        ruin = pg.image.load("assets/sprites/buildings/Land2a_00114.png").convert_alpha()
+        farm12 = pg.image.load("assets/sprites/buildings/farm/Commerce_00012.png").convert_alpha()
+        farm13 = pg.image.load("assets/sprites/buildings/farm/Commerce_00013.png").convert_alpha()
+        farm14 = pg.image.load("assets/sprites/buildings/farm/Commerce_00014.png").convert_alpha()
+        farm15 = pg.image.load("assets/sprites/buildings/farm/Commerce_00015.png").convert_alpha()
+        farm16 = pg.image.load("assets/sprites/buildings/farm/Commerce_00016.png").convert_alpha()
+        farm17 = pg.image.load("assets/sprites/buildings/farm/Commerce_00017.png").convert_alpha()
+        buildings = {
+            "house1": house1,
+            "engineerPost": engineerPost,
+            "ruin": ruin,
+            "farm12" : farm12,
+            "farm13" : farm13,
+            "farm14" : farm14,
+            "farm15" : farm15,
+            "farm16" : farm16,
+            "farm17" : farm17,
         }
         land81 = pg.image.load("assets/sprites/lands/Land1a_00081.png").convert_alpha()
         land94 = pg.image.load("assets/sprites/lands/Land1a_00094.png").convert_alpha()
-        landFarm1 = pg.image.load("assets/sprites/lands/Land2a_00037.png").convert_alpha()
+        landFarm1 = pg.image.load("assets/sprites/lands/Land1a_00025.png").convert_alpha()
         lands = {
             "land81": land81,
             "land94": land94,
             "landFarm1": landFarm1
         }
-
         landForest45 = pg.image.load("assets/sprites/lands/Land1a_00045.png").convert_alpha()
+        landForest13 = pg.image.load("assets/sprites/lands/Land1a_00013.png").convert_alpha()
+        landForest14 = pg.image.load("assets/sprites/lands/Land1a_00014.png").convert_alpha()
+        landForest15 = pg.image.load("assets/sprites/lands/Land1a_00015.png").convert_alpha()
+        landForest16 = pg.image.load("assets/sprites/lands/Land1a_00016.png").convert_alpha()
+        landForest17 = pg.image.load("assets/sprites/lands/Land1a_00017.png").convert_alpha()
+        landForest58 = pg.image.load("assets/sprites/lands/Land1a_00058.png").convert_alpha()
+        landForest59 = pg.image.load("assets/sprites/lands/Land1a_00059.png").convert_alpha()
+        landForest60 = pg.image.load("assets/sprites/lands/Land1a_00060.png").convert_alpha()
         landsForests = {
-            "landForest45": landForest45
+            "landForest45": landForest45,
+            "landForest13" : landForest13,
+            "landForest14" : landForest14,
+            "landForest15" : landForest15,
+            "landForest16" : landForest16,
+            "landForest17" : landForest17,
+            "landForest58" : landForest58,
+            "landForest59" : landForest59,
+            "landForest60" : landForest60,
         }
 
         landWater1 = pg.image.load("assets/sprites/lands/Land1a_00122.png").convert_alpha()
@@ -239,7 +288,7 @@ class LevelController:
             "landsCoast": landsCoast,
             "landsMountain": landsMountain,
             "landsRoad": landsRoad,
-            "houses": houses
+            "buildings": buildings
         }
 
         return images
