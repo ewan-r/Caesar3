@@ -128,4 +128,4 @@ class HUD():
     def display_hud(self):
         """Display HUD"""
         self.blit_right_panel()
-        self.blit_top_menu()
+        #self.blit_top_menu()
