@@ -47,6 +47,9 @@ class GameController:
 
     def draw(self):
         self.game.screen.fill((0, 0, 0))
+        # level
         self.game.level.draw(self.game.screen, self.game.camera)
+        # HUD
+        self.game.level.hud.display_hud()
 
         pg.display.flip()
