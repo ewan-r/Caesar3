@@ -1,3 +1,5 @@
+import pygame as pg
+
 class HUDButtonController():
     """A HUDButtonController."""  
 
@@ -8,6 +10,20 @@ class HUDButtonController():
             hud -- HUD to be updated
         """
         self.hud = hud
+
+    def hover(self, btn):
+        """Modify the border radius of a button when the mouse hover it.
+        
+        Argument:
+            btn -- button on which the border radius is changed
+        """
+        is_hovered = False
+
+        if btn.rect.collidepoint(pg.mouse.get_pos()):
+            is_hovered = True
+            btn.draw(self.hud.window, is_hovered)
+        else:
+            btn.draw(self.hud.window, is_hovered)
 
     def create_road(self, grid_coords):
         """Create a road.

@@ -38,7 +38,7 @@ def load_right_panel():
     l_right_panel.append(pygame.image.load("assets/sprites/hud/panelwindows_00013.png").convert_alpha())
     #39*26
     l_right_panel.append(pygame.image.load("assets/sprites/hud/paneling_00123.png").convert_alpha())
-    #39*26
+    #39*26 road
     l_right_panel.append(pygame.image.load("assets/sprites/hud/paneling_00131.png").convert_alpha())
     #39*26
     l_right_panel.append(pygame.image.load("assets/sprites/hud/paneling_00135.png").convert_alpha())

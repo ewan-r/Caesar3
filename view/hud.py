@@ -10,10 +10,10 @@ class HUD():
         """Init HUD"""
         self.level = level
 
-        window = pg.display.set_mode((1360, 765))
+        self.window = pg.display.set_mode((1360, 765))
 
-        self.right_panel = window.subsurface(1157, 24, 202, 735)
-        self.top_menu = window.subsurface(0, 0, 1360, 24)
+        self.right_panel = self.window.subsurface(1157, 24, 202, 735)
+        self.top_menu = self.window.subsurface(0, 0, 1360, 24)
        
     def blit_right_panel(self):
         l_right_panel = load_right_panel()
@@ -23,7 +23,6 @@ class HUD():
    
         self.right_panel.blit(l_right_panel[0],(0,0))
         self.right_panel.blit(l_right_panel[1],(0,450))
-
         #4,5
         self.right_panel.blit(l_right_panel[2],(127,5))
         #4,3
