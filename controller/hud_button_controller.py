@@ -107,3 +107,16 @@ class HUDButtonController():
                         # default
                         else:
                             tile_to_modify['tile'] = "roadIntersectionCenter"
+                            
+    def destruction(self, x,y):
+        """Create a road.
+
+        Argument:
+            pos_sprite_to_modify -- position of the sprite where a route will be created
+        """
+        if x>0 and x<39 and y>0 and y<39:
+            level_tile_to_modify = self.hud.level.level[x][y]
+
+            if level_tile_to_modify["destructible"]:
+                level_tile_to_modify['type_tile'] = "lands"
+                level_tile_to_modify['tile'] = "land81"

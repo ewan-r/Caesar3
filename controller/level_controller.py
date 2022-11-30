@@ -34,10 +34,12 @@ class LevelController:
 
         tile=""
         type_tile = ""
+        destructible = False
 
         if grid_x == 21:
             type_tile = "landsRoad"
             tile = "roadRight"
+            destructible = True
         elif (10 <= grid_y < 17 and grid_x == 0) or (11 <= grid_y < 21 and grid_x == 1) or (
                 16 <= grid_y < 21 and grid_x == 2) or (20 <= grid_y < 40 and 3 <= grid_x < 7):
             type_tile = "landsWater"
@@ -45,6 +47,7 @@ class LevelController:
         elif (10 <= grid_y <= 30 and 7 <= grid_x <= 17):
             type_tile = "landsForests"
             tile="landForest45"
+            destructible = True
         elif (10 <= grid_y <= 30 and 27 <= grid_x <= 37):
             type_tile = "landsMountain"
             tile="landMountain1"
@@ -55,7 +58,8 @@ class LevelController:
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
             "type_tile": type_tile,
-            "tile": tile
+            "tile": tile,
+            "destructible" : destructible
             #"collision": False if tile == "" else True
         }
 
