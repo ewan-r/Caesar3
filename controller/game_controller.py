@@ -14,7 +14,7 @@ class GameController:
         self.screen = self.game.screen
         self.width, self.height = pg.display.get_surface().get_size()
         self.menuNew = PauseMenu(self.screen, "")
-        
+
     def run(self):
         self.playing = True
 
@@ -59,7 +59,8 @@ class GameController:
                         if(command == "Cancel"):
                             pass
                         elif(command == "Save"):
-                            self.save_game(destination_file)
+                            gameData = Storage(self.game.level.level)
+                            gameData.save_game(destination_file)
 
                     self.playing = True
                 elif event.key == pg.K_LEFT:

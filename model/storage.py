@@ -15,5 +15,4 @@ class Storage:
     def saving_menu(self, filename):
         with open('model/storage/' + filename + ".bin", 'wb') as f:
             pickle.dump(self.world, f, pickle.HIGHEST_PROTOCOL)
-            print("visited")
         
