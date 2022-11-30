@@ -2,6 +2,7 @@ import pygame as pg
 import sys
 
 from model.game import Game
+from model.storage import Storage
 from controller.game_controller import GameController
 
 class MenuButtonController():
@@ -36,11 +37,20 @@ class MenuButtonController():
 
         game = Game(self.menu.window, pg.time.Clock())
         game_controller = GameController(game)
+
         game_controller.run()
         
+        
     def load_save(self):
-        """Load a save."""
-        pass
+        """Load a saved game."""
+        self.menu.window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+        game = Game(self.menu.window, pg.time.Clock())
+
+        stored_level = Storage([])
+        game.level.level = stored_level.restore_world("my_pickle.bin")
+
+        game_controller = GameController(game)
+        game_controller.run()
     
     def quit_game(self):
         """Quit a game."""
