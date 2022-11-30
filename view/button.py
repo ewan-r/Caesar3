@@ -1,4 +1,5 @@
 import pygame as pg
+from pygame.locals import *
 
 class Button():
     """A Button."""
@@ -15,6 +16,20 @@ class Button():
         self.text = text
         self.ftn_click = ftn_click
 
+    def hover(self, window, btn):
+        """Modify the border radius of a button when the mouse hover it.
+        
+        Argument:
+            btn -- button on which the border radius is changed
+        """
+        is_hovered = False
+
+        if btn.rect.collidepoint(pg.mouse.get_pos()):
+            is_hovered = True
+            btn.draw(window, is_hovered)
+        else:
+            btn.draw(window, is_hovered)
+
     def draw(self, window, is_hovered):
         """Draw a rectangle representing a button.
         
@@ -24,7 +39,13 @@ class Button():
         """
 
         if is_hovered == False:
-            pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
+            x, y = pg.display.get_surface().get_size()
+
+            if (x == 1600 and y == 900):
+                pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
+            elif (x == 1360 and y == 765):
+                transparent_surface = pg.Surface((0, 0), pg.SRCALPHA)
+                pg.draw.rect(transparent_surface, (0, 22, 0, 0), self.rect, 0, 0)
 
             font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
             text = font.render(self.text, 1, (0,0,0))

@@ -69,7 +69,7 @@ class Menu():
 
             # activate hover effect
             for btn in self.buttons:
-                btn_controller.hover(btn)
+                btn.hover(self.window, btn)
 
             # clear the menu if a button is clicked
             if btn_clicked == True:
