@@ -2,9 +2,8 @@ from model.farm import Farm
 
 
 class Farm_Controller():
-    def __init__(self,hud,farm,level):
+    def __init__(self,hud,farm):
         self.farm = farm
-        self.level = level
         self.hud = hud
         self.tile_to_modify = self.hud.level.level[self.farm.x][self.farm.y]
         self.neighbors = self.get_neighbors()

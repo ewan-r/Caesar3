@@ -184,6 +184,53 @@ class LevelController:
         farm15 = pg.image.load("assets/sprites/buildings/farm/Commerce_00015.png").convert_alpha()
         farm16 = pg.image.load("assets/sprites/buildings/farm/Commerce_00016.png").convert_alpha()
         farm17 = pg.image.load("assets/sprites/buildings/farm/Commerce_00017.png").convert_alpha()
+        granary141 = pg.image.load("assets/sprites/buildings/granary/Commerce_00141.png").convert_alpha()
+        granary142 = pg.image.load("assets/sprites/buildings/granary/Commerce_00142.png").convert_alpha()
+        granary143 = pg.image.load("assets/sprites/buildings/granary/Commerce_00143.png").convert_alpha()
+        granary144 = pg.image.load("assets/sprites/buildings/granary/Commerce_00144.png").convert_alpha()
+        granary145 = pg.image.load("assets/sprites/buildings/granary/Commerce_00145.png").convert_alpha()
+        granary146 = pg.image.load("assets/sprites/buildings/granary/Commerce_00146.png").convert_alpha()
+        granary147 = pg.image.load("assets/sprites/buildings/granary/Commerce_00147.png").convert_alpha()
+        granary148 = pg.image.load("assets/sprites/buildings/granary/Commerce_00148.png").convert_alpha()
+        granary149 = pg.image.load("assets/sprites/buildings/granary/Commerce_00149.png").convert_alpha()
+        granary150 = pg.image.load("assets/sprites/buildings/granary/Commerce_00150.png").convert_alpha()
+        granary151 = pg.image.load("assets/sprites/buildings/granary/Commerce_00151.png").convert_alpha()
+        granary152 = pg.image.load("assets/sprites/buildings/granary/Commerce_00152.png").convert_alpha()
+        reservoir34 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00034.png").convert_alpha()
+        reservoir35 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00035.png").convert_alpha()
+        reservoir36 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00036.png").convert_alpha()
+        reservoir37 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00037.png").convert_alpha()
+        reservoir38 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00038.png").convert_alpha()
+        reservoir39 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00039.png").convert_alpha()
+        reservoir40 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00040.png").convert_alpha()
+        reservoir41 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00041.png").convert_alpha()
+        reservoir42 = pg.image.load("assets/sprites/buildings/water_buildings/Utilitya_00042.png").convert_alpha()
+        aqueducleftandrightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00121.png").convert_alpha()
+        aqueducupanddownfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00122.png").convert_alpha()
+        aqueduccorneruprightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00123.png").convert_alpha()
+        aqueduccornerupleftfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00124.png").convert_alpha()
+        aqueduccornerbottomrightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00125.png").convert_alpha()
+        aqueduccornerbottomleftfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00126.png").convert_alpha()
+        aqueducaboveroadleftrightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00127.png").convert_alpha()
+        aqueducaboveroadupdownfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00128.png").convert_alpha()
+        aqueductridownrightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00129.png").convert_alpha()
+        aqueductridownleftfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00130.png").convert_alpha()
+        aqueductriupleftfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00131.png").convert_alpha()
+        aqueductriuprightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00132.png").convert_alpha()
+        
+        aqueducleftandright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00136.png").convert_alpha()
+        aqueducupanddown = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00137.png").convert_alpha()
+        aqueduccornerupright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00138.png").convert_alpha()
+        aqueduccornerupleft = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00139.png").convert_alpha()
+        aqueduccornerbottomright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00140.png").convert_alpha()
+        aqueduccornerbottomleft = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00141.png").convert_alpha()
+        aqueducaboveroadleftright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00142.png").convert_alpha()
+        aqueducaboveroadupdown = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00143.png").convert_alpha()
+        aqueductridownright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00144.png").convert_alpha()
+        aqueductridownleft = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00145.png").convert_alpha()
+        aqueductriupleft = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00146.png").convert_alpha()
+        aqueductriupright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00147.png").convert_alpha()
+        aqueducleftrightupdown = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00148.png").convert_alpha()
         buildings = {
             "house1": house1,
             "engineerPost": engineerPost,
@@ -194,6 +241,56 @@ class LevelController:
             "farm15" : farm15,
             "farm16" : farm16,
             "farm17" : farm17,
+            "granary141" : granary141,
+            "granary142" : granary142,
+            "granary143" : granary143,
+            "granary144" : granary144,
+            "granary145" : granary145,
+            "granary146" : granary146,
+            "granary147" : granary147,
+            "granary148" : granary148,
+            "granary149" : granary149,
+            "granary150" : granary150,
+            "granary151" : granary151,
+            "granary152" : granary152,
+            "reservoir34" : reservoir34,
+            "reservoir35" : reservoir35,
+            "reservoir36" : reservoir36,
+            "reservoir37" : reservoir37,
+            "reservoir38" : reservoir38,
+            "reservoir39" : reservoir39,
+            "reservoir40" : reservoir40,
+            "reservoir41" : reservoir41,
+            "reservoir42" : reservoir42,
+            "aqueducleftandrightfull" : aqueducleftandrightfull,
+            "aqueducupanddownfull" : aqueducupanddownfull,
+            "aqueduccorneruprightfull" : aqueduccorneruprightfull,
+            "aqueduccornerupleftfull" : aqueduccornerupleftfull,
+            "aqueduccornerbottomrightfull" : aqueduccornerbottomrightfull,
+            "aqueduccornerbottomleftfull" : aqueduccornerbottomleftfull,
+            "aqueducaboveroadleftrightfull" : aqueducaboveroadleftrightfull,
+            "aqueducaboveroadupdownfull" : aqueducaboveroadupdownfull,
+            "aqueductridownrightfull" : aqueductridownrightfull,
+            "aqueductridownleftfull" : aqueductridownleftfull,
+            "aqueductriupleftfull" : aqueductriupleftfull,
+            "aqueductriuprightfull" : aqueductriuprightfull,
+            "aqueducright" : aqueducleftandright,
+            "aqueducup" : aqueducupanddown,
+            "aqueducleft" : aqueducleftandright,
+            "aqueducdown" : aqueducupanddown,
+            "aqueducleftright" : aqueducleftandright,
+            "aqueducupdown" : aqueducupanddown,
+            "aqueducrightdown" : aqueduccornerupright,
+            "aqueducleftdown" : aqueduccornerupleft,
+            "aqueducleftup" : aqueduccornerbottomright,
+            "aqueducrightup" : aqueduccornerbottomleft,
+            "aqueducaboveroadleftright" : aqueducaboveroadleftright,
+            "aqueducaboveroadupdown" : aqueducaboveroadupdown,
+            "aqueducleftrightdown" : aqueductridownright,
+            "aqueducleftupdown" : aqueductridownleft,
+            "aqueducleftrightup" : aqueductriupleft,
+            "aqueducrightupdown" : aqueductriupright,
+            "aqueducleftrightupdown" : aqueducleftrightupdown,
         }
         land81 = pg.image.load("assets/sprites/lands/Land1a_00081.png").convert_alpha()
         land94 = pg.image.load("assets/sprites/lands/Land1a_00094.png").convert_alpha()
@@ -342,5 +439,84 @@ class LevelController:
                     if left['type_tile'] == "landsRoad":
                         neighbors.append(left)
         
+        return neighbors
+
+    def get_neighbors_tile(self, coords):
+        neighbors = []
+
+
+        if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
+            if coords[0] >= 0 and coords[1] >= 0:
+                if coords[0] != self.level.grid_length_x-1:
+                    down = self.level.level[coords[0]-1][coords[1]]
+                    print(down["tile"])
+                    if ("aqueduc" in down["tile"]):
+                        neighbors.append("down")
+                if coords[1] != self.level.grid_length_y-1:
+                    left = self.level.level[coords[0]][coords[1]+1]
+                    if "aqueduc" in left["tile"]:
+                        neighbors.append("left")
+
+                if coords[0] != self.level.grid_length_x+1:
+                    up = self.level.level[coords[0]+1][coords[1]]
+                    if "aqueduc" in up["tile"]: 
+                        neighbors.append("up")
+                        
+                if coords[1] != self.level.grid_length_y+1:
+                    right = self.level.level[coords[0]][coords[1]-1]
+                    if "aqueduc" in right   ["tile"]:
+                        neighbors.append("right")
+                
+        return neighbors
+
+    def get_fictive_neighbors(self, list_of_previewed,index):
+        neighbors = []
+        if len(list_of_previewed) >= 1:
+            if index == len(list_of_previewed):
+            
+                previous_tile_previewed = list_of_previewed[index-1]
+                neighbors.append(previous_tile_previewed)
+            if (len(list_of_previewed) >= 3) and index != len(list_of_previewed):
+
+                previous_tile_previewed = list_of_previewed[index - 1]
+                next_tile_previewed = list_of_previewed[len(list_of_previewed)-1]
+                neighbors.append(previous_tile_previewed)
+                neighbors.append(next_tile_previewed)
+        
+        return neighbors
+
+    def get_position_fictive_neighbor (self, coords, neighbor):
+        if (coords[0] == neighbor["grid"][0]-1 and coords[1] == neighbor["grid"][1]):
+            return "down"
+        if (coords[0] == neighbor["grid"][0]+1 and coords[1] == neighbor["grid"][1]):
+            return "up"
+        if (coords[1] == neighbor["grid"][1]+1 and coords[0] == neighbor["grid"][0]): 
+            return "right"
+        if (coords[1] == neighbor["grid"][1]-1 and coords[0] == neighbor["grid"][0]):
+            return "left"
+        return "empty"
+
+    def get_real_neighbors (self, tile_to_get_neighors_from,type_tile_world, level):
+        """
+        Return a list with the list of neighbors which the tile field contains tile_world
+
+        Args:
+            tile_to_get_neighors_from (list): tile which we need to get neighbors from
+            type_tile(str): type of neighbors
+            level (list) : list of all tiles of the world
+        """
+        print(tile_to_get_neighors_from)
+        x = tile_to_get_neighors_from["grid"][0]
+        y = tile_to_get_neighors_from["grid"][1]
+        print(level[x][y])
+        neighbors = []
+        if ( type_tile_world in level[x-1][y]["tile"]):
+            neighbors.append(level[x-1][y])
+        if (type_tile_world in level[x+1][y]["tile"]):
+            neighbors.append(level[x+1][y])
+        if (type_tile_world in level[x][y-1]["tile"]):
+            neighbors.append(level[x][y-1])
+        if (type_tile_world in level[x][y+1]["tile"]):
+            neighbors.append(level[x][y+1])
         return neighbors
         
