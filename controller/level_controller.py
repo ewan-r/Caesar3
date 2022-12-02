@@ -44,7 +44,7 @@ class LevelController:
 
         tile=""
         type_tile = ""
-
+        attached_to_building = []
         if grid_x == 21:
             type_tile = "landsRoad"
             tile = "roadRight"
@@ -67,7 +67,8 @@ class LevelController:
             "iso_poly": iso_poly,
             "render_pos": [minx, miny],
             "type_tile": type_tile,
-            "tile": tile
+            "tile": tile,
+            "attached_to_building": attached_to_building
             #"collision": False if tile == "" else True
         }
 
@@ -486,6 +487,16 @@ class LevelController:
         return neighbors
 
     def get_position_fictive_neighbor (self, coords, neighbor):
+        """
+        Function that return the relative position of neighbor if it's a neighbor of the tile at coords
+
+        Args:
+            coords (tuple): Coordinates of the central tile
+            neighbor (list of dictionnary): Tile to test if it is a neighbour of tile at coords
+
+        Returns:
+            string: Position of neighbour related to tile at coords, or empty if it's not a real neighbour
+        """
         if (coords[0] == neighbor["grid"][0]-1 and coords[1] == neighbor["grid"][1]):
             return "down"
         if (coords[0] == neighbor["grid"][0]+1 and coords[1] == neighbor["grid"][1]):
@@ -502,13 +513,11 @@ class LevelController:
 
         Args:
             tile_to_get_neighors_from (list): tile which we need to get neighbors from
-            type_tile(str): type of neighbors
+            type_tile_world(str): type of neighbors
             level (list) : list of all tiles of the world
         """
-        print(tile_to_get_neighors_from)
         x = tile_to_get_neighors_from["grid"][0]
         y = tile_to_get_neighors_from["grid"][1]
-        print(level[x][y])
         neighbors = []
         if ( type_tile_world in level[x-1][y]["tile"]):
             neighbors.append(level[x-1][y])
@@ -517,6 +526,22 @@ class LevelController:
         if (type_tile_world in level[x][y-1]["tile"]):
             neighbors.append(level[x][y-1])
         if (type_tile_world in level[x][y+1]["tile"]):
+            neighbors.append(level[x][y+1])
+        return neighbors
+    
+    def is_building_nearby (self, tile, building, level):
+        
+        x = tile["grid"][0]
+        y = tile["grid"][1]
+        neighbors = []
+
+        if ( building in level[x-1][y]["attached_to_building"]):
+            neighbors.append(level[x-1][y])
+        if (building in level[x+1][y]["attached_to_building"]):
+            neighbors.append(level[x+1][y])
+        if (building in level[x][y-1]["attached_to_building"]):
+            neighbors.append(level[x][y-1])
+        if (building in level[x][y+1]["attached_to_building"]):
             neighbors.append(level[x][y+1])
         return neighbors
         

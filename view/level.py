@@ -92,7 +92,6 @@ class Level:
                                             render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
 
     def is_water_for_reservoir(self,tile_to_test):
-
         x = [str(x) for x in range (35,43)]
         if ("reservoir" in tile_to_test):
             for X in x:

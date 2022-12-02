@@ -86,12 +86,15 @@ class GameController:
         pg.display.flip()
 
     def update_buildings(self, hud,buildings,gridcoords):
+        self.aqueduc_cooldown += self.game.clock.get_time()
+        #if self.aqueduc_cooldown > 1000:    
         hud.update(buildings)
+        self.aqueduc_cooldown =  0
 
     def update_place_aqueducs(self,list_of_tiles,gridcoords):
-        self.aqueduc_cooldown += self.game.clock.get_time()
+        
         self.aqueduc[0].preview_aqueduc(gridcoords,list_of_tiles)
-        self.aqueduc_cooldown =  0
+        
 
     def update_economy(self,hud,economy_buildings):
         self.economy_cooldown += self.game.clock.get_time()

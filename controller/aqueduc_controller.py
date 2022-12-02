@@ -1,6 +1,5 @@
 import copy
 
-from numpy import tile
 
 class Aqueduc_Controller:
     def __init__(self,init_x,init_y,level):
@@ -22,6 +21,9 @@ class Aqueduc_Controller:
             self.level.level.level[x][y]["tile"] = tile
             self.level.level.level[x][y]["type_tile"] = "buildings"
         
+    def update (self, level):
+        pass
+
 
     def preview_aqueduc(self,gridcoords,list_previewed_aqueducs):
 
@@ -41,16 +43,16 @@ class Aqueduc_Controller:
                         position = self.level.get_position_fictive_neighbor(last_tile_previewed["grid"],real_neighbor)
                         if (position != "empty"):
                             self.neighbors.append(position)
-                print("Real positions")
-                print(self.neighbors)
+                #print("Real positions")
+                #print(self.neighbors)
                 for previewed_tile in list_previewed_aqueducs:
                     if (len(list_previewed_aqueducs) >= 1 and gridcoords != previewed_tile["grid"]):
                          
                         fictive_neighbor = self.level.get_position_fictive_neighbor(last_tile_previewed["grid"],previewed_tile)
                         if (fictive_neighbor != "empty"):
                             self.neighbors.append(fictive_neighbor)
-                print("Neighbors : ")
-                print(self.neighbors)
+                #print("Neighbors : ")
+                #print(self.neighbors)
                 self.find_right_tile(last_tile_previewed,self.neighbors)
                 self.neighbors = []
                 for real_neighbor in real_neighbors: 
@@ -111,48 +113,3 @@ class Aqueduc_Controller:
             if (isUp or isDown or isRight or isLeft):
                 tile_to_change["tile"] = "aqueduc"+left+right+up+down
                 tile_to_change["type_tile"] = "buildings"
-                print("Result : ")
-                print(" ")
-                print(left+right+up+down)
-                print(" ")
-                print(" ")
-    
-        """
-        if (len(list_previewed_aqueducs) > 0):
-            if (gridcoords[0] != list_previewed_aqueducs[-1]["grid"][0] or gridcoords[1] != list_previewed_aqueducs[-1]["grid"][1]):
-                neighbors = self.level.get_neighbors_tile(gridcoords)
-                fictive_neighbors = self.level.get_fictive_neighbors(list_previewed_aqueducs,len(list_previewed_aqueducs)-1)
-                if (len(fictive_neighbors)>0):
-                    neighbors.append(self.level.get_position_fictive_neighbor (gridcoords,fictive_neighbors[0]))
-                #print(neighbors)
-                tile_to_preview = copy.deepcopy(self.level.level.level[gridcoords[0]][gridcoords[1]])
-                if (len(neighbors) >= 1):
-                    self.find_right_tile(tile_to_preview,neighbors)
-                    list_previewed_aqueducs.append(tile_to_preview)
-                    if (len(list_previewed_aqueducs) > 2):
-                        fictive_neighbors = self.level.get_fictive_neighbors(list_previewed_aqueducs,len(list_previewed_aqueducs) - 2)
-                        previous_tile = list_previewed_aqueducs[len(list_previewed_aqueducs)-2]
-                        fictive_positions =[]
-                        fictive_positions.append(self.level.get_position_fictive_neighbor(previous_tile["grid"],fictive_neighbors[0])) 
-                        fictive_positions.append(self.level.get_position_fictive_neighbor(previous_tile["grid"],fictive_neighbors[1]))
-                        neighbors += fictive_positions
-                        print("Previous tile :")
-                        print(previous_tile)
-                        print("Neighbors: ")
-                        print(neighbors)
-                        self.find_right_tile(previous_tile,neighbors)
-                else:
-                    tile_to_preview["tile"] = "aqueducleftright"
-                    tile_to_preview["type_tile"] = "buildings"
-                    list_previewed_aqueducs.append(tile_to_preview)
-        elif (len(list_previewed_aqueducs) == 0):
-            tile_to_preview = copy.deepcopy(self.level.level.level[gridcoords[0]][gridcoords[1]])
-            tile_to_preview["tile"] = "aqueducleftright"
-            tile_to_preview["type_tile"] = "buildings"
-            list_previewed_aqueducs.append(tile_to_preview)
-        print("Liste : ")
-        print(" ")
-        print(list_previewed_aqueducs)
-        """
-               
-
