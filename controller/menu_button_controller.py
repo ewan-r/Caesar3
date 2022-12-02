@@ -50,9 +50,10 @@ class MenuButtonController():
         self.menu.window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
         game = Game(self.menu.window, pg.time.Clock())
         stored_level = Storage([])
-        game.level.level = stored_level.restore_world(filename)
 
-        
+        # replacing default world with a saved world
+        game.level.level = stored_level.restore_world(filename + ".bin")
+
         game_controller = GameController(game)
         game_controller.run()
         
