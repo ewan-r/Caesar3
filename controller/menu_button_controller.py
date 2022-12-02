@@ -4,6 +4,7 @@ import sys
 from model.game import Game
 from model.storage import Storage
 from controller.game_controller import GameController
+from view.load_menu import LoadMenu
 
 class MenuButtonController():
     """A MenuButtonController."""  
@@ -43,15 +44,19 @@ class MenuButtonController():
         
     def load_save(self):
         """Load a saved game."""
+        load_game = LoadMenu(self.menu.window,"")
+        filename = load_game.loading_name()
+      
         self.menu.window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
         game = Game(self.menu.window, pg.time.Clock())
-
         stored_level = Storage([])
-        game.level.level = stored_level.restore_world("my_pickle.bin")
+        game.level.level = stored_level.restore_world(filename)
 
+        
         game_controller = GameController(game)
         game_controller.run()
-    
+        
+
     def quit_game(self):
         """Quit a game."""
         sys.exit()

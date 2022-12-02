@@ -13,7 +13,7 @@ class GameController:
         self.playing = False
         self.screen = self.game.screen
         self.width, self.height = pg.display.get_surface().get_size()
-        self.menuNew = PauseMenu(self.screen, "")
+        self.pause_menu = PauseMenu(self.screen, "")
 
     def run(self):
         self.playing = True
@@ -42,9 +42,9 @@ class GameController:
                 if event.key == pg.K_ESCAPE:
                     self.playing = False
                     '''
-                    Show the menu
+                    Show the Pause Menu
                     '''
-                    commandResp = self.menuNew.display_menu()
+                    commandResp = self.pause_menu.display_menu()
                     command = commandResp[0]
                     if (command == "Exit to Main Menu"):
                         pg.quit
@@ -52,7 +52,7 @@ class GameController:
                     elif(command == "Continue"):
                         pass
                     elif(command == "Save game"):
-                        commandResp2 = self.menuNew.save()
+                        commandResp2 = self.pause_menu.save()
                         command = commandResp2[0]
                         destination_file = commandResp2[1]
                         # if save Game option is selected from Pause Menu
