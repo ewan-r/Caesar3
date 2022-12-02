@@ -83,11 +83,11 @@ class PauseMenu():
 
     def save(self):
         # create object input_field
-        filename_input = TextField(self.window, self.window.get_size()[0]/2-120, 200, 140, 32)
+        filename_input = TextField("save",self.window, self.window.get_size()[0]/2-120, 200, 140, 32)
        
         self.buttons_save = []
-        self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2-120, 300, 80, 50), "Save", self.window))
-        self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2+40, 300, 80, 50), "Cancel", self.window))
+        self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2-120, 350, 80, 50), "Save", self.window))
+        self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2+40, 350, 80, 50), "Cancel", self.window))
        
         # passing Save & Cancel buttons as params to the input field
         return filename_input.render_window(self.buttons_save)
