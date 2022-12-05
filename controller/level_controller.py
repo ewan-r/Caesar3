@@ -218,7 +218,8 @@ class LevelController:
         aqueductridownleftfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00130.png").convert_alpha()
         aqueductriupleftfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00131.png").convert_alpha()
         aqueductriuprightfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00132.png").convert_alpha()
-        
+        aqueducleftrightupdownfull = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00133.png").convert_alpha()
+
         aqueducleftandright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00136.png").convert_alpha()
         aqueducupanddown = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00137.png").convert_alpha()
         aqueduccornerupright = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00138.png").convert_alpha()
@@ -263,18 +264,23 @@ class LevelController:
             "reservoir40" : reservoir40,
             "reservoir41" : reservoir41,
             "reservoir42" : reservoir42,
-            "aqueducleftandrightfull" : aqueducleftandrightfull,
-            "aqueducupanddownfull" : aqueducupanddownfull,
-            "aqueduccorneruprightfull" : aqueduccorneruprightfull,
-            "aqueduccornerupleftfull" : aqueduccornerupleftfull,
-            "aqueduccornerbottomrightfull" : aqueduccornerbottomrightfull,
-            "aqueduccornerbottomleftfull" : aqueduccornerbottomleftfull,
+            "aqueducrightfull" : aqueducleftandrightfull,
+            "aqueducupfull" : aqueducupanddownfull,
+            "aqueducleftfull" : aqueducleftandrightfull,
+            "aqueducdownfull" : aqueducupanddownfull,
+            "aqueducleftrightfull" : aqueducleftandrightfull,
+            "aqueducupdownfull" : aqueducupanddownfull,
+            "aqueducrightdownfull" : aqueduccorneruprightfull,
+            "aqueducleftdownfull" : aqueduccornerupleftfull,
+            "aqueducleftupfull" : aqueduccornerbottomrightfull,
+            "aqueducrightupfull" : aqueduccornerbottomleftfull,
             "aqueducaboveroadleftrightfull" : aqueducaboveroadleftrightfull,
             "aqueducaboveroadupdownfull" : aqueducaboveroadupdownfull,
-            "aqueductridownrightfull" : aqueductridownrightfull,
-            "aqueductridownleftfull" : aqueductridownleftfull,
-            "aqueductriupleftfull" : aqueductriupleftfull,
-            "aqueductriuprightfull" : aqueductriuprightfull,
+            "aqueducleftrightdownfull" : aqueductridownrightfull,
+            "aqueducleftupdownfull" : aqueductridownleftfull,
+            "aqueducleftrightupfull" : aqueductriupleftfull,
+            "aqueducrightupdownfull" : aqueductriuprightfull,
+            "aqueducleftrightupdownfull" : aqueducleftrightupdownfull,
             "aqueducright" : aqueducleftandright,
             "aqueducup" : aqueducupanddown,
             "aqueducleft" : aqueducleftandright,

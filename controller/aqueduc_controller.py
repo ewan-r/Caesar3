@@ -34,7 +34,6 @@ class Aqueduc_Controller:
                 tile_to_preview["tile"] = "aqueducleftright"
                 tile_to_preview["type_tile"] = "buildings"
                 #print("appending")
-                
                 list_previewed_aqueducs.append(tile_to_preview)
                 self.neighbors = []
                 last_tile_previewed = list_previewed_aqueducs[-2]   
