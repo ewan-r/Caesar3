@@ -123,8 +123,3 @@ class HUD():
         self.top_menu.blit(l_top_panel[9],(1280,0))
         self.top_menu.blit(l_top_panel[11],(1304,0))
         self.top_menu.blit(l_top_panel[5],(1336,0))
-
-    def display_hud(self):
-        """Display the game HUD."""
-        
-        pass

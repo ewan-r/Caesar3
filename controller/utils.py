@@ -1,15 +1,5 @@
 import pygame
 
-def convert_list_coords_brackets_parenthesis(list_coords):
-    list_without_brackets = []
-
-    for elements in list_coords:
-        coord_x, coord_y = elements[0], elements[1]
-
-        list_without_brackets.append((coord_x, coord_y))
-
-    return list_without_brackets
-
 def load_right_panel():
     #TO DO : Changer chemin, mettre laod dans même ordre que blit et import dans hud
     l_right_panel = []
