@@ -19,6 +19,7 @@ class HUD():
         self.top_menu = self.window.subsurface(0, 0, 1360, 24)
        
     def blit_right_panel(self):
+        """Blit right panel HUD."""
         l_right_panel = load_right_panel()
    
         self.right_panel.blit(l_right_panel[0],(0,0))
@@ -79,6 +80,7 @@ class HUD():
 
    
     def blit_top_menu(self):
+        """Blit top menu HUD."""
         l_top_panel = load_top_menu()
 
         self.top_menu.blit(l_top_panel[1],(0,0))
@@ -123,3 +125,8 @@ class HUD():
         self.top_menu.blit(l_top_panel[9],(1280,0))
         self.top_menu.blit(l_top_panel[11],(1304,0))
         self.top_menu.blit(l_top_panel[5],(1336,0))
+
+    def display_hud(self):
+        """Display the game HUD."""
+        self.blit_right_panel()
+        self.blit_top_menu()

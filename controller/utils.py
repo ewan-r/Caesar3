@@ -1,7 +1,11 @@
 import pygame
 
 def load_right_panel():
-    #TO DO : Changer chemin, mettre laod dans même ordre que blit et import dans hud
+    """Load images of right panel HUD.
+    
+    Returns:
+        a list containing the images loaded of right panel HUD
+    """
     l_right_panel = []
     
     #162*450 : Gui background 1
@@ -62,6 +66,11 @@ def load_right_panel():
     return l_right_panel
 
 def load_top_menu():
+    """Load images of top panel HUD.
+    
+    Returns:
+        a list containing the images loaded of top panel HUD
+    """
     l_top_menu = []
     
     #120*24 : bubble menu
