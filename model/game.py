@@ -2,7 +2,15 @@ from model.camera import Camera
 from view.level import Level
 
 class Game:
+    """A Game."""
+
     def __init__(self, screen, clock):
+        """Game constructor.
+        
+        Arguments:
+            screen -- screen to display a game
+            clock -- game clock
+        """
         self.screen = screen
         self.clock = clock
         self.width, self.height = self.screen.get_size()

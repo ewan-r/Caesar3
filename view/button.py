@@ -22,7 +22,6 @@ class Button():
             window -- surface to display infomations
             is_hovered -- True if the button is hovered, False if it isn't
         """
-
         if is_hovered == False:
             pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
 
