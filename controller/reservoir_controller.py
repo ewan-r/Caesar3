@@ -4,7 +4,7 @@ class Reservoir_Controller:
         self.reservoir = reservoir
         self.level = self.hud.level.level 
         self.tile_to_modify = self.hud.level.level[reservoir.x][reservoir.y]
-        self.water_placement = self.hud.level.level[reservoir.x-2][reservoir.y - 3]
+        self.water_placement = self.hud.level.level[reservoir.x- 2][reservoir.y - 2]
         self.is_there_water = False
         self.index_of_animation = 35
         self.network = []
@@ -122,6 +122,8 @@ class Reservoir_Controller:
         for next_tile in list_tiles:
             neighbors = self.is_building_nearby(next_tile,"reservoirfull",self.hud.level.level)
             for neighbor in neighbors:
+                print("neighbors")
+                print(neighbor)
                 if ([self.reservoir.x, self.reservoir.y ]!= [neighbor["attached_to_building"][1],neighbor["attached_to_building"][2]]):
                     return True
         return False      
@@ -141,16 +143,6 @@ class Reservoir_Controller:
 
     
     def is_building_nearby (self, tile, building, level):
-        """_summary_
-
-        Args:
-            tile (_type_): _description_
-            building (_type_): _description_
-            level (_type_): _description_
-
-        Returns:
-            _type_: _description_
-        """
         x = tile['grid'][0]
         y = tile['grid'][1]
         neighbors = []

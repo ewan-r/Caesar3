@@ -29,34 +29,47 @@ class Level:
         self.preview_aqueduc = []
     def draw(self, screen, camera):
         screen.blit(self.grass_tiles, (camera.scroll.x, camera.scroll.y))
-
-        for x in range(self.grid_length_x):
-            for y in range(self.grid_length_y):
-                render_pos =  self.level[x][y]["render_pos"]
-                # draw world tiles
-                tile = self.level[x][y]["tile"]
-                type_tile = self.level[x][y]["type_tile"]
-                if tile != "" and type_tile != "buildings":
-                    screen.blit(self.tiles[type_tile][tile],
-                                    (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
-                                     render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
-                elif type_tile == "buildings":
-                    if (self.is_water_for_reservoir(tile)):
-                        self.foreground.append(self.level[x][y])
+        coords_world_to_blit = []
+        for k in range (self.grid_length_x):
+            for y in range (2*k+1):
+                if (y < k):
+                    x = k
+                    coords_world_to_blit.append([x,y])
+                elif y > k:
+                    x = y - k - 1
+                    y = k
+                    coords_world_to_blit.append([x,y])
+            coords_world_to_blit.append([k,k])
+        print(coords_world_to_blit)
+        for coord in coords_world_to_blit:
+            x = coord[0]
+            y = coord[1]
+            render_pos =  self.level[x][y]["render_pos"]
+            # draw world tiles
+            tile = self.level[x][y]["tile"]
+            type_tile = self.level[x][y]["type_tile"]
+            attached_to_building = self.level[x][y]["attached_to_building"]
+            if tile != "" and type_tile != "buildings" and not(attached_to_building):
+                screen.blit(self.tiles[type_tile][tile],
+                                (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
+                                render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+            elif type_tile == "buildings":
+                if (self.is_water_for_reservoir(tile)):
+                    self.foreground.append(self.level[x][y])
+                else:
+                    #If the building is larger than one tile squared then we need to make sure it is on the grid
+                    if self.tiles[type_tile][tile].get_width() >= 60 and self.tiles[type_tile][tile].get_width() <=120:
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - (self.tiles[type_tile][tile].get_width()/4),
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+                    elif (self.tiles[type_tile][tile].get_width() >= 121):
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - 90,
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 45) + camera.scroll.y))
                     else:
-                        #If the building is larger than one tile squared then we need to make sure it is on the grid
-                        if self.tiles[type_tile][tile].get_width() >= 60 and self.tiles[type_tile][tile].get_width() <=120:
-                            screen.blit(self.tiles[type_tile][tile],
-                                            (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - (self.tiles[type_tile][tile].get_width()/4),
-                                            render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
-                        elif (self.tiles[type_tile][tile].get_width() >= 121):
-                            screen.blit(self.tiles[type_tile][tile],
-                                            (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - 60,
-                                            render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
-                        else:
-                            screen.blit(self.tiles[type_tile][tile],
-                                            (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
-                                            render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
         self.draw_animations_foreground(screen,camera)
         self.draw_preview_aqueduc(screen,camera)
         if self.temp_tile is not None:
