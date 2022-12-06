@@ -13,12 +13,14 @@ class HUDButtonController():
         """Create a road.
         
         Argument:
-
+            grid_coords -- grid coordinates of a cell
         """
+        # check limits of the board
         if grid_coords[0] < self.hud.level.grid_length_x and grid_coords[1] < self.hud.level.grid_length_y:
             if grid_coords[0] >= 0 and grid_coords[1] >= 0:
                 tile_to_modify = self.hud.level.level[grid_coords[0]][grid_coords[1]]
             
+                # grass terrain
                 if tile_to_modify['type_tile'] == "":
                     tile_to_modify['type_tile'] = "landsRoad"
                     

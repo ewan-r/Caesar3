@@ -6,10 +6,18 @@ from controller.hud_button_controller import HUDButtonController
 from view.button import Button
 
 class GameController:
+    """A GameController."""
+
     def __init__(self, game):
+        """GameController constructor.
+        
+        Argument:
+            game -- game to control
+        """
         self.game = game
 
     def run(self):
+        """Run a game in a loop."""
         self.playing = True
 
         while self.playing:
@@ -19,6 +27,7 @@ class GameController:
             self.draw()
 
     def events(self):
+        """Activate features during a game."""
         # controllers
         level_controller = self.game.level.level_controller
         hud_btn_controller = HUDButtonController(self.game.level.hud)
@@ -45,11 +54,13 @@ class GameController:
             hud_btn_controller.create_road(grid_coords)
 
     def update(self):
+        """Update a game."""
         camera_controller = CameraController(self.game.camera)
 
         camera_controller.update()
 
     def draw(self):
+        """Draw sprites of a game."""
         self.game.screen.fill((0, 0, 0))
         # level
         self.game.level.draw(self.game.screen, self.game.camera)

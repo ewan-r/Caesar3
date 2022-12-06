@@ -3,11 +3,14 @@ from pygame.locals import *
 from controller.utils import *
 
 class HUD():
-    """
-    Display the top menu and right panel of the HUD
-    """
+    """A HUD."""
+
     def __init__(self, level):
-        """Init HUD"""
+        """HUD constructor.
+        
+        Argument:
+            level -- game level
+        """
         self.level = level
 
         self.window = pg.display.set_mode((1360, 765))
@@ -122,6 +125,6 @@ class HUD():
         self.top_menu.blit(l_top_panel[5],(1336,0))
 
     def display_hud(self):
-        """Display HUD"""
-        self.blit_right_panel()
-        self.blit_top_menu()
+        """Display the game HUD."""
+        
+        pass

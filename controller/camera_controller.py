@@ -1,10 +1,17 @@
 import pygame as pg
 
 class CameraController:
+    """A CameraController."""
     def __init__(self, camera):
+        """CameraController constructor.
+        
+        Argument:
+            camera -- camera to control
+        """
         self.camera = camera
 
     def update(self):
+        """Update camera position."""
         mouse_pos = pg.mouse.get_pos()
 
         # x movement

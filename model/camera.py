@@ -1,7 +1,15 @@
 import pygame as pg
 
 class Camera:
+    """A Camera."""
+
     def __init__(self, width, height):
+        """Camera constructor.
+        
+        Arguments:
+            width -- grid width
+            height -- grid height
+        """
         self.width = width
         self.height = height
 

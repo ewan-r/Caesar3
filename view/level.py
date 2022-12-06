@@ -4,7 +4,18 @@ from controller.level_controller import LevelController
 from view.hud import HUD
 
 class Level:
+    """A Level."""
+
     def __init__(self, entities, grid_length_x, grid_length_y, width, height):
+        """Level constructor.
+        
+        Arguments:
+            entities -- list of entities
+            grid_length_x -- length of the grid according to x
+            grid_length_y -- length of the grid according to y
+            width -- screen width
+            height -- screen height
+        """
         self.entities = entities
         self.grid_length_x = grid_length_x
         self.grid_length_y = grid_length_y
@@ -27,6 +38,12 @@ class Level:
         self.examine_title = None
 
     def draw(self, screen, camera):
+        """Draw a level.
+        
+        Arguments:
+            screen -- screen to display a level
+            camera -- game camera
+        """
         screen.blit(self.grass_tiles, (camera.scroll.x, camera.scroll.y))
 
         for x in range(self.grid_length_x):

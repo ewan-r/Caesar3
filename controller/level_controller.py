@@ -1,10 +1,21 @@
 import pygame as pg
 
 class LevelController:
+    """A LevelController."""
     def __init__(self, level):
+        """LevelController constructor.
+        
+        Argument:
+            level -- level to control
+        """
         self.level = level
 
     def create_level(self):
+        """Create a level.
+        
+        Returns:
+            a level created
+        """
         level = []
 
         for grid_x in range(self.level.grid_length_x):
@@ -20,6 +31,15 @@ class LevelController:
         return level
 
     def grid_to_level(self, grid_x, grid_y):
+        """Create properties of a tile.
+        
+        Arguments:
+            grid_x -- grid abscissa coordinate
+            grid_y -- grid ordinate coordinate
+
+        Returns:
+            properties of a tile
+        """
         rect = [
             (grid_x * 30, grid_y * 30),
             (grid_x * 30 + 30, grid_y * 30),
@@ -62,11 +82,21 @@ class LevelController:
         return out
 
     def cart_to_iso(self, x, y):
+        """Convert cartesian coordinates to isometric coordinates.
+        
+        Returns:
+            isometric coordinates
+        """
         iso_x = x - y
         iso_y = (x + y)/2
         return iso_x, iso_y
 
     def mouse_to_grid(self, x, y, scroll):
+        """Convert mouse coordinates to be compatible with the grid level.
+        
+        Returns:
+            grid coordinates
+        """
         # transform to world position (removing camera scroll and offset)
         world_x = x - scroll.x - self.level.grass_tiles.get_width()/2
         world_y = y - scroll.y
@@ -80,6 +110,11 @@ class LevelController:
         return grid_x, grid_y
 
     def load_images(self):
+        """Load images for sprites.
+        
+        Returns:
+            each image corresponding to mul category
+        """
         land81 = pg.image.load("assets/sprites/lands/Land1a_00081.png").convert_alpha()
         land94 = pg.image.load("assets/sprites/lands/Land1a_00094.png").convert_alpha()
         lands = {
@@ -161,13 +196,13 @@ class LevelController:
         return images
 
     def get_list_pos_sprites(self, type_tile):
-        """Get the positions of sprites of a certain type.
+        """Get the positions of sprites that correspond to a category.
         
         Argument:
             type_tile -- type of the tile where is the sprite
 
         Returns:
-            a list containing the positions of sprites of a certain type
+            a list containing the positions of sprites that correspond to a category
         """
         list_pos_sprites = []
 
@@ -181,7 +216,14 @@ class LevelController:
         return list_pos_sprites
 
     def get_neighbors(self, coords):
-        """"""
+        """Get the neighbors of a tile.
+        
+        Argument:
+            coords -- coordinates of a tile
+
+        Returns:
+            a list containing the neighbors of a tile
+        """
         neighbors = []
         valid_neighbor = True
 

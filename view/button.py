@@ -37,7 +37,6 @@ class Button():
             window -- surface to display infomations
             is_hovered -- True if the button is hovered, False if it isn't
         """
-
         if is_hovered == False:
             x, y = pg.display.get_surface().get_size()
 
