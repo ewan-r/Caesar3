@@ -4,7 +4,7 @@ class Reservoir_Controller:
         self.reservoir = reservoir
         self.level = self.hud.level.level 
         self.tile_to_modify = self.hud.level.level[reservoir.x][reservoir.y]
-        self.water_placement = self.hud.level.level[reservoir.x- 2][reservoir.y - 2]
+        self.water_placement = self.hud.level.level[reservoir.x + 1][reservoir.y]
         self.is_there_water = False
         self.index_of_animation = 35
         self.network = []
@@ -48,7 +48,7 @@ class Reservoir_Controller:
             self.get_path_of_aqueduc()
         #print(self.reservoir.status)
         if (self.reservoir.status == "full"):
-            self.fill_aqueducs_nearby()
+            #self.fill_aqueducs_nearby()
             self.attach_building_to_tiles("full")
             self.water_placement["tile"] = "reservoir35"
             self.water_placement["type_tile"] = "buildings"
@@ -66,6 +66,9 @@ class Reservoir_Controller:
         """
         for coord in self.reservoir.tiles_coords :
             self.level[coord[0]][coord[1]]["attached_to_building"] = ["reservoir"+status,self.reservoir.x,self.reservoir.y]
+            #if (coord[0] != self.reservoir.x or coord[1] != self.reservoir.y):
+                #self.level[coord[0]][coord[1]]["tile"] = ""
+                #self.level[coord[0]][coord[1]]["type_tile"] = ""
             #print(self.level[coord[0]][coord[1]])
     def get_water_entrance_tiles_coords(self):
         """This function returns an array of coordinates of tiles where water can be connected to the reservoir
@@ -75,10 +78,10 @@ class Reservoir_Controller:
         """
         x = self.reservoir.x
         y = self.reservoir.y
-        water_entry1 = [x+1,y-1]
-        water_entry2 = [x-1,y-3]
-        water_entry3 = [x-3,y-1]
-        water_entry4 = [x-1,y+1]
+        water_entry1 = [x+1,y]
+        water_entry2 = [x-1,y-2]
+        water_entry3 = [x-4,y]
+        water_entry4 = [x-1,y+2]
 
         return [water_entry1, water_entry2, water_entry3, water_entry4]
     def get_water_tiles(self):
@@ -122,8 +125,8 @@ class Reservoir_Controller:
         for next_tile in list_tiles:
             neighbors = self.is_building_nearby(next_tile,"reservoirfull",self.hud.level.level)
             for neighbor in neighbors:
-                print("neighbors")
-                print(neighbor)
+                #print("neighbors")
+                #print(neighbor)
                 if ([self.reservoir.x, self.reservoir.y ]!= [neighbor["attached_to_building"][1],neighbor["attached_to_building"][2]]):
                     return True
         return False      
