@@ -82,6 +82,33 @@ class GameController:
             level_controller.level.preview_aqueduc.clear()
             self.aqueduc_being_build = False
             self.aqueduc_build_bool = False
+            
+        if click[2]:
+            mouse_pos = pg.mouse.get_pos()
+            self.game.mouse_pos_hud = level_controller.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera_controller.camera.scroll)
+            if self.game.cmpt < 2:
+                self.game.first_pos = self.game.mouse_pos_hud
+                self.game.cmpt = 2
+        else:
+            if  self.game.mouse_pos_hud[0]> self.game.first_pos[0]:
+                for x in range( self.game.first_pos[0],  self.game.mouse_pos_hud[0] + 1):
+                    if  self.game.mouse_pos_hud[1] > self.game.first_pos[1]:
+                        for y in range( self.game.first_pos[1],  self.game.mouse_pos_hud[1] + 1):
+                            hud_btn_controller.destruction(x,y)
+                    else:
+                        for y in range( self.game.mouse_pos_hud[1],  self.game.first_pos[1] + 1):
+                            hud_btn_controller.destruction(x,y)
+            else:
+                for x in range( self.game.mouse_pos_hud[0], self.game.first_pos[0]+1):
+                    if  self.game.mouse_pos_hud[1] >  self.game.first_pos[1]:
+                        for y in range( self.game.first_pos[1], self.game.mouse_pos_hud[1]+1):
+                            hud_btn_controller.destruction(x,y)
+                    else:
+                        for y in range ( self.game.mouse_pos_hud[1], self.game.first_pos[1]+1):
+                            hud_btn_controller.destruction(x,y)
+            self.game.mouse_pos_hud = (0,0)
+            self.game.cmpt = 1
+            self.game.first_pos = (0,0)
 
     def update(self):
         """Update a game."""
