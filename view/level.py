@@ -56,7 +56,6 @@ class Level:
                     y = k
                     coords_world_to_blit.append([x,y])
             coords_world_to_blit.append([k,k])
-        print(coords_world_to_blit)
         for coord in coords_world_to_blit:
             x = coord[0]
             y = coord[1]

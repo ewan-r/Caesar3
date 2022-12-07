@@ -488,24 +488,20 @@ class LevelController:
     def get_neighbors_tile(self, coords):
         neighbors = []
 
-
         if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
             if coords[0] >= 0 and coords[1] >= 0:
                 if coords[0] != self.level.grid_length_x-1:
                     down = self.level.level[coords[0]-1][coords[1]]
-                    print(down["tile"])
                     if ("aqueduc" in down["tile"]):
                         neighbors.append("down")
                 if coords[1] != self.level.grid_length_y-1:
                     left = self.level.level[coords[0]][coords[1]+1]
                     if "aqueduc" in left["tile"]:
                         neighbors.append("left")
-
                 if coords[0] != self.level.grid_length_x+1:
                     up = self.level.level[coords[0]+1][coords[1]]
                     if "aqueduc" in up["tile"]: 
                         neighbors.append("up")
-                        
                 if coords[1] != self.level.grid_length_y+1:
                     right = self.level.level[coords[0]][coords[1]-1]
                     if "aqueduc" in right   ["tile"]:
@@ -573,7 +569,6 @@ class LevelController:
         return neighbors
     
     def is_building_nearby (self, tile, building, level):
-        
         x = tile["grid"][0]
         y = tile["grid"][1]
         neighbors = []
@@ -586,5 +581,6 @@ class LevelController:
             neighbors.append(level[x][y-1])
         if (building in level[x][y+1]["attached_to_building"]):
             neighbors.append(level[x][y+1])
+
         return neighbors
         

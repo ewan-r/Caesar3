@@ -40,7 +40,7 @@ class GameController:
         x, y = pg.mouse.get_pos()
         click = pg.mouse.get_pressed()
         grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
-        self.update_buildings(hud_btn_controller,level_controller.buildings,grid_coords) #Update buildings but we need level controller
+        self.update_buildings(hud_btn_controller,level_controller.buildings) #Update buildings but we need level controller
         self.update_economy(hud_btn_controller,level_controller.economy_buildings)
         if (self.aqueduc_being_build):
             self.update_place_aqueducs(level_controller.level.preview_aqueduc, grid_coords)
@@ -77,10 +77,7 @@ class GameController:
             aqueduc_controller = Aqueduc_Controller(grid_coords[0],grid_coords[1],level_controller)
             #level_controller.level.preview_aqueduc.append(aqueduc_controller)
             self.aqueduc_being_build = True
-            self.aqueduc.append(aqueduc_controller)
-    
-
-        
+            self.aqueduc.append(aqueduc_controller)        
         elif click[1] and (self.aqueduc_being_build or self.aqueduc_build_bool):
             level_controller.level.preview_aqueduc.clear()
             self.aqueduc_being_build = False
@@ -96,19 +93,24 @@ class GameController:
         self.game.screen.fill((0, 0, 0))
         # level
         self.game.level.draw(self.game.screen, self.game.camera)
+        # HUD
+        self.game.level.hud.display_hud()
+
+        hud_btn_controller = HUDButtonController(self.game.level.hud)
+        road_btn = Button(pg.Rect(1268, 299, 42, 29), "", hud_btn_controller.create_road)
+        road_btn.hover(self.game.screen, road_btn) 
+
         pg.display.flip()
 
-    def update_buildings(self, hud,buildings,gridcoords):
+    def update_buildings(self, hud,buildings):
         self.aqueduc_cooldown += self.game.clock.get_time()
         #if self.aqueduc_cooldown > 1000:    
         hud.update(buildings)
         self.aqueduc_cooldown =  0
 
     def update_place_aqueducs(self,list_of_tiles,gridcoords):
-        
         self.aqueduc[0].preview_aqueduc(gridcoords,list_of_tiles)
         
-
     def update_economy(self,hud,economy_buildings):
         self.economy_cooldown += self.game.clock.get_time()
         if self.economy_cooldown > 200:
