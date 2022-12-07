@@ -1,3 +1,13 @@
+from controller.reservoir_controller import Reservoir_Controller
+from model.reservoir import Reservoir
+from controller.granary_controller import Granary_Controller
+from controller.farm_controller import Farm_Controller
+from controller.engineerPost_controller import EngineerPost_Controller
+from model.engineerpost import EngineerPost
+from controller.house_controller import HouseController
+from model.house import House
+from model.farm import Farm
+from model.granary import Granary
 class HUDButtonController():
     """A HUDButtonController."""  
 
@@ -8,6 +18,51 @@ class HUDButtonController():
             hud -- HUD to be updated
         """
         self.hud = hud
+
+    def update(self,buildings):
+
+        for building in buildings:
+            building.update()
+    
+    def update_economy (self,economy_buildings):
+        for eco_building in economy_buildings:
+            eco_building.update()
+    def create_engineerPost(self,grid_coords):
+
+        engineerPost = EngineerPost(grid_coords[0],grid_coords[1])
+        if self.hud.level.level[engineerPost.x][engineerPost.y]['tile'] == "":
+            engineerPostController = EngineerPost_Controller(engineerPost,self.hud)
+            engineerPostController.place_post()
+            #self.buildings.append(engineerPostController)
+    def create_granary (self,gridcoords,buildings):
+        granary = Granary(gridcoords[0],gridcoords[1],"normal")
+        granaryController = Granary_Controller(granary, self.hud)
+        granaryController.place_granary()
+        buildings.append(granaryController)
+
+    def create_reservoir (self, gridcoords, buildings):
+        reservoir = Reservoir(gridcoords[0],gridcoords[1],"empty",-5)
+        reservoirController = Reservoir_Controller(self.hud, reservoir)
+        reservoirController.place_reservoir()
+        buildings.append(reservoirController)
+
+    def create_farmBuilding(self,grid_coords,buildings):
+        farm = Farm(grid_coords[0],grid_coords[1],0,"normal")
+        #if self.hud.level.level[farm.x][farm.y]['tile'] == "landFarm1":
+        farmController = Farm_Controller(self.hud,farm)
+        farmController.place_farm()
+        buildings.append(farmController)
+        #buildings.append(farmController)
+
+
+
+    def create_house(self,grid_coords,buildings):
+
+        house = House(grid_coords[0],grid_coords[1],"normal",1)
+        if self.hud.level.level[house.x][house.y]['tile'] == "":
+            houseController = HouseController(house,self.hud)
+            houseController.place_house()
+            buildings.append(houseController)
 
     def create_road(self, grid_coords):
         """Create a road.
