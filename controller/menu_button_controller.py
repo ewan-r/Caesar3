@@ -33,7 +33,7 @@ class MenuButtonController():
         load_game = LoadMenu(self.menu.window,"")
         filename = load_game.loading_name()
       
-        self.menu.window = pg.display.set_mode((0, 0), pg.FULLSCREEN)
+        self.menu.window = pg.display.set_mode((1360, 765))
         game = Game(self.menu.window, pg.time.Clock())
         stored_level = Storage([])
 

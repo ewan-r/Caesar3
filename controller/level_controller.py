@@ -65,8 +65,8 @@ class LevelController:
         tile=""
         type_tile = ""
         destructible = False
-
         attached_to_building = []
+        
         if grid_x == 21:
             type_tile = "landsRoad"
             tile = "roadRight"
@@ -90,7 +90,7 @@ class LevelController:
             "render_pos": [minx, miny],
             "type_tile": type_tile,
             "tile": tile,
-            "destructible" : destructible,
+            "destructible": destructible,
             "attached_to_building": attached_to_building
             #"collision": False if tile == "" else True
         }

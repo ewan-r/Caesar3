@@ -37,6 +37,7 @@ class Level:
         self.temp_tile = None
         self.examine_title = None
         self.preview_aqueduc = []
+
     def draw(self, screen, camera):
         """Draw a level.
         
@@ -45,6 +46,7 @@ class Level:
             camera -- game camera
         """
         screen.blit(self.grass_tiles, (camera.scroll.x, camera.scroll.y))
+
         coords_world_to_blit = []
 
         for k in range (2*self.grid_length_x):
@@ -86,8 +88,29 @@ class Level:
                                         render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
         self.draw_animations_foreground(screen,camera)
         self.draw_preview_aqueduc(screen,camera)
-        if self.temp_tile is not None:
 
+        """
+        for x in range(self.grid_length_x):
+            for y in range(self.grid_length_y):
+                render_pos =  self.level[x][y]["render_pos"]
+                # draw world tiles
+                tile = self.level[x][y]["tile"]
+                type_tile = self.level[x][y]["type_tile"]
+                if tile != "" and type_tile != "buildings":
+                    screen.blit(self.tiles[type_tile][tile],
+                                    (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
+                                     render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+                elif type_tile == "buildings":
+                    if tile == "farm12":
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - (self.tiles[type_tile][tile].get_width()/4),
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+                    else:
+                        screen.blit(self.tiles[type_tile][tile],
+                                        (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+    """
+        if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
             iso_poly = [(x + self.grass_tiles.get_width()/2 + camera.scroll.x, y + camera.scroll.y) for x, y in iso_poly]
             if self.temp_tile["collision"]:
