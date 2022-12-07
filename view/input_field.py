@@ -1,7 +1,9 @@
 import pygame as pg
+import random as rd
 import glob
 
 class TextField:
+
     def __init__(self, option,window, left, top, width, height):
         self.window = window
         self.color_inactive = pg.Color('lightskyblue3')
@@ -36,8 +38,8 @@ class TextField:
                         for btn in buttons_save:
                             if btn.rect.collidepoint(event.pos):
                             # return a string corresponding to the command 
-                               btn.appendMessage(self.text)
-                               return btn.getCommand() 
+                               btn.append_message(self.text)
+                               return btn.get_command() 
 
                     # If the user clicked on the input_box rect.
                     if self.input_field.collidepoint(event.pos):
@@ -80,18 +82,18 @@ class TextField:
 
              # activate hover effect
             for btn in buttons_save:
-                btn.hover(btn)
+                btn.hover(self.window, btn)
                 
             pg.display.flip()
 
     def retrieve_filename(self):
-        # read folder for saved files
-        mylist = [f for f in glob.glob("model/storage/*.bin")]
-    
-        pos = 50
+            # read folder for saved files
+            mylist = [f for f in glob.glob("model/storage/*.bin")]
+        
+            pos = 50
 
-        if len(mylist) > 2:
-            for i in range (len(mylist)-4,len(mylist),1):
-                txt_surface = self.font_list.render(mylist[i][14:-4], True, self.color)
-                self.window.blit(txt_surface, (self.input_field.x+5, self.input_field.y+pos))
-                pos+=20
+            if len(mylist) > 2:
+                for i in range (len(mylist)-4,len(mylist),1):
+                    txt_surface = self.font_list.render(mylist[i][14:-4], True, self.color)
+                    self.window.blit(txt_surface, (self.input_field.x+5, self.input_field.y+pos))
+                    pos+=20

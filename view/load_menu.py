@@ -1,7 +1,6 @@
 import pygame as pg
 from pygame.locals import *
-
-from view.new_button import NewButton
+from view.button import Button
 from view.input_field import TextField
 
 class LoadMenu():
@@ -35,14 +34,14 @@ class LoadMenu():
         else:
             exit(0)
 
+
     def load_field(self):
         # create object input_field
         filename_input = TextField("load",self.window, self.window.get_size()[0]/2-120, 200, 140, 32)
-        
+                
         self.buttons_save = []
-        self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2-120, 350, 80, 50), "Load", self.window))
-        self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2+40, 350, 80, 50), "Cancel", self.window))
+        self.buttons_save.append(Button(pg.Rect(self.window.get_size()[0]/2-120, 350, 80, 50), "Load"))
+        self.buttons_save.append(Button(pg.Rect(self.window.get_size()[0]/2+40, 350, 80, 50), "Cancel"))
         
         # passing Save & Cancel buttons as params to the input field
         return filename_input.render_window(self.buttons_save)
-        

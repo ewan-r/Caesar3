@@ -4,7 +4,7 @@ from pygame.locals import *
 class Button():
     """A Button."""
     
-    def __init__(self, rect, text, ftn_click):
+    def __init__(self, rect, command_name):
         """Button constructor.
 
         Arguments:
@@ -13,41 +13,52 @@ class Button():
             ftn_click -- function executed when the button is clicked
         """
         self.rect = rect
-        self.text = text
-        self.ftn_click = ftn_click
+        self.command_name = command_name
+        self.command_response = [] 
+        self.command_response.append(self.command_name) # 1's element is command name, 2nd is a message
 
-    def hover(self, window, btn):
+    def get_command(self):
+        return self.command_response
+    
+    def append_message(self, msg):
+        self.command_response.append(msg)
+
+    def hover(self, window, btn, type_menu):
         """Modify the border radius of a button when the mouse hover it.
         
         Argument:
+            window --
             btn -- button on which the border radius is changed
+            type_menu --
         """
         is_hovered = False
 
         if btn.rect.collidepoint(pg.mouse.get_pos()):
             is_hovered = True
-            btn.draw(window, is_hovered)
+            btn.draw(window, is_hovered, type_menu)
         else:
-            btn.draw(window, is_hovered)
+            btn.draw(window, is_hovered, type_menu)
 
-    def draw(self, window, is_hovered):
+    def draw(self, window, is_hovered, type_menu):
         """Draw a rectangle representing a button.
         
         Arguments:
             window -- surface to display infomations
             is_hovered -- True if the button is hovered, False if it isn't
+            type_menu -- menu string
         """
         if is_hovered == False:
-            x, y = pg.display.get_surface().get_size()
-
-            if (x == 1600 and y == 900):
+            # Menu, Pause Menu
+            if (type_menu == "Menu" or type_menu == "Pause Menu"):
                 pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
-            elif (x == 1360 and y == 765):
+            # HUD
+            elif (type_menu == "HUD"):
                 transparent_surface = pg.Surface((0, 0), pg.SRCALPHA)
                 pg.draw.rect(transparent_surface, (0, 22, 0, 0), self.rect, 0, 0)
-
+            
             font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
-            text = font.render(self.text, 1, (0,0,0))
+            text = font.render(self.command_name, 1, (0,0,0))
+
             # put the text at the center of the button
             window.blit(text, (self.rect.x + (self.rect.width/2 - text.get_width()/2), self.rect.y + (self.rect.height/2 - text.get_height()/2)))
         else:            

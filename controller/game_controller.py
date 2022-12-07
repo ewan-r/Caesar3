@@ -57,27 +57,31 @@ class GameController:
                 sys.exit()
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
+                    command_resp_menu = self.pause_menu.display_menu()
+                    command_menu = command_resp_menu[0]
+                    
                     self.playing = False
                     """Show the Pause Menu"""
-                    commandResp = self.pause_menu.display_menu()
-                    command = commandResp[0]
-                    if (command == "Exit to Main Menu"):
+                    if (command_menu == "Exit to Main Menu"):
                         pg.quit
                         sys.exit()
-                    elif(command == "Continue"):
+                    elif(command_menu == "Continue"):
                         pass
-                    elif(command == "Save game"):
-                        commandResp2 = self.pause_menu.save()
-                        command = commandResp2[0]
-                        destination_file = commandResp2[1]
+                    elif(command_menu == "Save game"):
+                        command_resp_menu_save = self.pause_menu.save()
+                        command_save = command_resp_menu_save[0]
+
+                        destination_file = command_save[1]
                         # if save Game option is selected from Pause Menu
-                        if(command == "Cancel"):
+                        if(command_menu == "Cancel"):
                             pass
-                        elif(command == "Save"):
+                        elif(command_menu == "Save"):
                             gameData = Storage(self.game.level.level)
                             gameData.save_game(destination_file)
 
                     self.playing = True
+                elif event.key == pg.K_y:
+                    hud_btn_controller.create_road(grid_coords)
                 elif event.key == pg.K_LEFT:
                     hud_btn_controller.create_engineerPost(grid_coords)
                 elif event.key == pg.K_RIGHT:
@@ -148,10 +152,9 @@ class GameController:
         self.game.level.draw(self.game.screen, self.game.camera)
         # HUD
         self.game.level.hud.display_hud()
-
-        hud_btn_controller = HUDButtonController(self.game.level.hud)
-        road_btn = Button(pg.Rect(1268, 299, 42, 29), "", hud_btn_controller.create_road)
-        road_btn.hover(self.game.screen, road_btn) 
+        # road button
+        road_btn = Button(pg.Rect(1268, 299, 42, 29), "Create road")
+        road_btn.hover(self.game.screen, road_btn, "HUD") 
 
         pg.display.flip()
 
