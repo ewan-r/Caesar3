@@ -71,11 +71,11 @@ class GameController:
                         command_resp_menu_save = self.pause_menu.save()
                         command_save = command_resp_menu_save[0]
 
-                        destination_file = command_save[1]
+                        destination_file = command_resp_menu_save[1]
                         # if save Game option is selected from Pause Menu
-                        if(command_menu == "Cancel"):
+                        if(command_save == "Cancel"):
                             pass
-                        elif(command_menu == "Save"):
+                        elif(command_save == "Save"):
                             gameData = Storage(self.game.level.level)
                             gameData.save_game(destination_file)
 

@@ -1,5 +1,4 @@
 import pygame as pg
-import random as rd
 import glob
 
 class TextField:
@@ -25,7 +24,7 @@ class TextField:
          self.color_inactive = pg.Color(color)
 
     def render_window(self, buttons_save):
-        
+        print(buttons_save)
         active = True
         
         done = False
@@ -37,9 +36,9 @@ class TextField:
                     if event.button == 1:
                         for btn in buttons_save:
                             if btn.rect.collidepoint(event.pos):
-                            # return a string corresponding to the command 
-                               btn.append_message(self.text)
-                               return btn.get_command() 
+                                # return a string corresponding to the command 
+                                btn.append_message(self.text)
+                                return btn.get_command() 
 
                     # If the user clicked on the input_box rect.
                     if self.input_field.collidepoint(event.pos):
@@ -82,7 +81,7 @@ class TextField:
 
              # activate hover effect
             for btn in buttons_save:
-                btn.hover(self.window, btn)
+                btn.hover(self.window, btn, "Pause Menu")
                 
             pg.display.flip()
 

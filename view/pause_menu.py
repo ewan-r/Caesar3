@@ -55,8 +55,8 @@ class PauseMenu():
                     if event.button == 1:
                         for btn in self.buttons:
                             if btn.rect.collidepoint(event.pos):
-                            # return a string corresponding to the command 
-                               return btn.get_command() 
+                                # return a string corresponding to the command 
+                                return btn.get_command() 
                 # buttons hovered
                 elif event.type == pg.MOUSEMOTION:
                     for btn in self.buttons:
