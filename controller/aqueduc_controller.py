@@ -18,8 +18,10 @@ class Aqueduc_Controller:
             x = tile_to_place["grid"][0]
             y = tile_to_place["grid"][1]
             tile = tile_to_place["tile"]
-            self.level.level.level[x][y]["tile"] = tile
-            self.level.level.level[x][y]["type_tile"] = "buildings"
+            level_tile = self.level.level.level[x][y]["type_tile"]
+            if (level_tile == ""):
+                self.level.level.level[x][y]["tile"] = tile
+                self.level.level.level[x][y]["type_tile"] = "buildings"
         
     def update (self, level):
         pass
