@@ -5,6 +5,8 @@ import sys
 from controller.camera_controller import CameraController
 from controller.hud_button_controller import HUDButtonController
 from view.button import Button
+from model.storage import Storage
+from view.pause_menu import PauseMenu
 
 class GameController:
     """A GameController."""
@@ -17,6 +19,11 @@ class GameController:
         """
         self.game = game
         self.economy_cooldown = 0
+        self.playing = False
+        self.screen = self.game.screen
+        self.width, self.height = pg.display.get_surface().get_size()
+        self.pause_menu = PauseMenu(self.screen, "")
+
         self.aqueduc_build_bool = False
         self.aqueduc_being_build = False
         self.aqueduc =[]
@@ -50,8 +57,29 @@ class GameController:
                 sys.exit()
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
-                    pg.quit()
-                    sys.exit()
+                    self.playing = False
+                    '''
+                    Show the Pause Menu
+                    '''
+                    commandResp = self.pause_menu.display_menu()
+                    command = commandResp[0]
+                    if (command == "Exit to Main Menu"):
+                        pg.quit
+                        sys.exit()
+                    elif(command == "Continue"):
+                        pass
+                    elif(command == "Save game"):
+                        commandResp2 = self.pause_menu.save()
+                        command = commandResp2[0]
+                        destination_file = commandResp2[1]
+                        # if save Game option is selected from Pause Menu
+                        if(command == "Cancel"):
+                            pass
+                        elif(command == "Save"):
+                            gameData = Storage(self.game.level.level)
+                            gameData.save_game(destination_file)
+
+                    self.playing = True
                 elif event.key == pg.K_LEFT:
                     hud_btn_controller.create_engineerPost(grid_coords)
                 elif event.key == pg.K_RIGHT:
