@@ -42,7 +42,6 @@ class MenuButtonController():
 
         game_controller = GameController(game)
         game_controller.run()
-        
 
     def quit_game(self):
         """Quit a game."""

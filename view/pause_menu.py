@@ -1,6 +1,5 @@
 import pygame as pg
 from pygame.locals import *
-import time
 
 from view.new_button import NewButton
 from view.input_field import TextField
@@ -42,8 +41,7 @@ class PauseMenu():
         self.buttons.append(NewButton(pg.Rect(self.window.get_size()[0]/2-150, 225, 300, 50), "Load saved game", self.window))
         self.buttons.append(NewButton(pg.Rect(self.window.get_size()[0]/2-150, 300, 300, 50), "Save game", self.window))
         self.buttons.append(NewButton(pg.Rect(self.window.get_size()[0]/2-150, 375, 300, 50), "Exit to Main Menu", self.window))
-          
-        btn_clicked = False
+
         loop = 1
         while loop:          
             for event in pg.event.get():

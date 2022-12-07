@@ -1,6 +1,5 @@
 import pygame as pg
 from pygame.locals import *
-import time
 
 from view.new_button import NewButton
 from view.input_field import TextField
@@ -36,11 +35,9 @@ class LoadMenu():
         else:
             exit(0)
 
-
     def load_field(self):
         # create object input_field
         filename_input = TextField("load",self.window, self.window.get_size()[0]/2-120, 200, 140, 32)
-        
         
         self.buttons_save = []
         self.buttons_save.append(NewButton(pg.Rect(self.window.get_size()[0]/2-120, 350, 80, 50), "Load", self.window))

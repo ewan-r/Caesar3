@@ -58,9 +58,7 @@ class GameController:
             elif event.type == pg.KEYDOWN:
                 if event.key == pg.K_ESCAPE:
                     self.playing = False
-                    '''
-                    Show the Pause Menu
-                    '''
+                    """Show the Pause Menu"""
                     commandResp = self.pause_menu.display_menu()
                     command = commandResp[0]
                     if (command == "Exit to Main Menu"):
