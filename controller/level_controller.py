@@ -1,4 +1,5 @@
 import pygame as pg
+import numpy as np
 
 class LevelController:
     def __init__(self, level):
@@ -180,8 +181,31 @@ class LevelController:
         
         return list_pos_sprites
 
+    def get_tile_matrix(self, type_tile):
+        """        
+        Argument:
+            type_tile -- type of the tile where is the sprite
+
+        Returns:
+            a matrix of 1 (tile of type_tile found) and 0
+         """
+        tile_matrix = np.zeros((40,40))
+
+
+        for grid_x in range(self.level.grid_length_x):
+            for grid_y in range(self.level.grid_length_y):
+                level_tile = self.level.level[grid_x][grid_y]
+
+                if level_tile['type_tile'] == type_tile:
+                    tile_matrix[grid_y][grid_x] = 1
+         
+        return tile_matrix
+
+
+
     def get_neighbors(self, coords):
-        """"""
+        """
+        """
         neighbors = []
         valid_neighbor = True
 
@@ -209,4 +233,33 @@ class LevelController:
                     if left['type_tile'] == "landsRoad":
                         neighbors.append(left)
         
+        return neighbors
+
+    def get_path(self, coords):
+        """
+        """
+        neighbors = []
+
+
+        if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
+            if coords[0] >= 0 and coords[1] >= 0:
+                if coords[0] != self.level.grid_length_x:
+                    down = self.level.level[coords[0]-1][coords[1]]
+                    if down['type_tile'] == "landsRoad":
+                        neighbors.append(down)
+                if coords[1] != self.level.grid_length_y:
+                    left = self.level.level[coords[0]][coords[1]+1]
+                    if left['type_tile'] == "landsRoad":
+                        neighbors.append(left)
+
+                if coords[0] != self.level.grid_length_x:
+                    up = self.level.level[coords[0]+1][coords[1]]
+                    if up['type_tile'] == "landsRoad": 
+                        neighbors.append(up)
+                        
+                if coords[1] != self.level.grid_length_y:
+                    right = self.level.level[coords[0]][coords[1]-1]
+                    if right['type_tile'] == "landsRoad":
+                        neighbors.append(right)
+                
         return neighbors

@@ -40,6 +40,7 @@ class GameController:
         if click[0]:
             hud_btn_controller.create_road(grid_coords)
 
+
     def update(self):
         camera_controller = CameraController(self.game.camera)
         

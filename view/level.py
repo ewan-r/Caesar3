@@ -2,6 +2,7 @@ import pygame as pg
 
 from controller.level_controller import LevelController
 from view.hud import HUD
+from controller.walker_controller import WalkerController
 
 class Level:
     def __init__(self, entities, grid_length_x, grid_length_y, width, height):
@@ -27,6 +28,9 @@ class Level:
         self.temp_tile = None
         self.examine_title = None
 
+        self.walker_controller = WalkerController(self.hud)
+        self.time = 0
+
     def draw(self, screen, camera):
         screen.blit(self.grass_tiles, (camera.scroll.x, camera.scroll.y))
 
@@ -40,6 +44,12 @@ class Level:
                     screen.blit(self.tiles[type_tile][tile],
                                     (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                      render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+        
+        self.walker_controller.update()
+        for walker in self.walker_controller.l_walkers:
+            screen.blit(walker[0], (walker[1] + self.grass_tiles.get_width()/2 + camera.scroll.x, 
+                                    walker[2]- (walker[0].get_height() - 30) + camera.scroll.y))
+                                
 
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
@@ -56,3 +66,5 @@ class Level:
                     render_pos[1] - (self.temp_tile["image"].get_height() - 30) + camera.scroll.y
                 )
             )
+    
+

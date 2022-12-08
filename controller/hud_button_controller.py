@@ -22,7 +22,7 @@ class HUDButtonController():
                 if tile_to_modify['type_tile'] == "":
                     tile_to_modify['type_tile'] = "landsRoad"
                     
-                    neighbors = self.hud.level.level_controller.get_neighbors(grid_coords)
+                    neighbors = self.hud.level.level_controller.get_path(grid_coords)
 
                     if tile_to_modify['grid'][0] == self.hud.level.grid_length_x-1 or tile_to_modify['grid'][1] == self.hud.level.grid_length_y-1:
                         tile_to_modify['tile'] = "roadIntersectionCenter"
@@ -35,12 +35,12 @@ class HUDButtonController():
                         # up
                         if up in neighbors:
                             up_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_neighbors(up_neighbor_coords)[0]
+                            neigh = self.hud.level.level_controller.get_path(up_neighbor_coords)[0]
                             neigh_coords = (neigh['grid'][0], neigh['grid'][1])
 
-                            if len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 3:
+                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
                                 up['tile'] = "roadIntersectionUp"
-                            elif len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 4:
+                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
                                 up['tile'] = "roadIntersectionCenter"
                             
                             if up['tile'] == "roadLeft":
@@ -53,12 +53,12 @@ class HUDButtonController():
                         # down
                         elif down in neighbors:
                             down_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_neighbors(down_neighbor_coords)[0]
+                            neigh = self.hud.level.level_controller.get_path(down_neighbor_coords)[0]
                             neigh_coords = (neigh['grid'][0], neigh['grid'][1])
 
-                            if len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 3:
+                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
                                 down['tile'] = "roadIntersectionDown"
-                            elif len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 4:
+                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
                                 down['tile'] = "roadIntersectionCenter"
 
                             if down['tile'] == "roadLeft":
@@ -71,12 +71,12 @@ class HUDButtonController():
                         # left
                         elif left in neighbors:
                             left_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_neighbors(left_neighbor_coords)[0]
+                            neigh = self.hud.level.level_controller.get_path(left_neighbor_coords)[0]
                             neigh_coords = (neigh['grid'][0], neigh['grid'][1])
 
-                            if len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 3:
+                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
                                 left['tile'] = "roadIntersectionLeft"
-                            elif len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 4:
+                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
                                 left['tile'] = "roadIntersectionCenter"
                                 
                             if left['tile'] == "roadUp":
@@ -89,12 +89,12 @@ class HUDButtonController():
                         # right
                         elif right in neighbors:
                             right_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_neighbors(right_neighbor_coords)[0]
+                            neigh = self.hud.level.level_controller.get_path(right_neighbor_coords)[0]
                             neigh_coords = (neigh['grid'][0], neigh['grid'][1])
 
-                            if len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 3:
+                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
                                 right['tile'] = "roadIntersectionRight"
-                            elif len(self.hud.level.level_controller.get_neighbors(neigh_coords)) == 4:
+                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
                                 right['tile'] = "roadIntersectionCenter"
 
                             if right['tile'] == "roadUp":
