@@ -1,0 +1,1520 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="15.0.0">
+  <zoom_level>6</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>126</y>
+      <w>186</w>
+      <h>72</h>
+    </coordinates>
+    <panel_attributes>Package::view
+Menu
+--
+
+--
+# Menu(self, window, background_image)
++ display_menu(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>372</x>
+      <y>258</y>
+      <w>234</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes>Package::view
+Button
+--
+
+--
+# Button(self,rect, command_name)
++ get_command(self)
++ append_message(self, message)
++ hover(self, window, button, type_menu)
++ draw(self, window, button_is_hovered, type_menu)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>192</y>
+      <w>18</w>
+      <h>78</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>468</x>
+      <y>240</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>414</x>
+      <y>240</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>buttons
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1242</x>
+      <y>294</y>
+      <w>138</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Package::view
+Game
+--
+
+--
+# Game(self, screen, clock)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>600</x>
+      <y>300</y>
+      <w>654</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;1070.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>606</x>
+      <y>288</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>buttons
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>612</x>
+      <y>312</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>360</x>
+      <y>72</y>
+      <w>786</w>
+      <h>366</h>
+    </coordinates>
+    <panel_attributes>view
+--
+bg=orange</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>318</x>
+      <y>456</y>
+      <w>1188</w>
+      <h>594</h>
+    </coordinates>
+    <panel_attributes>controller
+--
+bg=red</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLPackage</id>
+    <coordinates>
+      <x>1182</x>
+      <y>60</y>
+      <w>696</w>
+      <h>378</h>
+    </coordinates>
+    <panel_attributes>model
+--
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>378</x>
+      <y>492</y>
+      <w>162</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+MenuButtonController
+--
+
+--
+# MenuButtonController(self, menu)
++ start_game(self)
++ load_save(self)
++ quit_game(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>456</x>
+      <y>342</y>
+      <w>18</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;250.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>378</x>
+      <y>840</y>
+      <w>162</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+MenuController
+--
+- camera : Object
+--
+# MenuController(self)
++ clear(self)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>468</x>
+      <y>198</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>414</x>
+      <y>198</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myMenu
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1188</x>
+      <y>288</y>
+      <w>54</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myGame
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1212</x>
+      <y>312</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>348</x>
+      <y>870</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>288</x>
+      <y>852</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myMenuController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>414</x>
+      <y>348</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>buttons
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>342</x>
+      <y>288</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>468</x>
+      <y>474</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>342</x>
+      <y>474</y>
+      <w>120</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myMenuButtonController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1212</x>
+      <y>90</y>
+      <w>204</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Package::model
+Camera
+--
+- width : int
+- height : int
+- scroll : Object
+- dx : int
+- dy : int
+- speed : int
+--
+# Camera(self, width, height)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>846</x>
+      <y>192</y>
+      <w>282</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Package::view
+Level
+--
+
+--
+# Level(self, entities, grid_length_x, grid_length_y, width, height)
++ draw(self, screen, camera)
++ draw_preview_aqueduc(self, screen, camera)
++ is_water_for_reservoir(self, tile_to_test)
++ draw_animations_foreground(self, screen, camera)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1242</x>
+      <y>486</y>
+      <w>198</w>
+      <h>60</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+CameraController
+--
+
+--
+# CameraController(self, camera)
++ update(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1242</x>
+      <y>582</y>
+      <w>252</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+GameController
+--
+
+--
+# GameController(self, game)
++ run(self)
++ events(self)
++ update(self)
++ draw(self)
++ update_buildings(self, hud, buildings)
++ update_place_aqueducs(self, tiles_list, grid_coordinates)
++ update_economy(self, hud, economy_buildings)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>348</x>
+      <y>612</y>
+      <w>240</w>
+      <h>138</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+HUDButtonController
+--
+
+--
+# HUDButtonController(self, hud)
++ update(self, buildings)
++ update_economy(self, economy_buildings)
++ create_engineerPost(self, grid_coordinates)
++ create_granary(self, grid_coordinates, buildings)
++ create_reservoir(self, grid_coordinates, buildings)
++ create_farmBuilding(self, grid_coordinates, buildings)
++ create_house(self, grid_coordinates, buildings)
++ destruction(self, x, y)
++ create_route(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>222</x>
+      <y>276</y>
+      <w>162</w>
+      <h>384</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>210.0;620.0;10.0;620.0;10.0;10.0;250.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>324</x>
+      <y>264</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>buttons
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>234</x>
+      <y>630</y>
+      <w>114</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myHUDButtonController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>318</x>
+      <y>654</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>606</x>
+      <y>492</y>
+      <w>300</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+AqueducController
+--
+
+--
+# AqueducController(self, x, y, level)
++ place_aqueduc(self, tiles_list)
++ preview_aqueduc(self, grid_coordinates, previewed_aqueducs_list)
++ find_right_tile(self, tile_to_modify, neighbors)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>606</x>
+      <y>600</y>
+      <w>300</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+EngineerPostController
+--
+
+--
+# EngineerPostController(self, engineer_post, hud)
++ place_post(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>606</x>
+      <y>678</y>
+      <w>300</w>
+      <h>114</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+FarmController
+--
+
+--
+# FarmController(self, hud, farm)
++ update(self)
++ place_farm(self)
++ reset_farm(self)
++ grow_time(self)
++ get_neighbors(self)
++ get_fertile_area(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>942</x>
+      <y>750</y>
+      <w>300</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+HouseController
+--
+
+--
+# HouseController(self, house, hud)
++ place_house(self)
++ collapse_counter_increase(self)
++ update(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>606</x>
+      <y>810</y>
+      <w>300</w>
+      <h>102</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+GranaryController
+--
+
+--
+# GranaryController(self, granary, hud)
++ update(self)
++ place_granary(self)
++ animation_of_loader(self)
++ get_tile_load(self)
++ deliver_wheat(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>966</x>
+      <y>492</y>
+      <w>258</w>
+      <h>198</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+LevelController
+--
+
+--
+# LevelController(self, level)
++ create_level(self)
++ grid_to_level(self, x, y)
++ generate_biomes(self)
++ generate_forest(self, world, params_forest)
++ generate_seas(self, world, params_forest)
++ generate_cultivable_lands(self, world, params_cultivable)
++ cart_to_iso(self, x, y)
++ mouse_to_grid(self, x, y, scroll)
++ load_images(self)
++ get_list_pos_sprites(elf, type_tile)
++ get_neighbors(self, coordinates)
++ get_neighbors_tile(self, coordinates)
++ get_fictive_neighbors(self, list_of_previewed, index)
++ get_position_fictive_neighbor(self, coordinates, neighbor)
++ is_building_nearby(self, tile, building, level)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>942</x>
+      <y>852</y>
+      <w>330</w>
+      <h>180</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+ReservoirController
+--
+
+--
+# ReservoirController(self, hud, reservoir)
++ place_reservoir(self)
++ is_there_water(self)
++ update_tile_water(self)
++ update(self)
++ attach_building_to_tiles(self, status)
++ get_water_entrance_tiles_coordinates(self)
++ get_water_tiles(self)
++ get_path_of_aqueduc(self)
++ is_linked_to_another_reservoir(self, tiles_list)
++ get_list_of_aqueduc_network(self, starting_point)
++ is_building_nearby(self, tile, building, level)
++ get_real_neighbors(self, tile_to_get_neighors_from, type_tile_world, level)
++ fill_aqueducs_nearby(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>798</x>
+      <y>924</y>
+      <w>108</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>Package::controller
+Utils
+--
+
+--
++ load_right_panel()
++ load_top_menu()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>846</x>
+      <y>102</y>
+      <w>186</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::view
+HUD
+--
+
+--
+# HUD(self, level)
++ blit_right_panel(self)
++ blit_top_menu(self)
++ display_hud(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>864</x>
+      <y>318</y>
+      <w>246</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Package::view
+TextField
+--
+
+--
+# TextField(self, option, window, left, top, width, height)
++ set_font(self, size)
++ set_active_color(self, color)
++ set_inactive_color(self, color)
++ render_window(self, buttons_save)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>642</x>
+      <y>330</y>
+      <w>204</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::view
+LoadMenu
+--
+
+--
+# LoadMenu(self, window, background_image)
++ clear(self)
++ loading_name(self)
++ load_field(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>630</x>
+      <y>102</y>
+      <w>204</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::view
+PauseMenu
+--
+
+--
+# LoadMenu(self, window, background_image)
++ clear(self)
++ display_menu(self)
++ save(self)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1308</x>
+      <y>186</y>
+      <w>96</w>
+      <h>312</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;110.0;140.0;110.0;140.0;460.0;60.0;460.0;60.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1446</x>
+      <y>90</y>
+      <w>204</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Package::model
+EngineerPost
+--
+
+--
+# EngineerPost(self, x, y)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1446</x>
+      <y>156</y>
+      <w>204</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Package::model
+Farm
+--
+
+--
+# Farm(self, x, y, level, status)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1446</x>
+      <y>222</y>
+      <w>204</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Package::model
+Granary
+--
+
+--
+# Granary(self, x, y, status)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1446</x>
+      <y>288</y>
+      <w>204</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Package::model
+House
+--
+
+--
+# House(self, x, y, state, level)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1446</x>
+      <y>360</y>
+      <w>204</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes>Package::model
+Reservoir
+--
+
+--
+# Reservoir(self, x, y, status, impact)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1662</x>
+      <y>90</y>
+      <w>204</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Package::model
+Storage
+--
+
+--
+# Storage(self, world)
++ save_game(self, filename)
++ restore_world(self, filename)
++ saving_menu(self, filename)
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>108</y>
+      <w>558</w>
+      <h>546</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;890.0;30.0;890.0;30.0;560.0;880.0;560.0;880.0;10.0;910.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>162</y>
+      <w>558</w>
+      <h>540</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;880.0;50.0;880.0;50.0;480.0;900.0;480.0;900.0;10.0;910.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>240</y>
+      <w>798</w>
+      <h>840</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>1250.0;10.0;1310.0;10.0;1310.0;1380.0;50.0;1380.0;50.0;990.0;10.0;990.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1236</x>
+      <y>300</y>
+      <w>498</w>
+      <h>498</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>690.0;10.0;810.0;10.0;810.0;810.0;10.0;810.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1266</x>
+      <y>372</y>
+      <w>504</w>
+      <h>510</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>640.0;10.0;820.0;10.0;820.0;830.0;10.0;830.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>468</x>
+      <y>348</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>*
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1110</x>
+      <y>282</y>
+      <w>18</w>
+      <h>222</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1020</x>
+      <y>474</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myLevelController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1128</x>
+      <y>474</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1062</x>
+      <y>288</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myLevel
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1122</x>
+      <y>288</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1026</x>
+      <y>108</y>
+      <w>102</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;20.0;150.0;20.0;150.0;140.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1068</x>
+      <y>174</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myLevel
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1122</x>
+      <y>174</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1032</x>
+      <y>102</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myHUD
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1038</x>
+      <y>120</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>336</x>
+      <y>168</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>312</x>
+      <y>144</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myMenu
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>162</x>
+      <y>156</y>
+      <w>228</w>
+      <h>726</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>360.0;1190.0;10.0;1190.0;10.0;10.0;350.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>6</y>
+      <w>1242</w>
+      <h>624</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>1290.0;1020.0;2050.0;1020.0;2050.0;20.0;10.0;20.0;10.0;160.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>648</x>
+      <y>84</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myPauseMenu
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>732</x>
+      <y>84</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1506</x>
+      <y>600</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myGameController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1512</x>
+      <y>618</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>360</y>
+      <w>204</w>
+      <h>252</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;360.0;10.0;400.0;200.0;400.0;200.0;10.0;320.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>570</x>
+      <y>348</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myLoadMenu
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>612</x>
+      <y>372</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>336</x>
+      <y>576</y>
+      <w>120</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myMenuButtonController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>462</x>
+      <y>576</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>726</x>
+      <y>408</y>
+      <w>228</w>
+      <h>36</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;40.0;360.0;40.0;360.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>660</x>
+      <y>414</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myLoadMenu
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>738</x>
+      <y>414</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>870</x>
+      <y>414</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myTextField
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>948</x>
+      <y>414</y>
+      <w>18</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>720</x>
+      <y>180</y>
+      <w>156</w>
+      <h>156</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;240.0;240.0;240.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>804</x>
+      <y>306</y>
+      <w>72</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myTextField
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>648</x>
+      <y>186</y>
+      <w>78</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myPauseMenu
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>726</x>
+      <y>186</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1488</x>
+      <y>120</y>
+      <w>438</w>
+      <h>570</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;930.0;710.0;930.0;710.0;10.0;630.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1506</x>
+      <y>660</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myGameController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1506</x>
+      <y>678</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1878</x>
+      <y>108</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myStorage
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1884</x>
+      <y>132</y>
+      <w>90</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>60</x>
+      <y>0</y>
+      <w>894</w>
+      <h>966</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;</panel_attributes>
+    <additional_attributes>1470.0;170.0;1470.0;10.0;10.0;10.0;10.0;1590.0;1230.0;1590.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>0</x>
+      <y>432</y>
+      <w>60</w>
+      <h>24</h>
+    </coordinates>
+    <panel_attributes>« use »
+style=wordwrap
+fontsize=20</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>900</x>
+      <y>516</y>
+      <w>402</w>
+      <h>216</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>650.0;310.0;650.0;340.0;90.0;340.0;90.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>450</x>
+      <y>618</y>
+      <w>168</w>
+      <h>162</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;220.0;10.0;250.0;240.0;250.0;240.0;10.0;260.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>408</x>
+      <y>744</y>
+      <w>210</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;70.0;330.0;70.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>378</x>
+      <y>744</y>
+      <w>240</w>
+      <h>90</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;130.0;380.0;130.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>396</x>
+      <y>744</y>
+      <w>558</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;90.0;910.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>546</x>
+      <y>744</y>
+      <w>408</w>
+      <h>282</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;10.0;10.0;450.0;660.0;450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1338</x>
+      <y>540</y>
+      <w>18</w>
+      <h>54</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes>10.0;70.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1248</x>
+      <y>546</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myCameraController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1350</x>
+      <y>546</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1248</x>
+      <y>564</y>
+      <w>96</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>myGameController
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>1350</x>
+      <y>564</y>
+      <w>102</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Text</id>
+    <coordinates>
+      <x>852</x>
+      <y>324</y>
+      <w>48</w>
+      <h>18</h>
+    </coordinates>
+    <panel_attributes>1
+style=wordwrap</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
