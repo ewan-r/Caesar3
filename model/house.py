@@ -6,3 +6,4 @@ class House:
         self.state = state
         self.level = level
         self.collapseCounter = 0
+        self.citizens = 0

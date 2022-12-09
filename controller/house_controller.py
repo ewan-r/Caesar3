@@ -13,17 +13,15 @@ class HouseController():
         self.tile_to_modify["tile"] = "house1"
         self.tile_to_modify["type_tile"] = "buildings"
         self.call_migrant()
+        #Il faut modifier l'appel à new walker pour que les walkers ne soient pas génés par le manque de route
 
     def call_migrant (self):
         neighbors = get_real_neighbors(self.tile_to_modify, "road", self.level)
         neighbor = None
         if (len(neighbors) > 0):
             neighbor = random.choice(neighbors)
-        print(neighbor)
-        print(neighbors)
         if(neighbor):
             self.walker_controller.new_walker(neighbor["grid"])
-            print("test")
 
 
     def collapse_counter_increase(self):
@@ -34,5 +32,6 @@ class HouseController():
     def update(self):
         if self.house.collapseCounter >= 10:
             self.tile_to_modify['tile'] = "ruin"
+            self.house.state = "collapsed"
         else:
             self.collapse_counter_increase()
