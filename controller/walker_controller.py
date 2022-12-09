@@ -29,6 +29,7 @@ class WalkerController:
         for elem in l_roads:
             if elem[0]==0 or elem[0] == 39 or elem[1]==0 or elem[1]==39:
                 l_border_roads.append(elem)
+                
         border = choice(l_border_roads)
         return border[0], border[1]
 
