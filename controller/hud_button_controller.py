@@ -66,7 +66,7 @@ class HUDButtonController():
             houseController.place_house()
             buildings.append(houseController)
 
-    def create_road(self, grid_coords):
+    def create_road(self, click_pos, pos_mouse):
         """Create a road.
         
         Argument:
@@ -207,6 +207,7 @@ class HUDButtonController():
                         # default
                         else:
                             tile_to_modify['tile'] = "roadIntersectionCenter"
+                            """
                             
     def destruction(self, x,y):
         """Create a road.
