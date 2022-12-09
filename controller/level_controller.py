@@ -73,7 +73,7 @@ class LevelController:
         
         if grid_x == 21:
             type_tile = "landsRoad"
-            tile = "roadRight"
+            tile = "roadright"
             destructible = True
         elif (10 <= grid_y < 17 and grid_x == 0) or (11 <= grid_y < 21 and grid_x == 1) or (
                 16 <= grid_y < 21 and grid_x == 2) or (20 <= grid_y < 40 and 3 <= grid_x < 7):
@@ -382,47 +382,35 @@ class LevelController:
         }
 
         roadupanddown = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
-
-        roadDown = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
-        roadLeft = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
-        roadRight = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
-
-        roadIntersectionCenter = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
-        roadIntersectionUp = pg.image.load("assets/sprites/lands/Land2a_00108.png").convert_alpha()
-        roadIntersectionDown = pg.image.load("assets/sprites/lands/Land2a_00106.png").convert_alpha()
-        roadIntersectionLeft = pg.image.load("assets/sprites/lands/Land2a_00107.png").convert_alpha()
-        roadIntersectionRight = pg.image.load("assets/sprites/lands/Land2a_00109.png").convert_alpha()
-
-        roadRightNextToUp  = pg.image.load("assets/sprites/lands/Land2a_00097.png").convert_alpha()
-        roadRightNextToDown  = pg.image.load("assets/sprites/lands/Land2a_00100.png").convert_alpha()
-        roadDownNextToLeft = pg.image.load("assets/sprites/lands/Land2a_00097.png").convert_alpha()
-        roadDownNextToRight = pg.image.load("assets/sprites/lands/Land2a_00098.png").convert_alpha()
-        roadLeftNextToUp = pg.image.load("assets/sprites/lands/Land2a_00098.png").convert_alpha()
-        roadLeftNextToDown = pg.image.load("assets/sprites/lands/Land2a_00099.png").convert_alpha()
-        roadUpNextToLeft = pg.image.load("assets/sprites/lands/Land2a_00100.png").convert_alpha()
-        roadUpNextToRight = pg.image.load("assets/sprites/lands/Land2a_00099.png").convert_alpha()
+        roadleftandright = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
+        roadcornerbottomleft = pg.image.load("assets/sprites/lands/Land2a_00100.png").convert_alpha()
+        roadcornerbottomright = pg.image.load("assets/sprites/lands/Land2a_00099.png").convert_alpha()
+        roadcornerupright = pg.image.load("assets/sprites/lands/Land2a_00097.png").convert_alpha()
+        roadcornerupleft = pg.image.load("assets/sprites/lands/Land2a_00098.png").convert_alpha()
+        roadtridownright = pg.image.load("assets/sprites/lands/Land2a_00106.png").convert_alpha()
+        roadtridownleft = pg.image.load("assets/sprites/lands/Land2a_00107.png").convert_alpha()
+        roadtriupleft = pg.image.load("assets/sprites/lands/Land2a_00108.png").convert_alpha()
+        roadtriupright = pg.image.load("assets/sprites/lands/Land2a_00109.png").convert_alpha()
+        roadleftrightupdown = pg.image.load("assets/sprites/lands/Land2a_00110.png").convert_alpha()
 
         landsRoad = {
             "roadup": roadupanddown,
             "roaddown": roadupanddown,
+            "roadupdown": roadupanddown,
+            "roadleft": roadleftandright,
+            "roadright": roadleftandright,
+            "roadleftright": roadleftandright,
+            
+            "roadrightup": roadcornerbottomleft,
+            "roadleftup": roadcornerbottomright,
+            "roadrightdown": roadcornerupright,
+            "roadleftdown": roadcornerupleft,
 
-            "roadLeft": roadLeft,
-            "roadRight": roadRight,
-
-            "roadIntersectionCenter": roadIntersectionCenter,
-            "roadIntersectionUp": roadIntersectionUp,
-            "roadIntersectionDown": roadIntersectionDown,
-            "roadIntersectionRight": roadIntersectionRight,
-            "roadIntersectionLeft": roadIntersectionLeft,
-
-            "roadRightNextToUp": roadRightNextToUp,
-            "roadRightNextToDown": roadRightNextToDown,
-            "roadDownNextToLeft": roadDownNextToLeft,
-            "roadDownNextToRight": roadDownNextToRight,
-            "roadLeftNextToUp": roadLeftNextToUp,
-            "roadLeftNextToDown": roadLeftNextToDown,
-            "roadUpNextToLeft": roadUpNextToLeft,
-            "roadUpNextToRight": roadUpNextToRight
+            "roadleftrightdown": roadtridownright,
+            "roadleftupdown": roadtridownleft,
+            "roadleftrightup": roadtriupleft,
+            "roadrightupdown": roadtriupright,
+            "roadleftrightupdown": roadleftrightupdown,
         }
 
         images = {
@@ -629,7 +617,7 @@ class LevelController:
                 isRight = True
             if ("left" in neighbors):
                 left = "left"
-                isLeft = False
+                isLeft = True
             if (isUp or isDown or isRight or isLeft):
                 tile_to_change["tile"] = type_tile+left+right+up+down
 
