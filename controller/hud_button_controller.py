@@ -8,6 +8,7 @@ from controller.house_controller import HouseController
 from model.house import House
 from model.farm import Farm
 from model.granary import Granary
+import pygame as pg
 
 class HUDButtonController():
     """A HUDButtonController."""  
@@ -61,6 +62,7 @@ class HUDButtonController():
         if self.hud.level.level[house.x][house.y]['tile'] == "":
             houseController = HouseController(house,self.hud)
             houseController.place_house()
+            self.hud.level.level[house.x][house.y]['house'] = houseController
             buildings.append(houseController)
 
     def create_road(self, grid_coords):
@@ -175,4 +177,14 @@ class HUDButtonController():
 
             if level_tile_to_modify["destructible"]:
                 level_tile_to_modify['type_tile'] = "lands"
-                level_tile_to_modify['tile'] = "land81"
+                level_tile_to_modify['tile'] = ""
+
+
+    def filter(self,coord,window):
+        level_tile_to_modify = self.hud.level.level[coord[0]][coord[1]]
+        if level_tile_to_modify["tile"] == "house1":
+            font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
+            rect = pg.Rect(1268, 299, 42, 29)
+            pg.draw.rect(window, (149, 148, 116), rect, 0, 2, 2)
+            pg.display.flip()
+            #print(level_tile_to_modify["house"].house.collapseCounter*10)

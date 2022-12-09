@@ -101,6 +101,8 @@ class GameController:
                     level_controller.level.preview_aqueduc.clear()
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
+                elif event.key == pg.K_f:
+                    hud_btn_controller.filter(grid_coords,self.screen)
         if click[0] and (self.aqueduc_build_bool == False):
             hud_btn_controller.create_house(grid_coords,level_controller.buildings)
         elif click[0] and self.aqueduc_build_bool:
