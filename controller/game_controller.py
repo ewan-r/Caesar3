@@ -31,7 +31,7 @@ class GameController:
         level_controller = self.game.level.level_controller
         hud_btn_controller = HUDButtonController(self.game.level.hud)
         camera_controller = CameraController(self.game.camera)
-        
+
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 pg.quit()
@@ -41,13 +41,14 @@ class GameController:
                     pg.quit()
                     sys.exit()
 
-        x, y = pg.mouse.get_pos()
-        click = pg.mouse.get_pressed()
+        x_pos_mouse, y_pos_mouse = pg.mouse.get_pos()
+        pos_mouse = level_controller.mouse_to_grid(x_pos_mouse, y_pos_mouse, camera_controller.camera.scroll)
 
-        grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
+        if pg.mouse.get_pressed()[0]:
+            click_x_pos_mouse, click_y_pos_mouse = pg.mouse.get_pos()
+            click_pos = level_controller.mouse_to_grid(click_x_pos_mouse, click_y_pos_mouse, camera_controller.camera.scroll)          
 
-        if click[0]:
-            hud_btn_controller.create_road(grid_coords)
+            hud_btn_controller.create_road(click_pos, pos_mouse)
 
     def update(self):
         """Update a game."""

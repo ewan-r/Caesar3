@@ -1,4 +1,5 @@
 import pygame as pg
+import numpy as np
 
 class LevelController:
     """A LevelController."""
@@ -252,3 +253,21 @@ class LevelController:
                         neighbors.append(left)
         
         return neighbors
+
+    def get_tile_matrix(self, type_tile):
+        """        
+        Argument:
+            type_tile -- type of the tile where is the sprite
+        Returns:
+            a matrix of 1 (tile of type_tile found) and 0
+         """
+        tile_matrix = np.zeros((40,40))
+
+        for grid_x in range(self.level.grid_length_x):
+            for grid_y in range(self.level.grid_length_y):
+                level_tile = self.level.level[grid_x][grid_y]
+
+                if level_tile['type_tile'] == type_tile:
+                    tile_matrix[grid_y][grid_x] = 1
+         
+        return tile_matrix
