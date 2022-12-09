@@ -12,20 +12,20 @@ class WalkerController:
         self.hud = hud
 
 
-    def new_walker(self, coords, house_controller=0, spawn_x=0, spawn_y=0):
+    def new_walker(self, coords, house_controller=0, new=0, spawn_x=0, spawn_y=0):
         """
         Coords : [x,y] (grid)
         """
         if spawn_x == 0 :      
             spawn_x, spawn_y = self.get_border()
-        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1], house_controller]
+        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1], house_controller, new]
         walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
         self.l_walkers.append(walker)
 
 
 
 
-    def get_border(self, coords):
+    def get_border(self):
         l_roads=self.hud.level.level_controller.get_list_pos_sprites("landsRoad")
         l_border_roads = []
         for elem in l_roads:
@@ -61,6 +61,11 @@ class WalkerController:
 
     def path_finding(self,walker):
         matrix = self.hud.level.level_controller.get_tile_matrix("landsRoad")
+        if walker[8] == 0:
+            m2 = self.hud.level.level_controller.get_tile_matrix("")
+            matrix += m2
+
+
         grid = Grid(matrix = matrix)
         if matrix[walker[4]][walker[3]] != 0 and matrix[walker[6]][walker[5]] != 0:
             target_x = walker[5]
