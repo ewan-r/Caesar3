@@ -55,9 +55,9 @@ class WalkerController:
         walker[5], walker[6] = coords[0], coords[1]
 
     def is_arrived(self,walker):
-        if (walker[3], walker[4] == walker[5], walker[6]):
+        if (walker[3] == walker[5] and walker[4] == walker[6]):
             walker[7].upgrade()
-            print(walker[3],walker[4],walker[5],walker[6])
+
 
 
     def path_finding(self,walker):
