@@ -28,6 +28,11 @@ class GameController:
         self.aqueduc_being_build = False
         self.aqueduc =[]
         self.aqueduc_cooldown = 0
+
+        self.fctselected=False
+        self.fct=""
+
+
     def run(self):
         """Run a game in a loop."""
         self.playing = True
@@ -78,8 +83,6 @@ class GameController:
                             gameData.save_game(destination_file)
 
                     self.playing = True
-                elif event.key == pg.K_LEFT:
-                    hud_btn_controller.create_engineerPost(grid_coords)
                 elif event.key == pg.K_RIGHT:
                     hud_btn_controller.create_farmBuilding(grid_coords,level_controller.economy_buildings)
                 elif event.key == pg.K_a:
@@ -97,19 +100,35 @@ class GameController:
                     level_controller.level.preview_aqueduc.clear()
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
-        if click[0] and (self.aqueduc_build_bool == False):
-            hud_btn_controller.create_house(grid_coords,level_controller.buildings)
+            elif event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    for btn in self.game.level.hud.buttons:
+                        if btn.rect.collidepoint(event.pos):
+                            self.fct= btn.ftn_click
+                            self.fctselected = True
+        if click[0] and (self.aqueduc_build_bool == False) and (self.fctselected==True):
+            if self.fct=="create_house":
+                hud_btn_controller.create_house(grid_coords,level_controller.buildings)
+            elif self.fct=="create_road":
+                hud_btn_controller.create_road(grid_coords)
+            elif self.fct=="engineerPost":
+                hud_btn_controller.create_engineerPost(grid_coords)
+            elif self.fct=="unselected":
+                self.fctselected=False
+
+
+            """
         elif click[0] and self.aqueduc_build_bool:
             aqueduc_controller = Aqueduc_Controller(grid_coords[0],grid_coords[1],level_controller)
             #level_controller.level.preview_aqueduc.append(aqueduc_controller)
             self.aqueduc_being_build = True
-            self.aqueduc.append(aqueduc_controller)        
+            self.aqueduc.append(aqueduc_controller)
         elif click[1] and (self.aqueduc_being_build or self.aqueduc_build_bool):
             level_controller.level.preview_aqueduc.clear()
             self.aqueduc_being_build = False
-            self.aqueduc_build_bool = False
-            
-        if click[2]:
+            self.aqueduc_build_bool = False"""
+
+        if click[2] and (self.fctselected==True) and (self.fct=="destruction"):
             mouse_pos = pg.mouse.get_pos()
             self.game.mouse_pos_hud = level_controller.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera_controller.camera.scroll)
             if self.game.cmpt < 2:
@@ -148,12 +167,6 @@ class GameController:
         self.game.level.draw(self.game.screen, self.game.camera)
         # HUD
         self.game.level.hud.display_hud()
-
-        hud_btn_controller = HUDButtonController(self.game.level.hud)
-        road_btn = Button(pg.Rect(1268, 299, 42, 29), "", hud_btn_controller.create_road)
-        road_btn.hover(self.game.screen, road_btn) 
-
-        pg.display.flip()
 
     def update_buildings(self, hud,buildings):
         self.aqueduc_cooldown += self.game.clock.get_time()

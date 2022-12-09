@@ -1,5 +1,7 @@
 import pygame as pg
-from pygame.locals import * 
+from pygame.locals import *
+from view.button import Button
+from controller.hud_button_controller import HUDButtonController
 from controller.utils import *
 
 class HUD():
@@ -17,6 +19,7 @@ class HUD():
 
         self.right_panel = self.window.subsurface(1157, 24, 202, 735)
         self.top_menu = self.window.subsurface(0, 0, 1360, 24)
+        self.buttons = []
        
     def blit_right_panel(self):
         """Blit right panel HUD."""
@@ -128,5 +131,29 @@ class HUD():
 
     def display_hud(self):
         """Display the game HUD."""
+        pg.init()
         self.blit_right_panel()
         self.blit_top_menu()
+        btn_controller = HUDButtonController(self)
+        btn_clicked = False
+
+        """for event in pg.event.get():
+            if event.type == pg.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    for btn in self.buttons:
+                        if btn.rect.collidepoint(event.pos):
+                            btn.ftn_click()
+                            btn_clicked = True"""
+
+
+        self.buttons = []
+        self.buttons.append(Button(pg.Rect(1168, 299, 42, 29), "", "create_house"))
+        self.buttons.append(Button(pg.Rect(1218, 299, 42, 29), "", "destruction"))
+        self.buttons.append(Button(pg.Rect(1268, 299, 42, 29), "", "create_road"))
+        self.buttons.append(Button(pg.Rect(1168, 407, 42, 29), "", "engineerPost"))
+        self.buttons.append(Button(pg.Rect(1168, 443, 42, 25), "", "unselected"))
+
+        for btn in self.buttons:
+            btn.hover(self.window, btn)
+
+        pg.display.update()
