@@ -140,6 +140,7 @@ class GameController:
             self.game.cmpt = 1
             self.game.first_pos = (0,0)
 
+
     def update(self):
         """Update a game."""
         camera_controller = CameraController(self.game.camera)

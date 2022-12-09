@@ -2,6 +2,7 @@ import pygame as pg
 
 from controller.level_controller import LevelController
 from view.hud import HUD
+from controller.walker_controller import WalkerController
 
 class Level:
     """A Level."""
@@ -37,6 +38,9 @@ class Level:
         self.temp_tile = None
         self.examine_title = None
         self.preview_aqueduc = []
+
+        self.walker_controller = WalkerController(self.hud)
+        self.time = 0
 
     def draw(self, screen, camera):
         """Draw a level.
@@ -110,6 +114,13 @@ class Level:
                                         (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                         render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
     """
+        
+        self.walker_controller.update()
+        for walker in self.walker_controller.l_walkers:
+            screen.blit(walker[0], (walker[1] + self.grass_tiles.get_width()/2 + camera.scroll.x, 
+                                    walker[2]- (walker[0].get_height() - 30) + camera.scroll.y))
+                                
+
         if self.temp_tile is not None:
             iso_poly = self.temp_tile["iso_poly"]
             iso_poly = [(x + self.grass_tiles.get_width()/2 + camera.scroll.x, y + camera.scroll.y) for x, y in iso_poly]
