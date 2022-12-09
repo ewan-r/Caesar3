@@ -58,6 +58,7 @@ class WalkerController:
         print(walker[3],walker[5],walker[4],walker[6])
         if (walker[3] == walker[5] and walker[4] == walker[6]):
             walker[7].upgrade()
+            walker[8] = 1
 
 
 
@@ -93,7 +94,7 @@ class WalkerController:
                     self.time = 0
                 if walker[7] != 0 and walker[8]==0:
                     self.is_arrived(walker)
-                    walker[8] = 1
+                    
 
         else:
             self.time += 1
