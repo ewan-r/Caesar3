@@ -57,6 +57,7 @@ class WalkerController:
     def is_arrived(self,walker):
         if (walker[3], walker[4] == walker[5], walker[6]):
             walker[7].upgrade()
+            print(walker[3],walker[4],walker[5],walker[6])
 
 
     def path_finding(self,walker):
@@ -89,8 +90,9 @@ class WalkerController:
                     (walker[3], walker[4]) = path[1]
                     walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
                     self.time = 0
-                if walker[7] != 0:
+                if walker[7] != 0 and walker[8]==0:
                     self.is_arrived(walker)
+                    walker[8] = 1
 
         else:
             self.time += 1
