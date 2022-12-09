@@ -19,35 +19,38 @@ class HUDButtonController():
             grid_coords -- grid coordinates of a cell
         """
 
-        matrix = self.hud.level.level_controller.get_tile_matrix("landsRoad")
-        grid = Grid(matrix = matrix)
+        if pos_mouse[0] < self.hud.level.grid_length_x and pos_mouse[1] < self.hud.level.grid_length_y:
+            if pos_mouse[0] >= 0 and pos_mouse[1] >= 0:
+                matrix = self.hud.level.level_controller.get_tile_matrix("landsRoad")
+                grid = Grid(matrix = matrix)
 
-        start_x = click_pos[0]
-        start_y = click_pos[1]
-        target_x = pos_mouse[0]
-        target_y = pos_mouse[1]
+                start_x = click_pos[0]
+                start_y = click_pos[1]
+                target_x = pos_mouse[0]
+                target_y = pos_mouse[1]
 
-        start = grid.node(start_x,start_y)
-        end = grid.node(target_x,target_y)
+                start = grid.node(start_x,start_y)
+                end = grid.node(target_x,target_y)
 
-        finder = AStarFinder()
-        path = finder.find_path(start, end, grid)
-        grid.cleanup()
-        
+                finder = AStarFinder()
+                path = finder.find_path(start, end, grid)
+                grid.cleanup()
 
-        if path:
-            points = []
+                if path:
+                    points = []
 
-            for point in path:
-                x = point[0][0]
-                y = point[0][1]
-                points.append((x,y))
-                break
+                    for point in path:
+                        x = point[0][0]
+                        y = point[0][1]
+                        points.append((x,y))
+                        break
 
-            for pt in points:
-                tile_to_modify = self.hud.level.level[pt[0]][pt[1]]
-                tile_to_modify['type_tile'] = "landsRoad"
-                tile_to_modify['tile'] = "roadIntersectionCenter"
+                    for pt in points:
+                        tile_to_modify = self.hud.level.level[pt[0]][pt[1]]
+                    
+                        if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
+                            tile_to_modify['type_tile'] = "landsRoad"
+                            tile_to_modify['tile'] = "roadIntersectionCenter"
 
         """
         # check limits of the board
