@@ -166,7 +166,7 @@ class LevelController:
 
         landsRoad = {
             "roadup": roadupanddown,
-            "roadown": roadupanddown,
+            "roaddown": roadupanddown,
 
             "roadLeft": roadLeft,
             "roadRight": roadRight,
@@ -259,31 +259,31 @@ class LevelController:
         return tile_matrix
 
 
-    def get_neighbors_tile(self, coords):
+    def get_neighbors_tile(self, coords, type_tile):
         neighbors = []
 
         if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
             if coords[0] >= 0 and coords[1] >= 0:
                 if coords[0] != self.level.grid_length_x-1:
                     down = self.level.level[coords[0]-1][coords[1]]
-                    if ("aqueduc" in down["tile"]):
+                    if (type_tile in down["tile"]):
                         neighbors.append("down")
                 if coords[1] != self.level.grid_length_y-1:
                     left = self.level.level[coords[0]][coords[1]+1]
-                    if "aqueduc" in left["tile"]:
+                    if type_tile in left["tile"]:
                         neighbors.append("left")
                 if coords[0] != self.level.grid_length_x+1:
                     up = self.level.level[coords[0]+1][coords[1]]
-                    if "aqueduc" in up["tile"]: 
+                    if type_tile in up["tile"]: 
                         neighbors.append("up")
                 if coords[1] != self.level.grid_length_y+1:
                     right = self.level.level[coords[0]][coords[1]-1]
-                    if "aqueduc" in right   ["tile"]:
+                    if type_tile in right["tile"]:
                         neighbors.append("right")
                 
         return neighbors
     
-    def find_right_tile(self,tile_to_change, neighbors):
+    def find_right_tile(self, tile_to_change, neighbors, type_tile):
         #print("Tile to change :")
         #print(" ")
         #print(tile_to_change)
@@ -309,5 +309,7 @@ class LevelController:
                 left = "left"
                 isLeft = False
             if (isUp or isDown or isRight or isLeft):
-                tile_to_change["tile"] = "aqueduc"+left+right+up+down
-                tile_to_change["type_tile"] = "buildings"
+                tile_to_change["tile"] = type_tile+left+right+up+down
+
+                if (type_tile != "road"):
+                    tile_to_change["type_tile"] = "buildings"
