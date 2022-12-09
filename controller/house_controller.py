@@ -21,14 +21,18 @@ class HouseController():
         if (len(neighbors) > 0):
             neighbor = random.choice(neighbors)
         if(neighbor):
-            self.walker_controller.new_walker(neighbor["grid"])
+            self.walker_controller.new_walker(neighbor["grid"], self)
 
 
     def collapse_counter_increase(self):
         IncreaseCounter = random.randint(1,100)
         if IncreaseCounter < 2:
             self.house.collapseCounter += 1
-        
+    
+    def upgrade(self):
+        self.house.level += 1
+        self.tile_to_modify
+
     def update(self):
         if self.house.collapseCounter >= 10:
             self.tile_to_modify['tile'] = "ruin"
