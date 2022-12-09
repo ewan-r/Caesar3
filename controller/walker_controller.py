@@ -48,14 +48,14 @@ class WalkerController:
             self.time += 1
 
     
-    def give_destination(walker, coords):
+    def give_destination(self,walker, coords):
         """
         Coords : [x,y] (grid)
         """
         walker[5], walker[6] = coords[0], coords[1]
 
-    def is_arrived(walker, coords):
-        if (walker[3], walker[4] == coords[0], coords[1]):
+    def is_arrived(self,walker):
+        if (walker[3], walker[4] == walker[5], walker[6]):
             walker[7].upgrade()
 
 
@@ -86,9 +86,12 @@ class WalkerController:
                 path = self.path_finding(walker)
                 
                 if path and len(path) >  1:               
-                        (walker[3], walker[4]) = path[1]
-                        walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
-                        self.time = 0
+                    (walker[3], walker[4]) = path[1]
+                    walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
+                    self.time = 0
+                if walker[7] != 0:
+                    self.is_arrived(walker)
+
         else:
             self.time += 1
 
