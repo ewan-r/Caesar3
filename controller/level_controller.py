@@ -143,7 +143,8 @@ class LevelController:
             "landMountain1": landMountain1
         }
 
-        roadUp = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
+        roadupanddown = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
+
         roadDown = pg.image.load("assets/sprites/lands/Land2a_00096.png").convert_alpha()
         roadLeft = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
         roadRight = pg.image.load("assets/sprites/lands/Land2a_00093.png").convert_alpha()
@@ -164,8 +165,9 @@ class LevelController:
         roadUpNextToRight = pg.image.load("assets/sprites/lands/Land2a_00099.png").convert_alpha()
 
         landsRoad = {
-            "roadUp": roadUp,
-            "roadDown": roadDown,
+            "roadup": roadupanddown,
+            "roadown": roadupanddown,
+
             "roadLeft": roadLeft,
             "roadRight": roadRight,
 
@@ -216,42 +218,26 @@ class LevelController:
         
         return list_pos_sprites
 
-    def get_neighbors(self, coords):
-        """Get the neighbors of a tile.
-        
-        Argument:
-            coords -- coordinates of a tile
-
-        Returns:
-            a list containing the neighbors of a tile
+    def get_real_neighbors(self, tile_to_get_neighors_from, type_tile_world, level):
         """
+        Return a list with the list of neighbors which the tile field contains tile_world
+        Args:
+            tile_to_get_neighors_from (list): tile which we need to get neighbors from
+            type_tile_world(str): type of neighbors
+            level (list) : list of all tiles of the world
+        """
+        x = tile_to_get_neighors_from["grid"][0]
+        y = tile_to_get_neighors_from["grid"][1]
         neighbors = []
-        valid_neighbor = True
 
-        if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
-            if coords[0] >= 0 and coords[1] >= 0:
-                if coords[0] == self.level.grid_length_x-1 or coords[1] == self.level.grid_length_y-1:
-                    valid_neighbor = False
-                
-                if valid_neighbor:
-                    up = self.level.level[coords[0]+1][coords[1]]
-                    down = self.level.level[coords[0]-1][coords[1]]
-                    right = self.level.level[coords[0]][coords[1]+1]
-                    left = self.level.level[coords[0]][coords[1]-1]
-
-                    # up
-                    if up['type_tile'] == "landsRoad": 
-                        neighbors.append(up)
-                    # down
-                    if down['type_tile'] == "landsRoad":
-                        neighbors.append(down)
-                    # right
-                    if right['type_tile'] == "landsRoad":
-                        neighbors.append(right)
-                    # left
-                    if left['type_tile'] == "landsRoad":
-                        neighbors.append(left)
-        
+        if ( type_tile_world in level[x-1][y]["tile"]):
+            neighbors.append(level[x-1][y])
+        if (type_tile_world in level[x+1][y]["tile"]):
+            neighbors.append(level[x+1][y])
+        if (type_tile_world in level[x][y-1]["tile"]):
+            neighbors.append(level[x][y-1])
+        if (type_tile_world in level[x][y+1]["tile"]):
+            neighbors.append(level[x][y+1])
         return neighbors
 
     def get_tile_matrix(self, type_tile):
@@ -271,3 +257,57 @@ class LevelController:
                     tile_matrix[grid_y][grid_x] = 1
          
         return tile_matrix
+
+
+    def get_neighbors_tile(self, coords):
+        neighbors = []
+
+        if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
+            if coords[0] >= 0 and coords[1] >= 0:
+                if coords[0] != self.level.grid_length_x-1:
+                    down = self.level.level[coords[0]-1][coords[1]]
+                    if ("aqueduc" in down["tile"]):
+                        neighbors.append("down")
+                if coords[1] != self.level.grid_length_y-1:
+                    left = self.level.level[coords[0]][coords[1]+1]
+                    if "aqueduc" in left["tile"]:
+                        neighbors.append("left")
+                if coords[0] != self.level.grid_length_x+1:
+                    up = self.level.level[coords[0]+1][coords[1]]
+                    if "aqueduc" in up["tile"]: 
+                        neighbors.append("up")
+                if coords[1] != self.level.grid_length_y+1:
+                    right = self.level.level[coords[0]][coords[1]-1]
+                    if "aqueduc" in right   ["tile"]:
+                        neighbors.append("right")
+                
+        return neighbors
+    
+    def find_right_tile(self,tile_to_change, neighbors):
+        #print("Tile to change :")
+        #print(" ")
+        #print(tile_to_change)
+        if (len(neighbors) >= 1):
+            up = ""
+            down =""
+            right = ""
+            left = ""
+            isUp = False
+            isDown = False
+            isRight = False
+            isLeft = False
+            if ("up" in neighbors):
+                up = "up"
+                isUp = True
+            if ("down" in neighbors):
+                down = "down"
+                isDown = True
+            if ("right" in neighbors):
+                right = "right"
+                isRight = True
+            if ("left" in neighbors):
+                left = "left"
+                isLeft = False
+            if (isUp or isDown or isRight or isLeft):
+                tile_to_change["tile"] = "aqueduc"+left+right+up+down
+                tile_to_change["type_tile"] = "buildings"

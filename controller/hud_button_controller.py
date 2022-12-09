@@ -50,7 +50,18 @@ class HUDButtonController():
                     
                         if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
                             tile_to_modify['type_tile'] = "landsRoad"
-                            tile_to_modify['tile'] = "roadIntersectionCenter"
+
+                            # get neighbors tile
+
+
+                            real_neighbors = self.hud.level.level_controller.get_real_neighbors(tile_to_modify, "road", self.hud.level.level)
+
+                            #for real_neighbor in real_neighbors:
+
+
+                            tile_to_modify['tile'] = "roadup"
+
+                    
 
         """
         # check limits of the board
