@@ -215,6 +215,8 @@ class LevelController:
 
     def load_images(self):
         house1 = pg.image.load("assets/sprites/buildings/Housng1a_00002.png").convert_alpha()
+        house0 = pg.image.load("assets/sprites/buildings/Housng1a_00045.png").convert_alpha()
+        house2 = pg.image.load("assets/sprites/buildings/Housng1a_00007.png").convert_alpha()
         engineerPost = pg.image.load("assets/sprites/buildings/transport_00056.png").convert_alpha()
         ruin = pg.image.load("assets/sprites/buildings/Land2a_00114.png").convert_alpha()
         farm12 = pg.image.load("assets/sprites/buildings/farm/Commerce_00012.png").convert_alpha()
@@ -273,6 +275,8 @@ class LevelController:
         aqueducleftrightupdown = pg.image.load("assets/sprites/buildings/aqueducs/Land2a_00148.png").convert_alpha()
         buildings = {
             "house1": house1,
+            "house0": house0,
+            "house2": house2,
             "engineerPost": engineerPost,
             "ruin": ruin,
             "farm12" : farm12,

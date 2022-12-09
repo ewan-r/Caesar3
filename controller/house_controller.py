@@ -10,7 +10,7 @@ class HouseController():
         self.walker_controller = self.hud.level.walker_controller
     def place_house(self):
         
-        self.tile_to_modify["tile"] = "house1"
+        self.tile_to_modify["tile"] = "house0"
         self.tile_to_modify["type_tile"] = "buildings"
         self.call_migrant()
         #Il faut modifier l'appel à new walker pour que les walkers ne soient pas génés par le manque de route
@@ -31,7 +31,7 @@ class HouseController():
     
     def upgrade(self):
         self.house.level += 1
-        self.tile_to_modify
+        self.tile_to_modify["tile"] = "house"+str(self.house.level)
 
     def update(self):
         if self.house.collapseCounter >= 10:
