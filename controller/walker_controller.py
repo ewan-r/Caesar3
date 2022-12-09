@@ -55,10 +55,10 @@ class WalkerController:
         walker[5], walker[6] = coords[0], coords[1]
 
     def is_arrived(self,walker):
-        print(walker[3],walker[5],walker[4],walker[6])
         if (walker[3] == walker[5] and walker[4] == walker[6]):
             walker[7].upgrade()
             walker[8] = 1
+            self.l_walkers.remove(walker)
 
 
 
