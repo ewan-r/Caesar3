@@ -642,4 +642,5 @@ class LevelController:
             neighbors.append(level[x][y+1])
 
         return neighbors
+
         

@@ -102,3 +102,45 @@ def load_top_menu():
     l_top_menu.append(pygame.image.load("assets/sprites/hud/paneling_00012.png").convert_alpha())
     
     return l_top_menu
+
+def is_building_nearby (tile, building, level):
+    x = tile['grid'][0]
+    y = tile['grid'][1]
+    neighbors = []
+
+    if ( building in level[x-1][y]["attached_to_building"]):
+        neighbors.append(level[x-1][y])
+    if (building in level[x+1][y]["attached_to_building"]):
+        neighbors.append(level[x+1][y])
+    if (building in level[x][y-1]["attached_to_building"]):
+        neighbors.append(level[x][y-1])
+    if (building in level[x][y+1]["attached_to_building"]):
+        neighbors.append(level[x][y+1])
+    return neighbors
+        
+
+def get_real_neighbors (tile_to_get_neighors_from,type_tile_world, level):
+    """
+    Return a list with the list of neighbors which the tile field contains tile_world
+
+    Args:
+        tile_to_get_neighors_from (list): tile which we need to get neighbors from
+        type_tile_world(str): type of neighbors
+        level (list) : list of all tiles of the world
+    """
+    x = tile_to_get_neighors_from["grid"][0]
+    y = tile_to_get_neighors_from["grid"][1]
+    neighbors = []
+    if (x != 0):
+        if ( type_tile_world in level[x-1][y]["tile"]):
+            neighbors.append(level[x-1][y])
+    if (x != 39):
+        if (type_tile_world in level[x+1][y]["tile"]):
+            neighbors.append(level[x+1][y])
+    if (y != 0):
+        if (type_tile_world in level[x][y-1]["tile"]):
+            neighbors.append(level[x][y-1])
+    if (y !=39):
+        if (type_tile_world in level[x][y+1]["tile"]):
+            neighbors.append(level[x][y+1])
+    return neighbors   
