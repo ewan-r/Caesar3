@@ -12,18 +12,20 @@ class WalkerController:
         self.hud = hud
 
 
-    def new_walker(self, coords, spawn_x=0, spawn_y=0):
+    def new_walker(self, coords, house_controller=0, spawn_x=0, spawn_y=0):
         """
         Coords : [x,y] (grid)
         """
         if spawn_x == 0 :      
             spawn_x, spawn_y = self.get_border()
-        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1]]
+        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1], house_controller]
         walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
         self.l_walkers.append(walker)
 
 
-    def get_border(self):
+
+
+    def get_border(self, coords):
         l_roads=self.hud.level.level_controller.get_list_pos_sprites("landsRoad")
         l_border_roads = []
         for elem in l_roads:
@@ -53,7 +55,8 @@ class WalkerController:
         walker[5], walker[6] = coords[0], coords[1]
 
     def is_arrived(walker, coords):
-        return (walker[3], walker[4] == coords[0], coords[1])
+        if (walker[3], walker[4] == coords[0], coords[1]):
+            walker[7].upgrade()
 
 
     def path_finding(self,walker):
