@@ -29,8 +29,11 @@ class Reservoir_Controller:
         """
         for x in range (self.reservoir.x - 5, self.reservoir.x + 5):
             for y in range (self.reservoir.y - 5, self.reservoir.y+5):
-                if (self.hud.level.level[x][y]["type_tile"] == "landsWater" ):
-                    return True
+                try:
+                    if (self.hud.level.level[x][y]["type_tile"] == "landsWater" ):
+                        return True
+                except:
+                    pass
         return False
 
     def update_tile_water(self):

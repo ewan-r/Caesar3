@@ -27,14 +27,15 @@ class HouseController():
     def collapse_counter_increase(self):
         IncreaseCounter = random.randint(1,100)
         if IncreaseCounter < 2:
-            self.house.collapseCounter += 1
+            self.tile_to_modify["collapsed_counter"] += 1
+            self.house.collapseCounter = self.tile_to_modify["collapsed_counter"]
     
     def upgrade(self):
         self.house.level += 1
         self.tile_to_modify["tile"] = "house"+str(self.house.level)
 
     def update(self):
-        if self.house.collapseCounter >= 10:
+        if self.tile_to_modify["collapsed_counter"] >= 10:
             self.tile_to_modify['tile'] = "ruin"
             self.house.state = "collapsed"
         else:

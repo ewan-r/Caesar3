@@ -3,3 +3,4 @@ class EngineerPost():
         self.x = x
         self.y = y
         self.collapseCounter = 0
+        self.workers = 2

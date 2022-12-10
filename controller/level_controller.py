@@ -70,7 +70,7 @@ class LevelController:
         type_tile = ""
         destructible = False
         attached_to_building = []
-        
+        collapsed_counter = 0
         if grid_x == 21:
             type_tile = "landsRoad"
             tile = "roadRight"
@@ -95,7 +95,8 @@ class LevelController:
             "type_tile": type_tile,
             "tile": tile,
             "destructible": destructible,
-            "attached_to_building": attached_to_building
+            "attached_to_building": attached_to_building,
+            "collapsed_counter": collapsed_counter
             #"collision": False if tile == "" else True
         }
 
@@ -527,21 +528,21 @@ class LevelController:
 
         if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
             if coords[0] >= 0 and coords[1] >= 0:
-                if coords[0] != self.level.grid_length_x:
+                if coords[0] != 0:
                     down = self.level.level[coords[0]-1][coords[1]]
                     if down['type_tile'] == "landsRoad":
                         neighbors.append(down)
-                if coords[1] != self.level.grid_length_y:
+                if coords[1] != self.level.grid_length_y - 1:
                     left = self.level.level[coords[0]][coords[1]+1]
                     if left['type_tile'] == "landsRoad":
                         neighbors.append(left)
 
-                if coords[0] != self.level.grid_length_x:
+                if coords[0] != self.level.grid_length_x - 1:
                     up = self.level.level[coords[0]+1][coords[1]]
                     if up['type_tile'] == "landsRoad": 
                         neighbors.append(up)
                         
-                if coords[1] != self.level.grid_length_y:
+                if coords[1] != 0:
                     right = self.level.level[coords[0]][coords[1]-1]
                     if right['type_tile'] == "landsRoad":
                         neighbors.append(right)

@@ -12,13 +12,13 @@ class WalkerController:
         self.hud = hud
 
 
-    def new_walker(self, coords, house_controller=0, new=0, spawn_x=0, spawn_y=0):
+    def new_walker(self, coords, building_controller=0, status=0, spawn_x=0, spawn_y=0):
         """
         Coords : [x,y] (grid)
         """
         if spawn_x == 0 :      
             spawn_x, spawn_y = self.get_border()
-        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1], house_controller, new]
+        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1], building_controller, status]
         walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
         self.l_walkers.append(walker)
 
@@ -36,16 +36,12 @@ class WalkerController:
         return border[0], border[1]
 
 
-    def random_walk(self):
-        if self.time == 100 :
-            for walker in self.l_walkers:
-                possible_path=self.hud.level.level_controller.get_path((walker[3], walker[4]))
-                path = choice(possible_path)
-                walker[1],walker[2] = path["render_pos"]
-                walker[3],walker[4] = path["grid"]
-                self.time = 0
-        else:
-            self.time += 1
+    def random_walk(self, walker):
+        possible_path=self.hud.level.level_controller.get_path((walker[3], walker[4]))
+        path = choice(possible_path)
+        #walker[1],walker[2] = path["render_pos"]
+        walker[5],walker[6] = path["grid"]
+        self.time = 0
 
     
     def give_destination(self,walker, coords):
@@ -56,9 +52,8 @@ class WalkerController:
 
     def is_arrived(self,walker):
         if (walker[3] == walker[5] and walker[4] == walker[6]):
-            walker[7].upgrade()
-            walker[8] = 1
-            self.l_walkers.remove(walker)
+            return True
+        return False
 
 
 
@@ -82,6 +77,9 @@ class WalkerController:
             path,runs = finder.find_path(start,end,grid)
             return path
 
+    def detect_and_repare_buildings (self, walker):
+        walker[7].detect_and_repare_buldings(walker)
+
 
     def update(self):
         if self.time == 50:
@@ -93,7 +91,15 @@ class WalkerController:
                     walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
                     self.time = 0
                 if walker[7] != 0 and walker[8]==0:
-                    self.is_arrived(walker)
+                    if (self.is_arrived(walker)):
+                        walker[7].upgrade()
+                        walker[8] = 1
+                        self.l_walkers.remove(walker)
+
+                if walker[7] != 0 and walker[8] == 2:
+                    if (self.is_arrived(walker)):
+                        self.random_walk(walker)
+                    self.detect_and_repare_buildings(walker)
                     
 
         else:
