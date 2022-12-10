@@ -105,110 +105,16 @@ class HUDButtonController():
                         if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
                             tile_to_modify['type_tile'] = "landsRoad"
                             neighbors_tile = self.hud.level.level_controller.get_neighbors_tile(tile_to_modify["grid"], "road")
-                            print("Neigh " + str(neighbors_tile))
-                            #real_neighbors = self.hud.level.level_controller.get_real_neighbors(tile_to_modify, "road", self.hud.level.level)
-                            #print("Real " + str(real_neighbors))
-                            #for real_neighbor in real_neighbors:
                             self.hud.level.level_controller.find_right_tile(tile_to_modify, neighbors_tile, "road")
-                    
 
-        """
-        # check limits of the board
-        if grid_coords[0] < self.hud.level.grid_length_x and grid_coords[1] < self.hud.level.grid_length_y:
-            if grid_coords[0] >= 0 and grid_coords[1] >= 0:
-                tile_to_modify = self.hud.level.level[grid_coords[0]][grid_coords[1]]
-            
-                # grass terrain
-                if tile_to_modify['type_tile'] == "":
-                    tile_to_modify['type_tile'] = "landsRoad"
-                    
-                    neighbors = self.hud.level.level_controller.get_path(grid_coords)
+                            #print("Neigh " + str(neighbors_tile))
+                            real_neighbors = self.hud.level.level_controller.get_real_neighbors(tile_to_modify, "road", self.hud.level.level)
 
-                    if tile_to_modify['grid'][0] == self.hud.level.grid_length_x-1 or tile_to_modify['grid'][1] == self.hud.level.grid_length_y-1:
-                        tile_to_modify['tile'] = "roadIntersectionCenter"
-                    else:
-                        up = self.hud.level.level[grid_coords[0]+1][grid_coords[1]]
-                        down = self.hud.level.level[grid_coords[0]-1][grid_coords[1]]
-                        right = self.hud.level.level[grid_coords[0]][grid_coords[1]+1]
-                        left = self.hud.level.level[grid_coords[0]][grid_coords[1]-1]
+                            for real_neighbor in real_neighbors:
+                                neighbors_of_real_neighbor = self.hud.level.level_controller.get_neighbors_tile(real_neighbor["grid"], "road")
+                                print("Neigh of neigh " + str(neighbors_of_real_neighbor))
+                                self.hud.level.level_controller.find_right_tile(real_neighbor, neighbors_of_real_neighbor, "road")
 
-                        # up
-                        if up in neighbors:
-                            up_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_path(up_neighbor_coords)[0]
-                            neigh_coords = (neigh['grid'][0], neigh['grid'][1])
-
-                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
-                                up['tile'] = "roadIntersectionUp"
-                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
-                                up['tile'] = "roadIntersectionCenter"
-                            
-                            if up['tile'] == "roadLeft":
-                                up['tile'] = "roadUpNextToLeft"
-
-                            if up['tile'] == "roadRight":
-                                up['tile'] = "roadUpNextToRight"
-                            
-                            tile_to_modify['tile'] = "roadUp"
-                        # down
-                        elif down in neighbors:
-                            down_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_path(down_neighbor_coords)[0]
-                            neigh_coords = (neigh['grid'][0], neigh['grid'][1])
-
-                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
-                                down['tile'] = "roadIntersectionDown"
-                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
-                                down['tile'] = "roadIntersectionCenter"
-
-                            if down['tile'] == "roadLeft":
-                                down['tile'] = "roadDownNextToLeft"
-
-                            if down['tile'] == "roadRight":
-                                down['tile'] = "roadDownNextToRight"
-
-                            tile_to_modify['tile'] = "roadDown"
-                        # left
-                        elif left in neighbors:
-                            left_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_path(left_neighbor_coords)[0]
-                            neigh_coords = (neigh['grid'][0], neigh['grid'][1])
-
-                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
-                                left['tile'] = "roadIntersectionLeft"
-                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
-                                left['tile'] = "roadIntersectionCenter"
-                                
-                            if left['tile'] == "roadUp":
-                                left['tile'] = "roadLeftNextToUp"
-
-                            if left['tile'] == "roadDown":
-                                left['tile'] = "roadLeftNextToDown"
-
-                            tile_to_modify['tile'] = "roadLeft"
-                        # right
-                        elif right in neighbors:
-                            right_neighbor_coords = (tile_to_modify['grid'][0], tile_to_modify['grid'][1])
-                            neigh = self.hud.level.level_controller.get_path(right_neighbor_coords)[0]
-                            neigh_coords = (neigh['grid'][0], neigh['grid'][1])
-
-                            if len(self.hud.level.level_controller.get_path(neigh_coords)) == 3:
-                                right['tile'] = "roadIntersectionRight"
-                            elif len(self.hud.level.level_controller.get_path(neigh_coords)) == 4:
-                                right['tile'] = "roadIntersectionCenter"
-
-                            if right['tile'] == "roadUp":
-                                right['tile'] = "roadRightNextToUp"
-
-                            if right['tile'] == "roadDown":
-                                right['tile'] = "roadRightNextToDown"                          
-                            
-                            tile_to_modify['tile'] = "roadRight"
-                        # default
-                        else:
-                            tile_to_modify['tile'] = "roadIntersectionCenter"
-                            """
-                            
     def destruction(self, x,y):
         """Create a road.
 

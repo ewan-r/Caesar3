@@ -473,7 +473,7 @@ class LevelController:
                 if coords[0] != self.level.grid_length_x-1:
                     down = self.level.level[coords[0]-1][coords[1]]
                     if (type_tile in down["tile"]):
-                        neighbors.append("down")
+                        neighbors.append("up")
                 if coords[1] != self.level.grid_length_y-1:
                     left = self.level.level[coords[0]][coords[1]+1]
                     if type_tile in left["tile"]:
@@ -481,7 +481,7 @@ class LevelController:
                 if coords[0] != self.level.grid_length_x+1:
                     up = self.level.level[coords[0]+1][coords[1]]
                     if type_tile in up["tile"]: 
-                        neighbors.append("up")
+                        neighbors.append("down")
                 if coords[1] != self.level.grid_length_y+1:
                     right = self.level.level[coords[0]][coords[1]-1]
                     if type_tile in right["tile"]:
