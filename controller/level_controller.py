@@ -15,7 +15,7 @@ class LevelController:
         self.biomes = self.generate_biomes()
         self.buildings = []
         self.economy_buildings = []
-
+        self.employers_buildings = []
     def create_level(self):
         """Create a level.
         
@@ -215,6 +215,7 @@ class LevelController:
         return grid_x, grid_y
 
     def load_images(self):
+        engineer = pg.image.load("assets/sprites/walker/Citizen01_01226.png").convert_alpha()
         house1 = pg.image.load("assets/sprites/buildings/Housng1a_00002.png").convert_alpha()
         house0 = pg.image.load("assets/sprites/buildings/Housng1a_00045.png").convert_alpha()
         house2 = pg.image.load("assets/sprites/buildings/Housng1a_00007.png").convert_alpha()
@@ -427,7 +428,9 @@ class LevelController:
             "roadUpNextToLeft": roadUpNextToLeft,
             "roadUpNextToRight": roadUpNextToRight
         }
-
+        walkers = {
+            "walker1" : engineer
+        }
         images = {
             "lands": lands,
             "landsForests": landsForests,
@@ -435,7 +438,8 @@ class LevelController:
             "landsCoast": landsCoast,
             "landsMountain": landsMountain,
             "landsRoad": landsRoad,
-            "buildings": buildings
+            "buildings": buildings,
+            "walkers" : walkers
         }
 
         return images

@@ -79,7 +79,7 @@ class HUD():
         self.right_panel.blit(l_right_panel[26], (162,711))
 
    
-    def blit_top_menu(self):
+    def blit_top_menu(self, money, workers, citizens):
         """Blit top menu HUD."""
         l_top_panel = load_top_menu()
 
@@ -125,8 +125,16 @@ class HUD():
         self.top_menu.blit(l_top_panel[9],(1280,0))
         self.top_menu.blit(l_top_panel[11],(1304,0))
         self.top_menu.blit(l_top_panel[5],(1336,0))
+        police = pg.font.SysFont("monospace", 20, bold=True, italic=False)
+        image_text = police.render("Dinars : "+str(money), 1, (255,0,0))
+        image_text2 = police.render("Citizens : "+str(citizens), 1, (255,0,0))
+        image_text3 = police.render("Workers : "+str(workers), 1, (255,0,0))
+        self.top_menu.blit(image_text,(1096,0))
+        self.top_menu.blit(image_text2,(920,0))
+        self.top_menu.blit(image_text3,(790,0))
 
-    def display_hud(self):
+
+    def display_hud(self, money, workers, citizens):
         """Display the game HUD."""
         self.blit_right_panel()
-        self.blit_top_menu()
+        self.blit_top_menu(money, workers, citizens)

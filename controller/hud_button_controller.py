@@ -23,17 +23,19 @@ class HUDButtonController():
     def update(self,buildings):
 
         for building in buildings:
-            building.update()
+            building.update(buildings)
     
     def update_economy (self,economy_buildings):
         for eco_building in economy_buildings:
             eco_building.update()
-    def create_engineerPost(self,grid_coords):
+    def create_engineerPost(self,grid_coords, employers_buildings, buildings):
 
         engineerPost = EngineerPost(grid_coords[0],grid_coords[1])
         if self.hud.level.level[engineerPost.x][engineerPost.y]['tile'] == "":
             engineerPostController = EngineerPost_Controller(engineerPost,self.hud)
             engineerPostController.place_post()
+            employers_buildings.append(engineerPostController)
+            buildings.append(engineerPostController)
             #self.buildings.append(engineerPostController)
     def create_granary (self,gridcoords,buildings):
         granary = Granary(gridcoords[0],gridcoords[1],"normal")
@@ -55,11 +57,11 @@ class HUDButtonController():
         buildings.append(farmController)
         #buildings.append(farmController)
 
-    def create_house(self,grid_coords,buildings):
+    def create_house(self,grid_coords,buildings, game):
         house = House(grid_coords[0],grid_coords[1],"normal",1)
         
         if self.hud.level.level[house.x][house.y]['tile'] == "":
-            houseController = HouseController(house,self.hud)
+            houseController = HouseController(house,self.hud, game)
             houseController.place_house()
             buildings.append(houseController)
 

@@ -12,13 +12,15 @@ class WalkerController:
         self.hud = hud
 
 
-    def new_walker(self, coords, building_controller=0, status=0, spawn_x=0, spawn_y=0):
+    def new_walker(self,  coords, building_controller=0, status=0, spawn_x=0, spawn_y=0, sprite = 0):
         """
         Coords : [x,y] (grid)
         """
         if spawn_x == 0 :      
             spawn_x, spawn_y = self.get_border()
-        walker = [self.sprite,0 ,0 , spawn_x, spawn_y, coords[0], coords[1], building_controller, status]
+        if sprite == 0:
+            sprite = self.sprite
+        walker = [sprite, 0 ,0 , spawn_x, spawn_y, coords[0], coords[1], building_controller, status]
         walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
         self.l_walkers.append(walker)
 

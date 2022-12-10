@@ -18,6 +18,11 @@ class GameController:
             game -- game to control
         """
         self.game = game
+        self.dinars = 0
+        self.workers = 0
+        self.free_workers = 0
+        self.citizens = 0
+        self.occupied_workers = 0
         self.economy_cooldown = 0
         self.playing = False
         self.screen = self.game.screen
@@ -48,7 +53,7 @@ class GameController:
         click = pg.mouse.get_pressed()
         grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
         self.update_buildings(hud_btn_controller,level_controller.buildings) #Update buildings but we need level controller
-        self.update_economy(hud_btn_controller,level_controller.economy_buildings)
+        self.update_economy(hud_btn_controller,level_controller.economy_buildings, level_controller.employers_buildings)
         if (self.aqueduc_being_build):
             self.update_place_aqueducs(level_controller.level.preview_aqueduc, grid_coords)
         for event in pg.event.get():
@@ -83,7 +88,7 @@ class GameController:
                 elif event.key == pg.K_y:
                     hud_btn_controller.create_road(grid_coords)
                 elif event.key == pg.K_LEFT:
-                    hud_btn_controller.create_engineerPost(grid_coords)
+                    hud_btn_controller.create_engineerPost(grid_coords, level_controller.employers_buildings, level_controller.buildings)
                 elif event.key == pg.K_RIGHT:
                     hud_btn_controller.create_farmBuilding(grid_coords,level_controller.economy_buildings)
                 elif event.key == pg.K_a:
@@ -102,7 +107,7 @@ class GameController:
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
         if click[0] and (self.aqueduc_build_bool == False):
-            hud_btn_controller.create_house(grid_coords,level_controller.buildings)
+            hud_btn_controller.create_house(grid_coords,level_controller.buildings,self)
         elif click[0] and self.aqueduc_build_bool:
             aqueduc_controller = Aqueduc_Controller(grid_coords[0],grid_coords[1],level_controller)
             #level_controller.level.preview_aqueduc.append(aqueduc_controller)
@@ -145,6 +150,7 @@ class GameController:
         """Update a game."""
         camera_controller = CameraController(self.game.camera)
         camera_controller.update()
+        
 
     def draw(self):
         """Draw sprites of a game."""
@@ -152,7 +158,7 @@ class GameController:
         # level
         self.game.level.draw(self.game.screen, self.game.camera)
         # HUD
-        self.game.level.hud.display_hud()
+        self.game.level.hud.display_hud(self.dinars, self.workers, self.citizens)
         # road button
         road_btn = Button(pg.Rect(1268, 299, 42, 29), "Create road")
         road_btn.hover(self.game.screen, road_btn, "HUD") 
@@ -168,8 +174,25 @@ class GameController:
     def update_place_aqueducs(self,list_of_tiles,gridcoords):
         self.aqueduc[0].preview_aqueduc(gridcoords,list_of_tiles)
         
-    def update_economy(self,hud,economy_buildings):
+    def update_economy(self,hud,economy_buildings, employers_buildings): 
         self.economy_cooldown += self.game.clock.get_time()
         if self.economy_cooldown > 200:
+            self.dinars += 1
+            self.workers = round (0.6 * self.citizens)
+            self.free_workers = self.workers
+            workers = [0] * len (employers_buildings)
+            if (len(workers) >= 1):
+                while (self.free_workers > 1):
+                    for i in range (len(workers)):
+                        workers[i] +=1
+                        self.free_workers -= 1
+                        print("workers :")
+                        print(self.workers)
+                        print("free workers")
+                        print(self.free_workers)
+            for building_index in range (len(employers_buildings)):
+                employers_buildings[building_index].workers = workers[building_index] 
+                print(workers[building_index])
+
             hud.update_economy(economy_buildings)
             self.economy_cooldown = 0

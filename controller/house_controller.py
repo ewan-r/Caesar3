@@ -2,14 +2,15 @@ import random
 from controller.utils import *
 
 class HouseController():
-    def __init__(self,House,hud):
+    def __init__(self,House,hud, game):
         self.house = House
         self.hud = hud
         self.tile_to_modify = self.hud.level.level[self.house.x][self.house.y]
         self.level = self.hud.level.level
         self.walker_controller = self.hud.level.walker_controller
-    def place_house(self):
-        
+        self.game = game
+
+    def place_house(self):    
         self.tile_to_modify["tile"] = "house0"
         self.tile_to_modify["type_tile"] = "buildings"
         self.call_migrant()
@@ -32,11 +33,15 @@ class HouseController():
     
     def upgrade(self):
         self.house.level += 1
+        self.house.citizens += 2
+        self.game.citizens += 2
         self.tile_to_modify["tile"] = "house"+str(self.house.level)
 
-    def update(self):
+    def update(self, buildings):
         if self.tile_to_modify["collapsed_counter"] >= 10:
             self.tile_to_modify['tile'] = "ruin"
             self.house.state = "collapsed"
+            self.game.citizens -= self.house.citizens 
+            buildings.remove(self)
         else:
             self.collapse_counter_increase()
