@@ -49,32 +49,6 @@ class GameController:
         level_controller = self.game.level.level_controller
         hud_btn_controller = HUDButtonController(self.game.level.hud)
         camera_controller = CameraController(self.game.camera)
-
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                pg.quit()
-                sys.exit()
-            if event.type == pg.KEYDOWN:
-                if event.key == pg.K_ESCAPE:
-                    pg.quit()
-                    sys.exit()
-
-        x_pos_mouse, y_pos_mouse = pg.mouse.get_pos()
-        pos_mouse = level_controller.mouse_to_grid(x_pos_mouse, y_pos_mouse, camera_controller.camera.scroll)
-
-        if pg.mouse.get_pressed()[0]:
-            click_x_pos_mouse, click_y_pos_mouse = pg.mouse.get_pos()
-            click_pos = level_controller.mouse_to_grid(click_x_pos_mouse, click_y_pos_mouse, camera_controller.camera.scroll)          
-
-            hud_btn_controller.create_road(click_pos, pos_mouse)
-        
-    """
-    def events(self):
-        Activate features during a game.
-        # controllers
-        level_controller = self.game.level.level_controller
-        hud_btn_controller = HUDButtonController(self.game.level.hud)
-        camera_controller = CameraController(self.game.camera)
         x, y = pg.mouse.get_pos()
         click = pg.mouse.get_pressed()
         grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
@@ -92,7 +66,7 @@ class GameController:
                     command_menu = command_resp_menu[0]
                     
                     self.playing = False
-                    Show the Pause Menu
+                    """Show the Pause Menu"""
                     if (command_menu == "Exit to Main Menu"):
                         pg.quit
                         sys.exit()
@@ -170,7 +144,6 @@ class GameController:
             self.game.mouse_pos_hud = (0,0)
             self.game.cmpt = 1
             self.game.first_pos = (0,0)
-    """
 
     def update(self):
         """Update a game."""
