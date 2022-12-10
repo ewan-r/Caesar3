@@ -29,8 +29,7 @@ class GameController:
         self.aqueduc =[]
         self.aqueduc_cooldown = 0
 
-        self.fctselected=False
-        self.fct=""
+
 
 
     def run(self):
@@ -104,17 +103,27 @@ class GameController:
                 if event.button == 1:
                     for btn in self.game.level.hud.buttons:
                         if btn.rect.collidepoint(event.pos):
-                            self.fct= btn.ftn_click
-                            self.fctselected = True
-        if click[0] and (self.aqueduc_build_bool == False) and (self.fctselected==True):
-            if self.fct=="create_house":
+                            self.game.level.hud.fct= btn.ftn_click
+                            self.game.level.hud.fctselected = True
+                    for subbtn in self.game.level.hud.subbuttons:
+                        if subbtn.rect.collidepoint(event.pos):
+                            self.game.level.hud.fct= subbtn.ftn_click
+                            self.game.level.hud.subfctselected = True
+
+        if click[0] and (self.game.level.hud.fctselected==True):
+            if self.game.level.hud.fct=="create_house":
                 hud_btn_controller.create_house(grid_coords,level_controller.buildings)
-            elif self.fct=="create_road":
+            elif self.game.level.hud.fct=="create_road":
                 hud_btn_controller.create_road(grid_coords)
-            elif self.fct=="engineerPost":
+            elif self.game.level.hud.fct=="engineerPost":
                 hud_btn_controller.create_engineerPost(grid_coords)
-            elif self.fct=="unselected":
-                self.fctselected=False
+            elif self.game.level.hud.fct=="unselected":
+                self.game.level.hud.subfctselected = False
+                self.game.level.hud.fctselected=False
+
+        if click[0] and (self.game.level.hud.fctselected==True) and (self.game.level.hud.subfctselected==True):
+            if self.game.level.hud.fct=="create_reservoir":
+                hud_btn_controller.create_reservoir(grid_coords, level_controller.economy_buildings)
 
 
             """
@@ -128,7 +137,7 @@ class GameController:
             self.aqueduc_being_build = False
             self.aqueduc_build_bool = False"""
 
-        if click[2] and (self.fctselected==True) and (self.fct=="destruction"):
+        if click[2] and (self.game.level.hud.fctselected==True) and (self.game.level.hud.fct=="destruction"):
             mouse_pos = pg.mouse.get_pos()
             self.game.mouse_pos_hud = level_controller.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera_controller.camera.scroll)
             if self.game.cmpt < 2:
@@ -167,6 +176,10 @@ class GameController:
         self.game.level.draw(self.game.screen, self.game.camera)
         # HUD
         self.game.level.hud.display_hud()
+
+
+
+
 
     def update_buildings(self, hud,buildings):
         self.aqueduc_cooldown += self.game.clock.get_time()

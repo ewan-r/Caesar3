@@ -45,10 +45,21 @@ class Button():
             elif (x == 1360 and y == 765):
                 transparent_surface = pg.Surface((0, 0), pg.SRCALPHA)
                 pg.draw.rect(transparent_surface, (0, 22, 0, 0), self.rect, 0, 0)
+                if (self.text!=""):
+                    pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
+
 
             font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
             text = font.render(self.text, 1, (0,0,0))
             # put the text at the center of the button
             window.blit(text, (self.rect.x + (self.rect.width/2 - text.get_width()/2), self.rect.y + (self.rect.height/2 - text.get_height()/2)))
-        else:            
+        else:
             pg.draw.rect(window, (0, 0, 0), self.rect, 2, 2)
+            if (self.text != ""):
+                pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
+                font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
+                text = font.render(self.text, 1, (0, 0, 0))
+                # put the text at the center of the button
+                window.blit(text, (self.rect.x + (self.rect.width / 2 - text.get_width() / 2),
+                                   self.rect.y + (self.rect.height / 2 - text.get_height() / 2)))
+                pg.draw.rect(window, (0, 0, 0), self.rect, 2, 2)
