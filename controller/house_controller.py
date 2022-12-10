@@ -27,7 +27,7 @@ class HouseController():
 
     def collapse_counter_increase(self):
         IncreaseCounter = random.randint(1,100)
-        if IncreaseCounter < 2 and self.house.level == 0:
+        if IncreaseCounter < 2 and self.house.level != 0:
             self.tile_to_modify["collapsed_counter"] += 1
             self.house.collapseCounter = self.tile_to_modify["collapsed_counter"]
     
