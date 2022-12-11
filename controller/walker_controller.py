@@ -12,7 +12,7 @@ class WalkerController:
         self.hud = hud
 
 
-    def new_walker(self,  coords, building_controller=0, status=0, spawn_x=0, spawn_y=0, sprite = 0):
+    def new_walker(self,  coords, building_controller=0, status=0, spawn_x=0, spawn_y=0, sprite = 0, destination_controller = 0, departure = 0):
         """
         Coords : [x,y] (grid)
         """
@@ -20,7 +20,7 @@ class WalkerController:
             spawn_x, spawn_y = self.get_border()
         if sprite == 0:
             sprite = self.sprite
-        walker = [sprite, 0 ,0 , spawn_x, spawn_y, coords[0], coords[1], building_controller, status]
+        walker = [sprite, 0 ,0 , spawn_x, spawn_y, coords[0], coords[1], building_controller, status, destination_controller, departure]
         walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
         self.l_walkers.append(walker)
 
@@ -102,15 +102,15 @@ class WalkerController:
                     if (self.is_arrived(walker)):
                         self.random_walk(walker)
                     self.detect_and_repare_buildings(walker)
+                if walker[7] != 0 and walker[8] == 3:
+                    if (self.is_arrived(walker)):
+                        walker[9].receipt_wheat(walker[10], [walker[5], walker[6]], walker[7])
+                        self.l_walkers.remove(walker)
+                if walker[7] != 0 and walker[8] == 4:
+                    if (self.is_arrived(walker)):
+                        walker[7].reset_deliver()
+                        self.l_walkers.remove(walker)
                     
 
         else:
             self.time += 1
-
-
-
-
-
-
-
-

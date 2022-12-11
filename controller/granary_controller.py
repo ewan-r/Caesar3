@@ -1,19 +1,38 @@
+from controller.utils import * 
+
 class Granary_Controller:
-    def __init__(self, granary, hud):
+    def __init__(self, granary, hud, game):
         self.granary = granary
         self.hud = hud
         self.tile_to_modify = self.hud.level.level[self.granary.x][self.granary.y]
         self.loader = self.get_tile_load()
         self.neighbors = self.get_neighbors_tiles()
-        print(len(self.neighbors))
+        self.game = game
         self.index_of_animation_loader = 152
         self.direction_of_loader = 0
+        self.walker_controller = self.hud.level.walker_controller
     def place_granary(self):        
         self.tile_to_modify["tile"] = "granary141"
         self.tile_to_modify["type_tile"] = "buildings"
         self.loader["tile"] = "granary146"
         self.loader["type_tile"] = "buildings"
+        self.game.game.level.level_controller.granaries.append(self)
+        print(self.game.game.level.level_controller.granaries)
+        for tile in self.get_neighbors_tiles():
+            tile["attached_to_building"] = self
 
+    def destroy (self):
+        for tile in self.get_neighbors_tiles():
+            tile["tile"] = ""
+            tile["type_tile"] = ""
+            tile["attached_to_building"] = []
+        self.game.game.level.level_controller.granaries.remove(self)
+
+    def receipt_wheat(self, arrival, departure, farm):
+        self.game.food += 100
+        self.walker_controller.new_walker(arrival, farm, 4, departure[0], departure[1],self.hud.level.tiles["walkers"]["walker2"])
+   
+   
     def animation_of_loader(self):
         self.loader["tile"] = "granary" + str(self.index_of_animation_loader)
         

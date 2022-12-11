@@ -31,16 +31,16 @@ class HUDButtonController():
     def create_engineerPost(self,grid_coords, employers_buildings, buildings, game):
         engineerPost = EngineerPost(grid_coords[0],grid_coords[1])
         if self.hud.level.level[engineerPost.x][engineerPost.y]['tile'] == "" and game.dinars > 20:
-            engineerPostController = EngineerPost_Controller(engineerPost,self.hud)
+            engineerPostController = EngineerPost_Controller(engineerPost,self.hud, game)
             engineerPostController.place_post()
             employers_buildings.append(engineerPostController)
             buildings.append(engineerPostController)
             game.dinars -= 20
             #self.buildings.append(engineerPostController)
-    def create_granary (self,gridcoords,buildings, game):
+    def create_granary (self,gridcoords,buildings, game, ):
         if ((gridcoords[0] < 38 and gridcoords[0] > 1) and (gridcoords[1] < 38 and gridcoords[1] > 1)):
             granary = Granary(gridcoords[0],gridcoords[1],"normal")
-            granaryController = Granary_Controller(granary, self.hud)
+            granaryController = Granary_Controller(granary, self.hud, game)
             if (all ([tile["tile"] == "" and tile["attached_to_building"] == [] for tile in granaryController.neighbors]) and game.dinars > 20):
                 granaryController.place_granary()
                 buildings.append(granaryController)
@@ -68,7 +68,7 @@ class HUDButtonController():
         house = House(grid_coords[0],grid_coords[1],"normal",1)
         try :
             if self.hud.level.level[house.x][house.y]['tile'] == "" and game.dinars > 5:
-                houseController = HouseController(house,self.hud, game)
+                houseController = HouseController(house,self.hud,game)
                 houseController.place_house()
                 buildings.append(houseController)
                 game.dinars -= 5

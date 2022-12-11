@@ -68,11 +68,7 @@ class Reservoir_Controller:
         """This function attach all tiles to this building so every tile is linked
         """
         for coord in self.reservoir.tiles_coords :
-            self.level[coord[0]][coord[1]]["attached_to_building"] = ["reservoir"+status,self.reservoir.x,self.reservoir.y]
-            #if (coord[0] != self.reservoir.x or coord[1] != self.reservoir.y):
-                #self.level[coord[0]][coord[1]]["tile"] = ""
-                #self.level[coord[0]][coord[1]]["type_tile"] = ""
-            #print(self.level[coord[0]][coord[1]])
+            self.level[coord[0]][coord[1]]["attached_to_building"] = self
     def get_water_entrance_tiles_coords(self):
         """This function returns an array of coordinates of tiles where water can be connected to the reservoir
 

@@ -16,6 +16,7 @@ class LevelController:
         self.buildings = []
         self.economy_buildings = []
         self.employers_buildings = []
+        self.granaries = []
     def create_level(self):
         """Create a level.
         
@@ -216,6 +217,7 @@ class LevelController:
 
     def load_images(self):
         engineer = pg.image.load("assets/sprites/walker/Citizen01_01226.png").convert_alpha()
+        farmer = pg.image.load("assets/sprites/walker/Citizen05_00121.png").convert_alpha()
         house1 = pg.image.load("assets/sprites/buildings/Housng1a_00002.png").convert_alpha()
         house0 = pg.image.load("assets/sprites/buildings/Housng1a_00045.png").convert_alpha()
         house2 = pg.image.load("assets/sprites/buildings/Housng1a_00007.png").convert_alpha()
@@ -419,7 +421,8 @@ class LevelController:
             "roadleftrightupdown": roadleftrightupdown,
         }
         walkers = {
-            "walker1" : engineer
+            "walker1" : engineer,
+            "walker2" : farmer,
         }
         images = {
             "lands": lands,

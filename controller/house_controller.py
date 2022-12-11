@@ -14,8 +14,17 @@ class HouseController():
     def place_house(self):    
         self.tile_to_modify["tile"] = "house0"
         self.tile_to_modify["type_tile"] = "buildings"
+        self.tile_to_modify["attached_to_building"] = self
         self.call_migrant()
         #Il faut modifier l'appel à new walker pour que les walkers ne soient pas génés par le manque de route
+
+    def destroy(self):
+        self.tile_to_modify["tile"] = ""
+        self.tile_to_modify["type_tile"] = ""
+        self.tile_to_modify["attached_to_building"] = []
+        self.game.buildings.remove(self)
+        self.game.citizens -= self.house.citizens
+
 
     def call_migrant (self):
         neighbors = get_real_neighbors(self.tile_to_modify, "road", self.level)

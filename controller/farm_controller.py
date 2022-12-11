@@ -1,6 +1,6 @@
 from model.farm import Farm
-
-
+from controller.utils import *
+import random
 class Farm_Controller():
     def __init__(self,hud,farm, game):
         self.farm = farm
@@ -10,7 +10,10 @@ class Farm_Controller():
         self.area_to_plant = self.get_fertile_area()
         self.current_index_growing = 0
         self.workers = 0
+        self.is_delivering = False
+        self.can_grow = False
         self.game = game
+        self.walker_controller = self.hud.level.walker_controller
 
     def place_farm (self):
         self.tile_to_modify["tile"] = "farm12"
@@ -18,7 +21,16 @@ class Farm_Controller():
         for tile in self.area_to_plant["area_to_modify"]:
             tile["tile"] = "farm13"
             tile["type_tile"] = "buildings"
+        for tile in self.get_neighbors():
+            tile["attached_to_building"] = self
 
+    def destroy (self):
+        for tile in self.get_neighbors:
+            tile["tile"] = "landFarm1"
+            tile["type_tile"] = "lands"
+            tile["attached_to_building"] = []
+        self.game.game.level.level_controller.economy_buildings.remove(self)
+        self.game.game.level.level_controller.employers_buildings.remove(self)
     def update(self):
 
         if (self.workers > 0):
@@ -29,10 +41,32 @@ class Farm_Controller():
                 else:
                     self.current_index_growing += 1
             else:
-                self.game.food += 100
-                self.current_index_growing = 0
-                self.reset_farm()
-            
+                self.deliver_wheat()
+                if self.can_grow:
+                    self.current_index_growing = 0
+                    self.reset_farm()
+
+    def reset_deliver (self):
+        self.is_delivering = False
+
+    def deliver_wheat (self):
+        self.can_grow = False
+        if not self.is_delivering:
+            granaries = self.game.game.level.level_controller.granaries
+            if len (granaries) > 0:
+                granary = random.choice(granaries)
+                neighbors = get_real_neighbors(granary.tile_to_modify, "road", self.hud.level.level)
+                neighbor = None
+                if (len(neighbors) > 0):
+                    neighbor = random.choice(neighbors)
+                    neighbors_departure = get_real_neighbors(self.hud.level.level[self.farm.x - 1][self.farm.y - 1],"road", self.hud.level.level)
+                    neighbor_departure = None
+                    if len(neighbors_departure) > 0:
+                        neighbor_departure = random.choice(neighbors_departure)
+                        self.walker_controller.new_walker(neighbor["grid"],self,3,neighbor_departure["grid"][0], neighbor_departure["grid"][1],self.hud.level.tiles["walkers"]["walker2"],granary, neighbor_departure["grid"])
+                        self.can_grow = True
+                        self.is_delivering = True
+
     def reset_farm (self):
         for x in range (len(self.area_to_plant["status"])):
                 self.area_to_plant["status"][x] = 13
