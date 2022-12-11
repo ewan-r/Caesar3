@@ -4,7 +4,7 @@ class Reservoir_Controller:
         self.reservoir = reservoir
         self.level = self.hud.level.level 
         self.tile_to_modify = self.hud.level.level[reservoir.x][reservoir.y]
-        self.water_placement = self.hud.level.level[reservoir.x + 1][reservoir.y]
+        self.water_placement = self.hud.level.level[reservoir.x - 2][reservoir.y-2]
         self.is_there_water = False
         self.index_of_animation = 35
         self.network = []
@@ -103,17 +103,6 @@ class Reservoir_Controller:
             self.get_list_of_aqueduc_network(network)
             if (self.is_linked_to_another_reservoir(self.network)):
                 self.reservoir.status = "full"
-    """
-    print("---------------------")
-        print("Water entrance tiles :")
-        print(self.get_water_tiles())
-        print("---------------------")
-        if (self.is_there_water == False):
-            if (self.is_linked_to_another_reservoir(self.get_water_tiles(), self.water_placement)):
-                self.reservoir.status = "full"
-    Comment faire pour savoir si on a relié deux résevoirs entre eux avec des aqueducs ? 
-    - on parcourt tous les voisins qui sont des aqueducs et on regardes de manière récursive
-    """
 
     def is_linked_to_another_reservoir(self, list_tiles):
         """This function take a list of tiles and determine if any of this tiles is linked to a full 
