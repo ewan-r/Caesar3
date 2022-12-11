@@ -23,8 +23,6 @@ class WalkerController:
         self.l_walkers.append(walker)
 
 
-
-
     def get_border(self):
         l_roads=self.hud.level.level_controller.get_list_pos_sprites("landsRoad")
         l_border_roads = []
