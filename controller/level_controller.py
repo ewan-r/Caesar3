@@ -479,7 +479,7 @@ class LevelController:
 
         if coords[0] < self.level.grid_length_x and coords[1] < self.level.grid_length_y:
             if coords[0] >= 0 and coords[1] >= 0:
-                if coords[0] != self.level.grid_length_x-1:
+                if coords[0] != 0:
                     down = self.level.level[coords[0]-1][coords[1]]
                     if (type_tile in down["tile"]):
                         neighbors.append("up")
@@ -487,11 +487,11 @@ class LevelController:
                     left = self.level.level[coords[0]][coords[1]+1]
                     if type_tile in left["tile"]:
                         neighbors.append("left")
-                if coords[0] != self.level.grid_length_x+1:
+                if coords[0] != self.level.grid_length_x-1:
                     up = self.level.level[coords[0]+1][coords[1]]
                     if type_tile in up["tile"]: 
                         neighbors.append("down")
-                if coords[1] != self.level.grid_length_y+1:
+                if coords[1] != 0:
                     right = self.level.level[coords[0]][coords[1]-1]
                     if type_tile in right["tile"]:
                         neighbors.append("right")
@@ -576,14 +576,19 @@ class LevelController:
         x = tile_to_get_neighors_from["grid"][0]
         y = tile_to_get_neighors_from["grid"][1]
         neighbors = []
-        if ( type_tile_world in level[x-1][y]["tile"]):
-            neighbors.append(level[x-1][y])
-        if (type_tile_world in level[x+1][y]["tile"]):
-            neighbors.append(level[x+1][y])
-        if (type_tile_world in level[x][y-1]["tile"]):
-            neighbors.append(level[x][y-1])
-        if (type_tile_world in level[x][y+1]["tile"]):
-            neighbors.append(level[x][y+1])
+
+        if x != 0:
+            if (type_tile_world in level[x-1][y]["tile"]):
+                neighbors.append(level[x-1][y])
+        if x != self.level.grid_length_x-1:    
+            if (type_tile_world in level[x+1][y]["tile"]):
+                neighbors.append(level[x+1][y])
+        if y != 0:
+            if (type_tile_world in level[x][y-1]["tile"]):
+                neighbors.append(level[x][y-1])
+        if y != self.level.grid_length_x-1:
+            if (type_tile_world in level[x][y+1]["tile"]):
+                neighbors.append(level[x][y+1])
         return neighbors
     
     def is_building_nearby (self, tile, building, level):
