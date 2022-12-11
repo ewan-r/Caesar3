@@ -147,6 +147,7 @@ class HUD():
         self.buttons.append(Button(pg.Rect(1218, 299, 42, 29), "", "destruction"))
         self.buttons.append(Button(pg.Rect(1268, 299, 42, 29), "", "create_road"))
         self.buttons.append(Button(pg.Rect(1168, 335, 42, 29), "", "waterworks"))
+        self.buttons.append(Button(pg.Rect(1268, 407, 42, 29), "", "agriculture"))
         self.buttons.append(Button(pg.Rect(1168, 407, 42, 29), "", "engineerPost"))
         self.buttons.append(Button(pg.Rect(1168, 443, 42, 25), "", "unselected"))
 
@@ -155,6 +156,8 @@ class HUD():
 
         if(self.fct=="waterworks"):
             self.display_waterworkssubhud()
+        if (self.fct == "agriculture"):
+            self.display_agriculturesubhud()
 
         pg.display.update()
 
@@ -164,6 +167,18 @@ class HUD():
         self.subbuttons = []
         self.subbuttons.append(Button(pg.Rect(1159, 550, 158, 29), "Reservoir", "create_reservoir"))
         self.subbuttons.append(Button(pg.Rect(1159, 586, 158, 29), "Aqueduct", "create_aqueduct"))
+
+        for btn in self.subbuttons:
+            btn.hover(self.window, btn)
+
+        pg.display.update()
+
+    def display_agriculturesubhud(self):
+        pg.init()
+
+        self.subbuttons = []
+        self.subbuttons.append(Button(pg.Rect(1159, 550, 158, 29), "Granary", "create_granary"))
+        self.subbuttons.append(Button(pg.Rect(1159, 586, 158, 29), "Farm", "create_farm"))
 
         for btn in self.subbuttons:
             btn.hover(self.window, btn)

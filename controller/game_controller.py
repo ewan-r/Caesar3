@@ -82,12 +82,7 @@ class GameController:
                             gameData.save_game(destination_file)
 
                     self.playing = True
-                elif event.key == pg.K_RIGHT:
-                    hud_btn_controller.create_farmBuilding(grid_coords,level_controller.economy_buildings)
-                elif event.key == pg.K_a:
-                    hud_btn_controller.create_granary(grid_coords,level_controller.economy_buildings)
-                elif event.key == pg.K_z:
-                    hud_btn_controller.create_reservoir(grid_coords,level_controller.economy_buildings)
+
                 elif event.key == pg.K_w:
                     self.aqueduc_build_bool = True
                 elif event.key == pg.K_c:
@@ -100,31 +95,42 @@ class GameController:
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
             elif event.type == pg.MOUSEBUTTONDOWN:
+                mouse_presses=pg.mouse.get_pressed()
+                click = pg.mouse.get_pressed()
                 if event.button == 1:
                     for btn in self.game.level.hud.buttons:
-                        if btn.rect.collidepoint(event.pos):
+                        if btn.rect.collidepoint(event.pos) and (mouse_presses[0]):
                             self.game.level.hud.fct= btn.ftn_click
                             self.game.level.hud.fctselected = True
+
+
                     for subbtn in self.game.level.hud.subbuttons:
-                        if subbtn.rect.collidepoint(event.pos):
+                        if subbtn.rect.collidepoint(event.pos) and (mouse_presses[0]):
                             self.game.level.hud.fct= subbtn.ftn_click
                             self.game.level.hud.subfctselected = True
-
-        if click[0] and (self.game.level.hud.fctselected==True):
+                if mouse_presses[1] and (self.game.level.hud.fctselected == True):
+                    if self.game.level.hud.fct == "unselected":
+                        self.game.level.hud.subfctselected = False
+                        self.game.level.hud.fctselected = False
+                if mouse_presses[2] and (self.game.level.hud.fctselected==True):
+                    if self.game.level.hud.fct=="engineerPost":
+                        hud_btn_controller.create_engineerPost(grid_coords)
+                if mouse_presses[2] and (self.game.level.hud.fctselected == True) and (self.game.level.hud.subfctselected == True):
+                    if self.game.level.hud.fct == "create_reservoir":
+                        hud_btn_controller.create_reservoir(grid_coords, level_controller.economy_buildings)
+                    if self.game.level.hud.fct == "create_granary":
+                        hud_btn_controller.create_granary(grid_coords, level_controller.economy_buildings)
+                    if self.game.level.hud.fct == "create_farm":
+                        hud_btn_controller.create_farmBuilding(grid_coords, level_controller.economy_buildings)
+        if click[2] and (self.game.level.hud.fctselected==True):
             if self.game.level.hud.fct=="create_house":
                 hud_btn_controller.create_house(grid_coords,level_controller.buildings)
             elif self.game.level.hud.fct=="create_road":
                 hud_btn_controller.create_road(grid_coords)
-            elif self.game.level.hud.fct=="engineerPost":
-                hud_btn_controller.create_engineerPost(grid_coords)
-            elif self.game.level.hud.fct=="unselected":
-                self.game.level.hud.subfctselected = False
-                self.game.level.hud.fctselected=False
 
-        if click[0] and (self.game.level.hud.fctselected==True) and (self.game.level.hud.subfctselected==True):
-            if self.game.level.hud.fct=="create_reservoir":
-                hud_btn_controller.create_reservoir(grid_coords, level_controller.economy_buildings)
-
+        if click[2] and (self.game.level.hud.fctselected==True) and (self.game.level.hud.subfctselected==True):
+            #if self.game.level.hud.fct=="create_aqueduct":
+                #hud_btn_controller.create_reservoir(grid_coords, level_controller.economy_buildings)
 
             """
         elif click[0] and self.aqueduc_build_bool:
