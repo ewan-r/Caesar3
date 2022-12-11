@@ -17,7 +17,6 @@ class Granary_Controller:
         self.loader["tile"] = "granary146"
         self.loader["type_tile"] = "buildings"
         self.game.game.level.level_controller.granaries.append(self)
-        print(self.game.game.level.level_controller.granaries)
         for tile in self.get_neighbors_tiles():
             tile["attached_to_building"] = self
 
@@ -54,8 +53,6 @@ class Granary_Controller:
             else:
                 self.direction_of_loader = 0
         self.animation_of_loader()
-        #self.loader["tile"] = "granary146"
-        #self.loader["type_tile"] = "buildings"
 
     def get_tile_load(self):
         return self.hud.level.level[self.granary.x][self.granary.y+2]

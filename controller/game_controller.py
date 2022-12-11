@@ -33,7 +33,7 @@ class GameController:
         self.aqueduc_being_build = False
         self.aqueduc =[]
         self.aqueduc_cooldown = 0
-
+        self.camera_controller = CameraController(self.game.camera)
     def run(self):
         """Run a game in a loop."""
         self.playing = True
@@ -49,10 +49,10 @@ class GameController:
         # controllers
         level_controller = self.game.level.level_controller
         hud_btn_controller = HUDButtonController(self.game.level.hud)
-        camera_controller = CameraController(self.game.camera)
+        #camera_controller = CameraController(self.game.camera)
         x, y = pg.mouse.get_pos()
         click = pg.mouse.get_pressed()
-        grid_coords = level_controller.mouse_to_grid(x, y, camera_controller.camera.scroll)
+        grid_coords = level_controller.mouse_to_grid(x, y, self.camera_controller.camera.scroll)
         self.update_buildings(hud_btn_controller,level_controller.buildings) #Update buildings but we need level controller
         self.update_economy(hud_btn_controller,level_controller.economy_buildings, level_controller.employers_buildings)
         if (self.aqueduc_being_build):
@@ -145,7 +145,7 @@ class GameController:
 
         if click[2] and (self.game.level.hud.fctselected==True) and (self.game.level.hud.fct=="destruction"):
             mouse_pos = pg.mouse.get_pos()
-            self.game.mouse_pos_hud = level_controller.mouse_to_grid(mouse_pos[0], mouse_pos[1], camera_controller.camera.scroll)
+            self.game.mouse_pos_hud = level_controller.mouse_to_grid(mouse_pos[0], mouse_pos[1], self.camera_controller.camera.scroll)
             if self.game.cmpt < 2:
                 self.game.first_pos = self.game.mouse_pos_hud
                 self.game.cmpt = 2
@@ -172,8 +172,8 @@ class GameController:
 
     def update(self):
         """Update a game."""
-        camera_controller = CameraController(self.game.camera)
-        camera_controller.update()
+        #camera_controller = CameraController(self.game.camera)
+        self.camera_controller.update()
         
     def draw(self):
         """Draw sprites of a game."""
