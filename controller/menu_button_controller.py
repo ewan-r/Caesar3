@@ -19,9 +19,6 @@ class MenuButtonController():
 
     def start_game(self):
         """Start a game."""
-        # put the window in fullscreen mode
-        self.menu.window = pg.display.set_mode((1360, 765))
-
         game = Game(self.menu.window, pg.time.Clock())
         game_controller = GameController(game)
 

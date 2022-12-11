@@ -177,14 +177,13 @@ class GameController:
         
     def draw(self):
         """Draw sprites of a game."""
+        
         self.game.screen.fill((0, 0, 0))
         # level
         self.game.level.draw(self.game.screen, self.game.camera)
         # HUD
-        self.game.level.hud.display_hud(self.dinars, self.workers, self.citizens, self.food)
-        # road button
-        road_btn = Button(pg.Rect(1268, 299, 42, 29), "Create road")
-        road_btn.hover(self.game.screen, road_btn, "HUD") 
+        self.game.level.hud.display_hud(self.game.screen, self.dinars, self.workers, self.citizens, self.food)
+        
 
     def update_buildings(self, hud,buildings):
         self.aqueduc_cooldown += self.game.clock.get_time()
