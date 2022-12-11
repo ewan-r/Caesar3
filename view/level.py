@@ -85,7 +85,7 @@ class Level:
                     elif (self.tiles[type_tile][tile].get_width() >= 121):
                         screen.blit(self.tiles[type_tile][tile],
                                         (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x - 90,
-                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 75) + camera.scroll.y))
+                                        render_pos[1] - (self.tiles[type_tile][tile].get_height() - 45) + camera.scroll.y))
                     else:
                         screen.blit(self.tiles[type_tile][tile],
                                         (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,

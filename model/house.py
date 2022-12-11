@@ -7,3 +7,4 @@ class House:
         self.level = 0
         self.collapseCounter = 0
         self.citizens = 0
+        self.max_citizens = 0

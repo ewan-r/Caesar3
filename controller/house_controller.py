@@ -5,6 +5,7 @@ class HouseController():
     def __init__(self,House,hud, game):
         self.house = House
         self.hud = hud
+        self.time = 0
         self.tile_to_modify = self.hud.level.level[self.house.x][self.house.y]
         self.level = self.hud.level.level
         self.walker_controller = self.hud.level.walker_controller
@@ -33,7 +34,9 @@ class HouseController():
     
     def upgrade(self):
         self.house.level += 1
+
         self.house.citizens += 2
+        self.house.max_citizens += 2
         self.game.citizens += 2
         self.tile_to_modify["tile"] = "house"+str(self.house.level)
 
@@ -45,3 +48,15 @@ class HouseController():
             buildings.remove(self)
         else:
             self.collapse_counter_increase()
+            if (self.time == 500):
+                if (self.game.food - 10 * self.house.citizens  > 0):
+                    self.game.food -= 10 * self.house.citizens
+                    if (self.house.citizens < self.house.max_citizens):
+                        self.house.citizens += 1
+                        self.game.citizens += 1
+                else :
+                    self.house.citizens -= 1
+                    self.game.citizens -=1
+                self.time = 0
+            else : 
+                self.time += 1

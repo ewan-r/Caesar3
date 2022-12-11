@@ -2,13 +2,15 @@ from model.farm import Farm
 
 
 class Farm_Controller():
-    def __init__(self,hud,farm):
+    def __init__(self,hud,farm, game):
         self.farm = farm
         self.hud = hud
         self.tile_to_modify = self.hud.level.level[self.farm.x][self.farm.y]
         self.neighbors = self.get_neighbors()
         self.area_to_plant = self.get_fertile_area()
         self.current_index_growing = 0
+        self.workers = 0
+        self.game = game
 
     def place_farm (self):
         self.tile_to_modify["tile"] = "farm12"
@@ -19,15 +21,17 @@ class Farm_Controller():
 
     def update(self):
 
-        if self.current_index_growing <= 4:
-            if self.area_to_plant["status"][self.current_index_growing] < 17:
-                self.area_to_plant["status"][self.current_index_growing] += 1
-                self.grow_tile()
+        if (self.workers > 0):
+            if self.current_index_growing <= 4:
+                if self.area_to_plant["status"][self.current_index_growing] < 17:
+                    self.area_to_plant["status"][self.current_index_growing] += 1
+                    self.grow_tile()
+                else:
+                    self.current_index_growing += 1
             else:
-                self.current_index_growing += 1
-        else:
-            self.current_index_growing = 0
-            self.reset_farm()
+                self.game.food += 100
+                self.current_index_growing = 0
+                self.reset_farm()
             
     def reset_farm (self):
         for x in range (len(self.area_to_plant["status"])):
@@ -44,8 +48,8 @@ class Farm_Controller():
         neighbors = []
         #In order to link these tiles to this controller so when we delete one of these tiles we delete
         #The whole building
-        for x in range (self.farm.x,self.farm.x + 4 ):
-            for y in range (self.farm.y, self.farm.y + 4):
+        for x in range (self.farm.x + 1,self.farm.x - 2,-1):
+            for y in range (self.farm.y + 1, self.farm.y -2,-1):
                 neighbors.append(self.hud.level.level[x][y])
         return neighbors
 
