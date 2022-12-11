@@ -118,12 +118,10 @@ class HUDButtonController():
                             neighbors_tile = self.hud.level.level_controller.get_neighbors_tile(tile_to_modify["grid"], "road")
                             self.hud.level.level_controller.find_right_tile(tile_to_modify, neighbors_tile, "road")
 
-                            #print("Neigh " + str(neighbors_tile))
                             real_neighbors = self.hud.level.level_controller.get_real_neighbors(tile_to_modify, "road", self.hud.level.level)
 
                             for real_neighbor in real_neighbors:
                                 neighbors_of_real_neighbor = self.hud.level.level_controller.get_neighbors_tile(real_neighbor["grid"], "road")
-                                print("Neigh of neigh " + str(neighbors_of_real_neighbor))
                                 self.hud.level.level_controller.find_right_tile(real_neighbor, neighbors_of_real_neighbor, "road")
 
     def destruction(self, x,y):

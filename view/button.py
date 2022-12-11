@@ -47,12 +47,13 @@ class Button():
             is_hovered -- True if the button is hovered, False if it isn't
             type_menu -- menu string
         """
+
         if is_hovered == False:
             font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
             text = font.render(self.command_name, 1, (0,0,0))
 
             # Menu, Pause Menu
-            if (type_menu == "Menu" or type_menu == "Pause Menu"):
+            if (type_menu == "Menu" or type_menu == "Pause Menu" or type_menu == "Sub Menu"):
                 pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
             # HUD
             elif (type_menu == "HUD"):
@@ -64,3 +65,12 @@ class Button():
             window.blit(text, (self.rect.x + (self.rect.width/2 - text.get_width()/2), self.rect.y + (self.rect.height/2 - text.get_height()/2)))
         else:            
             pg.draw.rect(window, (0, 0, 0), self.rect, 2, 2)
+
+            if (type_menu == "Sub Menu"):
+                pg.draw.rect(window, (149, 148, 116), self.rect, 0, 2, 2)
+                font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
+                text = font.render(self.command_name, 1, (0, 0, 0))
+                # put the text at the center of the button
+                window.blit(text, (self.rect.x + (self.rect.width / 2 - text.get_width() / 2),
+                                self.rect.y + (self.rect.height / 2 - text.get_height() / 2)))
+                pg.draw.rect(window, (0, 0, 0), self.rect, 2, 2)
