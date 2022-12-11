@@ -14,10 +14,7 @@ class HUD():
         """
         self.level = level
 
-        self.window = pg.display.set_mode((1360, 765))
 
-        self.right_panel = self.window.subsurface(1157, 24, 202, 735)
-        self.top_menu = self.window.subsurface(0, 0, 1360, 24)
         self.buttons = []
         self.subbuttons = []
 
@@ -85,6 +82,8 @@ class HUD():
             self.right_panel.blit(l_right_panel[26], (162,24*i))
         self.right_panel.blit(l_right_panel[26], (162,711))
 
+
+
    
     def blit_top_menu(self, money, workers, citizens, food):
         """Blit top menu HUD."""
@@ -118,12 +117,12 @@ class HUD():
         self.top_menu.blit(l_top_panel[10],(632,0))
         self.top_menu.blit(l_top_panel[0],(672,0))
         self.top_menu.blit(l_top_panel[8],(792,0))
-        self.top_menu.blit(l_top_panel[0],(816,0))
-        self.top_menu.blit(l_top_panel[12],(936,0))
-        self.top_menu.blit(l_top_panel[3],(952,0))
-        self.top_menu.blit(l_top_panel[4],(976,0))
-        self.top_menu.blit(l_top_panel[5],(1000,0))
-        self.top_menu.blit(l_top_panel[6],(1024,0))
+        self.top_menu.blit(l_top_panel[12],(816,0))
+        self.top_menu.blit(l_top_panel[3],(832,0))
+        self.top_menu.blit(l_top_panel[4],(856,0))
+        self.top_menu.blit(l_top_panel[5],(880,0))
+        self.top_menu.blit(l_top_panel[6],(904,0))
+        self.top_menu.blit(l_top_panel[0],(928,0))
         self.top_menu.blit(l_top_panel[7],(1048,0))
         self.top_menu.blit(l_top_panel[8],(1072,0))
         self.top_menu.blit(l_top_panel[2],(1096,0))
@@ -133,61 +132,69 @@ class HUD():
         self.top_menu.blit(l_top_panel[11],(1304,0))
         self.top_menu.blit(l_top_panel[5],(1336,0))
         police = pg.font.SysFont("monospace", 20, bold=True, italic=False)
-        image_text = police.render("Dinars : "+str(money), 1, (255,0,0))
-        image_text2 = police.render("Citizens : "+str(citizens), 1, (255,0,0))
-        image_text3 = police.render("Workers : "+str(workers), 1, (255,0,0))
-        image_text4 = police.render("Food : "+str(food), 1, (255,0,0))
-        self.top_menu.blit(image_text,(1096,0))
-        self.top_menu.blit(image_text2,(920,0))
-        self.top_menu.blit(image_text3,(790,0))
-        self.top_menu.blit(image_text4,(500,0))
+        image_text = police.render("Dinars   "+str(money), 1, (255,0,0))
+        image_text2 = police.render("Citizens   "+str(citizens), 1, (255,0,0))
+        image_text3 = police.render("Workers   "+str(workers), 1, (255,0,0))
+        image_text4 = police.render("Food   "+str(food), 1, (255,0,0))
+        self.top_menu.blit(image_text,(1075,0))
+        self.top_menu.blit(image_text2,(565,0))
+        self.top_menu.blit(image_text3,(835,0))
+        self.top_menu.blit(image_text4,(200,0))
 
-    def display_hud(self, money, workers, citizens, food):
+    def display_hud(self, window, money, workers, citizens, food):
         """Display the game HUD."""
         pg.init()
+
+        self.fake_screen = pg.Surface((1360,765))
+        self.right_panel = self.fake_screen.subsurface(1157, 24, 202, 735)
+        self.top_menu = self.fake_screen.subsurface(0, 0, 1360, 24)
+
         self.blit_right_panel()
         self.blit_top_menu(money, workers, citizens, food)
-
+        L, h = window.get_rect().size 
         self.buttons = []
-        self.buttons.append(Button(pg.Rect(1168, 299, 42, 29), "create_house"))
-        self.buttons.append(Button(pg.Rect(1218, 299, 42, 29), "destruction"))
-        self.buttons.append(Button(pg.Rect(1268, 299, 42, 29), "create_road"))
-        self.buttons.append(Button(pg.Rect(1168, 335, 42, 29), "waterworks"))
-        self.buttons.append(Button(pg.Rect(1268, 407, 42, 29), "agriculture"))
-        self.buttons.append(Button(pg.Rect(1168, 407, 42, 29), "engineerPost"))
-        self.buttons.append(Button(pg.Rect(1168, 443, 42, 25), "unselected"))
-
-        for btn in self.buttons:
-            btn.hover(self.window, btn, "HUD")
-
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 299*h/765, 42*L/1360, 29*h/765), "create_house"))
+        self.buttons.append(Button(pg.Rect(L*1218/1360, 299*h/765, 42*L/1360, 29*h/765), "destruction"))
+        self.buttons.append(Button(pg.Rect(L*1268/1360, 299*h/765, 42*L/1360, 29*h/765), "create_road"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 335*h/765, 42*L/1360, 29*h/765), "waterworks"))
+        self.buttons.append(Button(pg.Rect(L*1268/1360, 407*h/765, 42*L/1360, 29*h/765), "agriculture"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 407*h/765, 42*L/1360, 29*h/765), "engineerPost"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 443*h/765, 42*L/1360, 25*h/765), "unselected"))
+      
         if(self.fct == "waterworks"):
-            self.display_waterworkssubhud()
+            self.display_waterworkssubhud(window)
 
         if (self.fct == "agriculture"):
-            self.display_agriculturesubhud()
+            self.display_agriculturesubhud(window)
+
+        window.blit(pygame.transform.scale(self.top_menu,(L,h*24/765) ), (0, 0))
+        window.blit(pygame.transform.scale(self.right_panel, (L*202/1360, h*740/765)), (L*1157/1360, h*24/765))
+
+        for btn in self.buttons:
+            btn.hover(window, btn, "HUD")
 
         pg.display.update()
 
-    def display_waterworkssubhud(self):
-        pg.init()
+    def display_waterworkssubhud(self, window):
+   
 
         self.subbuttons = []
         self.subbuttons.append(Button(pg.Rect(1159, 550, 158, 29), "Reservoir"))
         self.subbuttons.append(Button(pg.Rect(1159, 586, 158, 29), "Aqueduct"))
 
         for btn in self.subbuttons:
-            btn.hover(self.window, btn, "Sub Menu")
+            btn.hover(window, btn, "Sub Menu")
 
-        pg.display.update()
+        
 
-    def display_agriculturesubhud(self):
-        pg.init()
+    def display_agriculturesubhud(self, window):
+      
 
         self.subbuttons = []
         self.subbuttons.append(Button(pg.Rect(1159, 550, 158, 29), "Granary"))
         self.subbuttons.append(Button(pg.Rect(1159, 586, 158, 29), "Farm"))
 
         for btn in self.subbuttons:
-            btn.hover(self.window, btn, "Sub Menu")
+            btn.hover(window, btn, "Sub Menu")
 
-        pg.display.update()
+        
