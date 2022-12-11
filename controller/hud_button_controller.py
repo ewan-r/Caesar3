@@ -9,9 +9,6 @@ from model.house import House
 from model.farm import Farm
 from model.granary import Granary
 
-from pathfinding.core.grid import Grid
-from pathfinding.finder.a_star import AStarFinder
-
 class HUDButtonController():
     """A HUDButtonController."""  
 
@@ -77,7 +74,7 @@ class HUDButtonController():
                 game.dinars -= 5
         except : 
             pass
-    def create_road(self, click_pos, pos_mouse):
+    def create_road(self, pos_mouse):
         """Create a road.
         
         Argument:
@@ -86,44 +83,20 @@ class HUDButtonController():
     
         if pos_mouse[0] < self.hud.level.grid_length_x and pos_mouse[1] < self.hud.level.grid_length_y:
             if pos_mouse[0] >= 0 and pos_mouse[1] >= 0:
-                matrix = self.hud.level.level_controller.get_tile_matrix("landsRoad")
-                grid = Grid(matrix = matrix)
+                tile_to_modify = self.hud.level.level[pos_mouse[0]][pos_mouse[1]]
+            
+                if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
+                    tile_to_modify['type_tile'] = "landsRoad"
+                    tile_to_modify['tile'] = "roadleftrightupdown"
+                    neighbors_tile = self.hud.level.level_controller.get_neighbors_tile(tile_to_modify["grid"], "road")
+                    self.hud.level.level_controller.find_right_tile(tile_to_modify, neighbors_tile, "road")
 
-                start_x = click_pos[0]
-                start_y = click_pos[1]
-                target_x = pos_mouse[0]
-                target_y = pos_mouse[1]
+                    real_neighbors = self.hud.level.level_controller.get_real_neighbors(tile_to_modify, "road", self.hud.level.level)
 
-                start = grid.node(start_x,start_y)
-                end = grid.node(target_x,target_y)
-
-                finder = AStarFinder()
-                path = finder.find_path(start, end, grid)
-                grid.cleanup()
-
-                if path:
-                    points = []
-
-                    for point in path:
-                        x = point[0][0]
-                        y = point[0][1]
-                        points.append((x,y))
-                        break
-
-                    for pt in points:
-                        tile_to_modify = self.hud.level.level[pt[0]][pt[1]]
-                    
-                        if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
-                            tile_to_modify['type_tile'] = "landsRoad"
-                            neighbors_tile = self.hud.level.level_controller.get_neighbors_tile(tile_to_modify["grid"], "road")
-                            self.hud.level.level_controller.find_right_tile(tile_to_modify, neighbors_tile, "road")
-
-                            real_neighbors = self.hud.level.level_controller.get_real_neighbors(tile_to_modify, "road", self.hud.level.level)
-
-                            for real_neighbor in real_neighbors:
-                                neighbors_of_real_neighbor = self.hud.level.level_controller.get_neighbors_tile(real_neighbor["grid"], "road")
-                                self.hud.level.level_controller.find_right_tile(real_neighbor, neighbors_of_real_neighbor, "road")
-
+                    for real_neighbor in real_neighbors:
+                        neighbors_of_real_neighbor = self.hud.level.level_controller.get_neighbors_tile(real_neighbor["grid"], "road")
+                        self.hud.level.level_controller.find_right_tile(real_neighbor, neighbors_of_real_neighbor, "road")
+                                
     def destruction(self, x,y):
         """Create a road.
 

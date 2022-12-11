@@ -125,11 +125,8 @@ class GameController:
         if click[2] and (self.game.level.hud.fctselected==True):
             if self.game.level.hud.fct=="create_house":
                 hud_btn_controller.create_house(grid_coords,level_controller.buildings, self)
-            elif self.game.level.hud.fct=="create_road":
-                click_x_pos_mouse, click_y_pos_mouse = pg.mouse.get_pos()
-                click_pos = level_controller.mouse_to_grid(click_x_pos_mouse, click_y_pos_mouse, camera_controller.camera.scroll)
-                
-                hud_btn_controller.create_road(click_pos, grid_coords)
+            elif self.game.level.hud.fct=="create_road":                
+                hud_btn_controller.create_road(grid_coords)
 
         if click[2] and (self.game.level.hud.fctselected==True) and (self.game.level.hud.subfctselected==True):
             #if self.game.level.hud.fct=="create_aqueduct":
