@@ -178,13 +178,3 @@ class HUDButtonController():
             if level_tile_to_modify["destructible"]:
                 level_tile_to_modify['type_tile'] = "lands"
                 level_tile_to_modify['tile'] = ""
-
-
-    def filter(self,coord,window):
-        level_tile_to_modify = self.hud.level.level[coord[0]][coord[1]]
-        if level_tile_to_modify["tile"] == "house1":
-            font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
-            rect = pg.Rect(1268, 299, 42, 29)
-            pg.draw.rect(window, (149, 148, 116), rect, 0, 2, 2)
-            pg.display.flip()
-            #print(level_tile_to_modify["house"].house.collapseCounter*10)

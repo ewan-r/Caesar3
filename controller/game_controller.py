@@ -7,6 +7,7 @@ from controller.hud_button_controller import HUDButtonController
 from view.button import Button
 from model.storage import Storage
 from view.pause_menu import PauseMenu
+from view.filter_menu import FilterMenu
 
 class GameController:
     """A GameController."""
@@ -28,6 +29,8 @@ class GameController:
         self.aqueduc_being_build = False
         self.aqueduc =[]
         self.aqueduc_cooldown = 0
+
+        self.filtre_menu =FilterMenu(self.screen, "",self.game.level)
     def run(self):
         """Run a game in a loop."""
         self.playing = True
@@ -102,7 +105,8 @@ class GameController:
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
                 elif event.key == pg.K_f:
-                    hud_btn_controller.filter(grid_coords,self.screen)
+                    self.filtre_menu.display_menu(grid_coords)
+
         if click[0] and (self.aqueduc_build_bool == False):
             hud_btn_controller.create_house(grid_coords,level_controller.buildings)
         elif click[0] and self.aqueduc_build_bool:
