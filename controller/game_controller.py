@@ -1,7 +1,7 @@
-from controller.aqueduc_controller import Aqueduc_Controller
 import pygame as pg
 import sys
 
+from controller.aqueduc_controller import Aqueduc_Controller
 from controller.camera_controller import CameraController
 from controller.hud_button_controller import HUDButtonController
 from view.button import Button
@@ -22,8 +22,8 @@ class GameController:
         self.workers = 0
         self.free_workers = 0
         self.citizens = 0
-        self.occupied_workers = 0
         self.economy_cooldown = 0
+        self.food = 2000
         self.playing = False
         self.screen = self.game.screen
         self.width, self.height = pg.display.get_surface().get_size()
@@ -88,11 +88,11 @@ class GameController:
                 elif event.key == pg.K_y:
                     hud_btn_controller.create_road(grid_coords)
                 elif event.key == pg.K_LEFT:
-                    hud_btn_controller.create_engineerPost(grid_coords, level_controller.employers_buildings, level_controller.buildings)
+                    hud_btn_controller.create_engineerPost(grid_coords, level_controller.employers_buildings, level_controller.buildings, self)
                 elif event.key == pg.K_RIGHT:
-                    hud_btn_controller.create_farmBuilding(grid_coords,level_controller.economy_buildings)
+                    hud_btn_controller.create_farmBuilding(grid_coords,level_controller.economy_buildings, level_controller.employers_buildings, self)
                 elif event.key == pg.K_a:
-                    hud_btn_controller.create_granary(grid_coords,level_controller.economy_buildings)
+                    hud_btn_controller.create_granary(grid_coords,level_controller.economy_buildings, self)
                 elif event.key == pg.K_z:
                     hud_btn_controller.create_reservoir(grid_coords,level_controller.economy_buildings)
                 elif event.key == pg.K_w:
@@ -158,7 +158,7 @@ class GameController:
         # level
         self.game.level.draw(self.game.screen, self.game.camera)
         # HUD
-        self.game.level.hud.display_hud(self.dinars, self.workers, self.citizens)
+        self.game.level.hud.display_hud(self.dinars, self.workers, self.citizens, self.food)
         # road button
         road_btn = Button(pg.Rect(1268, 299, 42, 29), "Create road")
         road_btn.hover(self.game.screen, road_btn, "HUD") 
@@ -184,15 +184,11 @@ class GameController:
             if (len(workers) >= 1):
                 while (self.free_workers > 1):
                     for i in range (len(workers)):
-                        workers[i] +=1
-                        self.free_workers -= 1
-                        print("workers :")
-                        print(self.workers)
-                        print("free workers")
-                        print(self.free_workers)
+                        if (self.free_workers > 0):
+                            workers[i] +=1
+                            self.free_workers -= 1
             for building_index in range (len(employers_buildings)):
                 employers_buildings[building_index].workers = workers[building_index] 
-                print(workers[building_index])
 
             hud.update_economy(economy_buildings)
             self.economy_cooldown = 0

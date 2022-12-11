@@ -4,6 +4,8 @@ class Granary_Controller:
         self.hud = hud
         self.tile_to_modify = self.hud.level.level[self.granary.x][self.granary.y]
         self.loader = self.get_tile_load()
+        self.neighbors = self.get_neighbors_tiles()
+        print(len(self.neighbors))
         self.index_of_animation_loader = 152
         self.direction_of_loader = 0
     def place_granary(self):        
@@ -15,6 +17,12 @@ class Granary_Controller:
     def animation_of_loader(self):
         self.loader["tile"] = "granary" + str(self.index_of_animation_loader)
         
+    def get_neighbors_tiles (self):
+        neighbors = []
+        for x in range (self.granary.x,self.granary.x - 3,-1):
+            for y in range (self.granary.y, self.granary.y + 3):
+                neighbors.append(self.hud.level.level[x][y])
+        return neighbors
     def update (self):
         if (self.direction_of_loader == 0):
             if (self.index_of_animation_loader < 152):
@@ -31,7 +39,7 @@ class Granary_Controller:
         #self.loader["type_tile"] = "buildings"
 
     def get_tile_load(self):
-        return self.hud.level.level[self.granary.x][self.granary.y+1]
+        return self.hud.level.level[self.granary.x][self.granary.y+2]
     
     def deliver_wheat(self, amount_to_deliver):
         #This function aims to be activated by the walker to deliver the wheat in granary
