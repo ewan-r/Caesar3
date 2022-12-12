@@ -30,6 +30,7 @@ class Farm_Controller():
             tile["tile"] = "landFarm1"
             tile["type_tile"] = "lands"
             tile["attached_to_building"] = []
+            tile["destructible"] = False
         self.game.game.level.level_controller.economy_buildings.remove(self)
         self.game.game.level.level_controller.employers_buildings.remove(self)
     def update(self):

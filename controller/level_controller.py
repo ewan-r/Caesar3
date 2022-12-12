@@ -185,6 +185,7 @@ class LevelController:
             for y in range (cultivableParams[1],cultivableParams[1]+cultivableParams[2]):
                 world[x][y]["tile"] = "landFarm1"
                 world[x][y]["type_tile"] = "lands"
+                world[x][y]["destructible"] = False
 
     def cart_to_iso(self, x, y):
         """Convert cartesian coordinates to isometric coordinates.
