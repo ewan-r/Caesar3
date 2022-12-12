@@ -151,6 +151,7 @@ class LevelController:
 
                 if probaTree < 45:
                     world[x][y]["type_tile"] = "landsForests"
+                    world[x][y]["destructible"] = True
                     if probaTree < 5 : 
                         world[x][y]["tile"] = "landForest45"
                     elif probaTree > 5 and probaTree < 10:
