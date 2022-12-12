@@ -23,9 +23,10 @@ class Farm_Controller():
             tile["type_tile"] = "buildings"
         for tile in self.get_neighbors():
             tile["attached_to_building"] = self
+            tile["destructible"] = True
 
     def destroy (self):
-        for tile in self.get_neighbors:
+        for tile in self.get_neighbors():
             tile["tile"] = "landFarm1"
             tile["type_tile"] = "lands"
             tile["attached_to_building"] = []

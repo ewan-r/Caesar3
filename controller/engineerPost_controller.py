@@ -16,14 +16,15 @@ class EngineerPost_Controller:
         self.tile_to_modify["tile"] = ""
         self.tile_to_modify["type_tile"] = ""
         self.tile_to_modify["attached_to_building"] = []
-        self.game.level.level_controller.buildings.remove(self)
-        self.game.level.level_controller.employers_buildings.remove(self)
+        self.game.game.level.level_controller.buildings.remove(self)
+        self.game.game.level.level_controller.employers_buildings.remove(self)
 
 
     def place_post(self): 
         self.tile_to_modify["tile"] = "engineerPost"
         self.tile_to_modify["type_tile"] = "buildings"
         self.tile_to_modify["attached_to_building"] = self
+        self.tile_to_modify["destructible"] = True
         self.create_engineer()
     
     def update(self, buildings):

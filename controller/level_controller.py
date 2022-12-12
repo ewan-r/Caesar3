@@ -109,14 +109,14 @@ class LevelController:
             oceans = []
             farms = []
 
-            numberForest = random.randint(4,6)
-            numberOcean = random.randint(2,3)
-            numberFarms = random.randint(3,5)
+            numberForest = random.randint(2,3)
+            numberOcean = random.randint(1,2)
+            numberFarms = random.randint(3,7)
 
 
             for i in range (1,numberForest,1):
                 
-                sizeForest = random.randint(10,20)
+                sizeForest = random.randint(10,15)
                 coordinatesForest = (random.randint(1,self.level.grid_length_x - sizeForest - 1),random.randint(1,self.level.grid_length_y - sizeForest - 1))
                 forest = [coordinatesForest[0],coordinatesForest[1],sizeForest]
                 forests.append(forest)
@@ -129,7 +129,7 @@ class LevelController:
                 oceans.append(ocean)
             for i in range (1,numberFarms):
                 
-                sizeFarms = random.randint(4,6)
+                sizeFarms = random.randint(4,8)
                 coordinatesFarms = (random.randint(1,self.level.grid_length_x - sizeFarms - 1),random.randint(1,self.level.grid_length_y - sizeFarms - 1))
                 farm = [coordinatesFarms[0], coordinatesFarms[1], sizeFarms]
                 farms.append(farm)
@@ -169,8 +169,6 @@ class LevelController:
                         world[x][y]["tile"] = "landForest60"
                     else:
                         world[x][y]["tile"] = "landForest17"
-                else:
-                    world[x][y]["tile"] = ""
     
     def generate_seas(self, world, seaParams):        
         yOffset = random.randint(1,4)

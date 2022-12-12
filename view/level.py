@@ -69,10 +69,18 @@ class Level:
             tile = self.level[x][y]["tile"]
             type_tile = self.level[x][y]["type_tile"]
             attached_to_building = self.level[x][y]["attached_to_building"]
-            if tile != "" and type_tile != "buildings" and not(attached_to_building):
-                screen.blit(self.tiles[type_tile][tile],
+            if tile == "" and not (attached_to_building):
+                screen.blit(self.tiles["lands"]["land81"],
+                                (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
+                                render_pos[1] - (self.tiles["lands"]["land81"].get_height() - 30) + camera.scroll.y))
+            elif tile != "" and type_tile != "buildings" and not(attached_to_building):
+                try:
+
+                    screen.blit(self.tiles[type_tile][tile],
                                 (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                 render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
+                except :
+                    print(self.level[x][y])
             elif type_tile == "buildings":
                 if (self.is_water_for_reservoir(tile)):
                     self.foreground.append(self.level[x][y])
