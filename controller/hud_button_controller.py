@@ -87,6 +87,7 @@ class HUDButtonController():
             
                 if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
                     tile_to_modify['type_tile'] = "landsRoad"
+                    tile_to_modify['destructible'] = True
                     tile_to_modify['tile'] = "roadleftrightupdown"
                     neighbors_tile = self.hud.level.level_controller.get_neighbors_tile(tile_to_modify["grid"], "road")
                     self.hud.level.level_controller.find_right_tile(tile_to_modify, neighbors_tile, "road")
