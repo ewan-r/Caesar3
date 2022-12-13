@@ -19,7 +19,7 @@ class MenuButtonController():
 
     def start_game(self):
         """Start a game."""
-        game = Game(self.menu.window, pg.time.Clock())
+        game = Game(self.menu, pg.time.Clock())
         game_controller = GameController(game)
 
         game_controller.run()
@@ -30,8 +30,7 @@ class MenuButtonController():
         load_game = LoadMenu(self.menu.window,"")
         filename = load_game.loading_name()
       
-        self.menu.window = pg.display.set_mode((1360, 765))
-        game = Game(self.menu.window, pg.time.Clock())
+        game = Game(self.menu, pg.time.Clock())
         stored_level = Storage([])
 
         # replacing default world with a saved world

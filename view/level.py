@@ -80,7 +80,7 @@ class Level:
                                 (render_pos[0] + self.grass_tiles.get_width()/2 + camera.scroll.x,
                                 render_pos[1] - (self.tiles[type_tile][tile].get_height() - 30) + camera.scroll.y))
                 except :
-                    print(self.level[x][y])
+                    pass
             elif type_tile == "buildings":
                 if (self.is_water_for_reservoir(tile)):
                     self.foreground.append(self.level[x][y])

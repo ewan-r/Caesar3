@@ -15,16 +15,15 @@ def main():
 
     game_menu = Menu(window, background_image)
 
-    menu_btn_controller = MenuButtonController(game_menu)
     command_response = game_menu.display_menu()
     command = command_response[0]
 
     if command == "Start a new career":
-        menu_btn_controller.start_game()
+        game_menu.menu_btn_controller.start_game()
     elif command == "Load saved game":
-        menu_btn_controller.load_save()
+        game_menu.menu_btn_controller.load_save()
     elif command == "Exit":
-        menu_btn_controller.quit_game()
+        game_menu.menu_btn_controller.quit_game()
     
 if __name__ == "__main__":
     main()

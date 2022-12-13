@@ -4,7 +4,6 @@ import sys
 from controller.aqueduc_controller import Aqueduc_Controller
 from controller.camera_controller import CameraController
 from controller.hud_button_controller import HUDButtonController
-from view.button import Button
 from model.storage import Storage
 from view.pause_menu import PauseMenu
 from view.filter_menu import FilterMenu
@@ -37,6 +36,9 @@ class GameController:
 
         self.filtre_menu =FilterMenu(self.screen, "",self.game.level)
         self.camera_controller = CameraController(self.game.camera)
+        
+        self.exit_clicked = False
+
     def run(self):
         """Run a game in a loop."""
         self.playing = True
@@ -71,8 +73,8 @@ class GameController:
                     commandResp = self.pause_menu.display_menu()
                     command = commandResp[0]
                     if (command == "Exit to Main Menu"):
-                        pg.quit
-                        sys.exit()
+                        self.exit_clicked = True
+                        self.draw()
                     elif(command == "Continue"):
                         pass
                     elif(command == "Save game"):
@@ -185,13 +187,27 @@ class GameController:
         
     def draw(self):
         """Draw sprites of a game."""
-        
+
         self.game.screen.fill((0, 0, 0))
-        # level
-        self.game.level.draw(self.game.screen, self.game.camera)
-        # HUD
-        self.game.level.hud.display_hud(self.game.screen, self.dinars, self.workers, self.citizens, self.food)
-        
+
+        if self.exit_clicked:
+            game_menu = self.game.menu
+            game_menu.window.blit(pg.transform.scale(game_menu.background, game_menu.window.get_size()), (0, 0))
+            
+            command_response = game_menu.display_menu()
+            command = command_response[0]
+
+            if command == "Start a new career":
+                game_menu.menu_btn_controller.start_game()
+            elif command == "Load saved game":
+                game_menu.menu_btn_controller.load_save()
+            elif command == "Exit":
+                game_menu.menu_btn_controller.quit_game()
+        else:
+            # level
+            self.game.level.draw(self.game.screen, self.game.camera)
+            # HUD
+            self.game.level.hud.display_hud(self.game.screen, self.dinars, self.workers, self.citizens, self.food)
 
     def update_buildings(self, hud,buildings):
         self.aqueduc_cooldown += self.game.clock.get_time()

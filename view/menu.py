@@ -1,5 +1,6 @@
 import pygame as pg
 from pygame.locals import *
+from controller.menu_button_controller import MenuButtonController
 
 from controller.menu_controller import MenuController
 from view.button import Button
@@ -17,6 +18,7 @@ class Menu():
         self.window = window
         self.background = background_image
         self.buttons = []
+        self.menu_btn_controller = MenuButtonController(self)
 
     def display_menu(self):
         """Display the game menu."""

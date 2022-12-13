@@ -4,14 +4,15 @@ from view.level import Level
 class Game:
     """A Game."""
 
-    def __init__(self, screen, clock):
+    def __init__(self, menu, clock):
         """Game constructor.
         
         Arguments:
             screen -- screen to display a game
             clock -- game clock
         """
-        self.screen = screen
+        self.menu = menu
+        self.screen = self.menu.window
         self.clock = clock
         self.width, self.height = self.screen.get_size()
 

@@ -24,7 +24,6 @@ class TextField:
          self.color_inactive = pg.Color(color)
 
     def render_window(self, buttons_save):
-        print(buttons_save)
         active = True
         
         done = False
