@@ -96,6 +96,7 @@ class LevelController:
             "type_tile": type_tile,
             "tile": tile,
             "destructible": destructible,
+            "house":None,
             "attached_to_building": attached_to_building,
             "collapsed_counter": collapsed_counter
             #"collision": False if tile == "" else True

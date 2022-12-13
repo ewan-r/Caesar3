@@ -7,6 +7,7 @@ from controller.hud_button_controller import HUDButtonController
 from view.button import Button
 from model.storage import Storage
 from view.pause_menu import PauseMenu
+from view.filter_menu import FilterMenu
 
 class GameController:
     """A GameController."""
@@ -33,6 +34,8 @@ class GameController:
         self.aqueduc_being_build = False
         self.aqueduc =[]
         self.aqueduc_cooldown = 0
+
+        self.filtre_menu =FilterMenu(self.screen, "",self.game.level)
         self.camera_controller = CameraController(self.game.camera)
     def run(self):
         """Run a game in a loop."""
@@ -96,6 +99,9 @@ class GameController:
                     level_controller.level.preview_aqueduc.clear()
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
+                elif event.key == pg.K_f:
+                    self.filtre_menu.display_menu(grid_coords)
+
             elif event.type == pg.MOUSEBUTTONDOWN:
                 mouse_presses=pg.mouse.get_pressed()
                 click = pg.mouse.get_pressed()

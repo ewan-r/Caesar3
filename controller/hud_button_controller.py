@@ -8,6 +8,7 @@ from controller.house_controller import HouseController
 from model.house import House
 from model.farm import Farm
 from model.granary import Granary
+import pygame as pg
 
 class HUDButtonController():
     """A HUDButtonController."""  
@@ -70,6 +71,7 @@ class HUDButtonController():
             if self.hud.level.level[house.x][house.y]['tile'] == "" and game.dinars > 5:
                 houseController = HouseController(house,self.hud,game)
                 houseController.place_house()
+                self.hud.level.level[house.x][house.y]['house'] = houseController
                 buildings.append(houseController)
                 game.dinars -= 5
         except : 
@@ -85,7 +87,7 @@ class HUDButtonController():
             if pos_mouse[0] >= 0 and pos_mouse[1] >= 0:
                 tile_to_modify = self.hud.level.level[pos_mouse[0]][pos_mouse[1]]
             
-                if tile_to_modify['type_tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
+                if tile_to_modify['tile'] == "" or tile_to_modify['type_tile'] == "landsRoad":
                     tile_to_modify['type_tile'] = "landsRoad"
                     tile_to_modify['destructible'] = True
                     tile_to_modify['tile'] = "roadleftrightupdown"
@@ -108,9 +110,5 @@ class HUDButtonController():
             level_tile_to_modify = self.hud.level.level[x][y]
 
             if level_tile_to_modify["destructible"]:
-                if (level_tile_to_modify["attached_to_building"] != []):
-                    print("test")
-                    level_tile_to_modify["attached_to_building"].destroy()
-                else : 
-                    level_tile_to_modify['type_tile'] = ""
-                    level_tile_to_modify['tile'] = ""
+                level_tile_to_modify['type_tile'] = "lands"
+                level_tile_to_modify['tile'] = ""
