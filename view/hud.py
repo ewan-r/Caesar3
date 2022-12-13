@@ -153,13 +153,13 @@ class HUD():
         self.blit_top_menu(money, workers, citizens, food)
         L, h = window.get_rect().size 
         self.buttons = []
-        self.buttons.append(Button(pg.Rect(L*1168/1360, 299*h/765, 42*L/1360, 29*h/765), "create_house"))
-        self.buttons.append(Button(pg.Rect(L*1218/1360, 299*h/765, 42*L/1360, 29*h/765), "destruction"))
-        self.buttons.append(Button(pg.Rect(L*1268/1360, 299*h/765, 42*L/1360, 29*h/765), "create_road"))
-        self.buttons.append(Button(pg.Rect(L*1168/1360, 335*h/765, 42*L/1360, 29*h/765), "waterworks"))
-        self.buttons.append(Button(pg.Rect(L*1268/1360, 407*h/765, 42*L/1360, 29*h/765), "agriculture"))
-        self.buttons.append(Button(pg.Rect(L*1168/1360, 407*h/765, 42*L/1360, 29*h/765), "engineerPost"))
-        self.buttons.append(Button(pg.Rect(L*1168/1360, 443*h/765, 42*L/1360, 25*h/765), "unselected"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 302*h/765, 42*L/1360, 29*h/765), "create_house"))
+        self.buttons.append(Button(pg.Rect(L*1218/1360, 302*h/765, 42*L/1360, 29*h/765), "destruction"))
+        self.buttons.append(Button(pg.Rect(L*1268/1360, 302*h/765, 42*L/1360, 29*h/765), "create_road"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 338*h/765, 42*L/1360, 29*h/765), "waterworks"))
+        self.buttons.append(Button(pg.Rect(L*1268/1360, 410*h/765, 42*L/1360, 29*h/765), "agriculture"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 410*h/765, 42*L/1360, 29*h/765), "engineerPost"))
+        self.buttons.append(Button(pg.Rect(L*1168/1360, 449*h/765, 42*L/1360, 22*h/765), "unselected"))
       
         if(self.fct == "waterworks"):
             self.display_waterworkssubhud(window)
@@ -179,8 +179,8 @@ class HUD():
    
 
         self.subbuttons = []
-        self.subbuttons.append(Button(pg.Rect(1159, 550, 158, 29), "Reservoir"))
-        self.subbuttons.append(Button(pg.Rect(1159, 586, 158, 29), "Aqueduct"))
+        self.subbuttons.append(Button(pg.Rect(400, 700, 500, 29), "Reservoir"))
+        self.subbuttons.append(Button(pg.Rect(400, 736, 500, 29), "Aqueduct"))
 
         for btn in self.subbuttons:
             btn.hover(window, btn, "Sub Menu")
@@ -191,8 +191,8 @@ class HUD():
       
 
         self.subbuttons = []
-        self.subbuttons.append(Button(pg.Rect(1159, 550, 158, 29), "Granary"))
-        self.subbuttons.append(Button(pg.Rect(1159, 586, 158, 29), "Farm"))
+        self.subbuttons.append(Button(pg.Rect(500, 600, 300, 29), "Granary"))
+        self.subbuttons.append(Button(pg.Rect(500, 636, 300, 29), "Farm"))
 
         for btn in self.subbuttons:
             btn.hover(window, btn, "Sub Menu")

@@ -99,8 +99,8 @@ class GameController:
                     level_controller.level.preview_aqueduc.clear()
                     self.aqueduc_being_build = False
                     self.aqueduc_build_bool = False
-                elif event.key == pg.K_f:
-                    self.filtre_menu.display_menu(grid_coords)
+                """elif event.key == pg.K_f:
+                    self.filtre_menu.display_menu(grid_coords)"""
 
             elif event.type == pg.MOUSEBUTTONDOWN:
                 mouse_presses=pg.mouse.get_pressed()
@@ -114,7 +114,9 @@ class GameController:
                         if subbtn.rect.collidepoint(event.pos) and (mouse_presses[0]):
                             self.game.level.hud.fct= subbtn.command_name
                             self.game.level.hud.subfctselected = True
-                if mouse_presses[1] and (self.game.level.hud.fctselected == True):
+                if mouse_presses[0] and self.game.level.hud.fctselected==False:
+                    self.filtre_menu.display_menu(grid_coords)
+                if mouse_presses[0] and (self.game.level.hud.fctselected == True):
                     if self.game.level.hud.fct == "unselected":
                         self.game.level.hud.subfctselected = False
                         self.game.level.hud.fctselected = False

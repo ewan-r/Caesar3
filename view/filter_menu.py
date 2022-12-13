@@ -34,6 +34,10 @@ class FilterMenu():
                     if event.type == pg.KEYDOWN:
                         if event.key == pg.K_ESCAPE:
                             return
+                    if event.type== pg.MOUSEBUTTONDOWN:
+                        click = pg.mouse.get_pressed()
+                        if click[2]:
+                            return
                 font = pg.font.Font("assets/font/Forum-Regular.ttf", 25)
                 text = font.render(s, 1, (0, 0, 0))
                 rect2 =pg.Rect(self.window.get_size()[0]/2-150, 150, 300, 50)
