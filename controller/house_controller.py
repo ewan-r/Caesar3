@@ -14,7 +14,7 @@ class HouseController():
     def place_house(self):    
         self.tile_to_modify["tile"] = "house0"
         self.tile_to_modify["type_tile"] = "buildings"
-        self.tile_to_modify["attached_to_building"] = self
+        #self.tile_to_modify["attached_to_building"] = self
         self.call_migrant()
         self.tile_to_modify["destructible"] = True
         #Il faut modifier l'appel à new walker pour que les walkers ne soient pas génés par le manque de route

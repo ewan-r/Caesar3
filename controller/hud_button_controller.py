@@ -71,7 +71,7 @@ class HUDButtonController():
             if self.hud.level.level[house.x][house.y]['tile'] == "" and game.dinars > 5:
                 houseController = HouseController(house,self.hud,game)
                 houseController.place_house()
-                self.hud.level.level[house.x][house.y]['house'] = houseController
+                # self.hud.level.level[house.x][house.y]['house'] = houseController
                 buildings.append(houseController)
                 game.dinars -= 5
         except : 
