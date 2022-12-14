@@ -176,11 +176,11 @@ class HUD():
         pg.display.update()
 
     def display_waterworkssubhud(self, window):
-   
+        L, h = window.get_rect().size
 
         self.subbuttons = []
-        self.subbuttons.append(Button(pg.Rect(400, 700, 500, 29), "Reservoir"))
-        self.subbuttons.append(Button(pg.Rect(400, 736, 500, 29), "Aqueduct"))
+        self.subbuttons.append(Button(pg.Rect(L/2-300, 700, 500, 29), "Reservoir"))
+        self.subbuttons.append(Button(pg.Rect(L/2-300, 736, 500, 29), "Aqueduct"))
 
         for btn in self.subbuttons:
             btn.hover(window, btn, "Sub Menu")
@@ -188,11 +188,11 @@ class HUD():
         
 
     def display_agriculturesubhud(self, window):
-      
+        L, h = window.get_rect().size
 
         self.subbuttons = []
-        self.subbuttons.append(Button(pg.Rect(400, 700, 500, 29), "Granary"))
-        self.subbuttons.append(Button(pg.Rect(400, 736, 500, 29), "Farm"))
+        self.subbuttons.append(Button(pg.Rect(L/2-300, 700, 500, 29), "Granary"))
+        self.subbuttons.append(Button(pg.Rect(L/2-300, 736, 500, 29), "Farm"))
 
         for btn in self.subbuttons:
             btn.hover(window, btn, "Sub Menu")
