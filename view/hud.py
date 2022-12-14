@@ -191,8 +191,8 @@ class HUD():
       
 
         self.subbuttons = []
-        self.subbuttons.append(Button(pg.Rect(500, 600, 300, 29), "Granary"))
-        self.subbuttons.append(Button(pg.Rect(500, 636, 300, 29), "Farm"))
+        self.subbuttons.append(Button(pg.Rect(400, 700, 500, 29), "Granary"))
+        self.subbuttons.append(Button(pg.Rect(400, 736, 500, 29), "Farm"))
 
         for btn in self.subbuttons:
             btn.hover(window, btn, "Sub Menu")
