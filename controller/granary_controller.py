@@ -18,7 +18,7 @@ class Granary_Controller:
         self.loader["type_tile"] = "buildings"
         self.game.game.level.level_controller.granaries.append(self)
         for tile in self.get_neighbors_tiles():
-            #tile["attached_to_building"] = self
+            tile["attached_to_building"] = self
             tile["destructible"] = True
 
     def destroy (self):

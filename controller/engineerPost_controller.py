@@ -23,7 +23,7 @@ class EngineerPost_Controller:
     def place_post(self): 
         self.tile_to_modify["tile"] = "engineerPost"
         self.tile_to_modify["type_tile"] = "buildings"
-        #self.tile_to_modify["attached_to_building"] = self
+        self.tile_to_modify["attached_to_building"] = self
         self.tile_to_modify["destructible"] = True
         self.create_engineer()
     
