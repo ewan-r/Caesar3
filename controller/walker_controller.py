@@ -37,9 +37,10 @@ class WalkerController:
         if self.time == 100 :
             for walker in self.l_walkers:
                 possible_path=self.hud.level.level_controller.get_path((walker[3], walker[4]))
-                path = choice(possible_path)
-                walker[1],walker[2] = path["render_pos"]
-                walker[3],walker[4] = path["grid"]
+                if possible_path:
+                    path = choice(possible_path)
+                    walker[1],walker[2] = path["render_pos"]
+                    walker[3],walker[4] = path["grid"]
                 self.time = 0
         else:
             self.time += 1
@@ -58,7 +59,7 @@ class WalkerController:
     def path_finding(self,walker):
         matrix = self.hud.level.level_controller.get_tile_matrix("landsRoad")
         grid = Grid(matrix = matrix)
-        if len(self.coords) != 0 and matrix[walker[4]][walker[3]] != 0 and matrix[walker[6]][walker[5]] != 0:
+        if matrix[walker[4]][walker[3]] != 0 and matrix[walker[6]][walker[5]] != 0:
             target_x = walker[5]
             target_y = walker[6]
             start_x = walker[3]
@@ -77,14 +78,11 @@ class WalkerController:
                 path = self.path_finding(walker)
                 
                 if path and len(path) >  1:               
-                        (walker[3], walker[4]) = path[1]
-                        walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
-                        self.time = 0
+                    (walker[3], walker[4]) = path[1]
+                    walker[1], walker[2] = self.hud.level.level[walker[3]][walker[4]]["render_pos"]
+                    self.time = 0
         else:
             self.time += 1
-
-
-
 
 
 
