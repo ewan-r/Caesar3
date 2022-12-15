@@ -23,13 +23,10 @@ class Granary_Controller:
 
     def destroy (self):
         for tile in self.get_neighbors_tiles():
-            print("Tile bfore:")
-            print(tile)
             tile["tile"] = ""
             tile["type_tile"] = ""
             tile["attached_to_building"] = []
-            print("Tile after :")
-            print(tile)
+
         self.game.game.level.level_controller.granaries.remove(self)
         self.game.game.level.level_controller.economy_buildings.remove(self)
 

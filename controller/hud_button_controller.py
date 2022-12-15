@@ -110,5 +110,9 @@ class HUDButtonController():
             level_tile_to_modify = self.hud.level.level[x][y]
 
             if level_tile_to_modify["destructible"]:
-                level_tile_to_modify['type_tile'] = "lands"
-                level_tile_to_modify['tile'] = ""
+                    
+                if (level_tile_to_modify["attached_to_building"] != []):
+                    level_tile_to_modify["attached_to_building"].destroy()
+                else : 
+                    level_tile_to_modify['type_tile'] = ""
+                    level_tile_to_modify['tile'] = ""
